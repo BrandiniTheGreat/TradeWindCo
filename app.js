@@ -53,7 +53,8 @@ function priceFilter(boats, range) {
     const list = listPriceFor(b);
     if (range === 'under-500') return list < 500000;
     if (range === '500-750') return list >= 500000 && list < 750000;
-    if (range === '750-plus') return list >= 750000;
+    if (range === '750-plus') return list >= 750000 && list < 1000000;
+    if (range === '1m-plus') return list >= 1000000;
     return true;
   });
 }

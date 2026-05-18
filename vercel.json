@@ -13,7 +13,9 @@
     { "source": "/fan-sea", "destination": "/boat.html?id=leopard45-fan-sea" },
     { "source": "/pure-joy-iii", "destination": "/boat.html?id=leopard45-pure-joy-iii" },
     { "source": "/donna-june", "destination": "/boat.html?id=lagoon42-donna-june" },
-    { "source": "/sagitta", "destination": "/boat.html?id=leopard42-sagitta" }
+    { "source": "/sagitta", "destination": "/boat.html?id=leopard42-sagitta" },
+    { "source": "/dalliance", "destination": "/boat.html?id=leopard58-dalliance" },
+    { "source": "/happy-endings", "destination": "/boat.html?id=leopard58-happy-endings" }
   ],
   "headers": [
     {
