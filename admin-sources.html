@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sources — Internal · Trade Wind &amp; Co.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<div class="admin-banner">
+  <div class="container">
+    <span><strong>INTERNAL</strong> · Source Broker Inventory Monitor</span>
+    <span>Auto-scraped nightly · Not visible to customers</span>
+  </div>
+</div>
+
+<header class="site-header" data-header></header>
+
+<div class="admin-layout">
+  <aside class="admin-sidebar" data-admin-sidebar></aside>
+
+  <main class="admin-main">
+    <div style="margin-bottom:24px;">
+      <h1 style="font-family:var(--sans); font-size:26px; font-weight:700; letter-spacing:-0.01em; margin-bottom:4px;">Source Broker Monitor</h1>
+      <p style="color:var(--text-2); font-size:14px; margin:0;">Auto-scraped acquisition candidates from Moorings Brokerage, BVI Yacht Sales, The Multihull Company, Just Catamarans. Scored by margin opportunity + buyer savings + seller motivation.</p>
+    </div>
+
+    <div class="admin-stats" style="margin-bottom:28px;">
+      <div class="stat-card">
+        <div class="stat-label">Last Scrape</div>
+        <div class="stat-value" id="metaLastRun" style="font-size:18px;"></div>
+        <div class="stat-sub" id="metaTime"></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Sources Scanned</div>
+        <div class="stat-value" id="metaSources"></div>
+        <div class="stat-sub">BVI + FL aggregators</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Total Listings Seen</div>
+        <div class="stat-value" id="metaTotal"></div>
+        <div class="stat-sub">across all sources</div>
+      </div>
+      <div class="stat-card accent">
+        <div class="stat-label">Match Our Profile</div>
+        <div class="stat-value" id="metaMatched"></div>
+        <div class="stat-sub">passing acquisition filter</div>
+      </div>
+    </div>
+
+    <div class="filter-bar">
+      <span class="filter-label">Score</span>
+      <button class="filter-chip active" data-score="all">All</button>
+      <button class="filter-chip" data-score="hot">Hot (80+)</button>
+      <button class="filter-chip" data-score="warm">Warm (65-79)</button>
+      <button class="filter-chip" data-score="cold">Cold (&lt;65)</button>
+      <span class="filter-divider"></span>
+      <span class="filter-label">Source</span>
+      <button class="filter-chip active" data-source="all">All</button>
+      <button class="filter-chip" data-source="Moorings Brokerage">Moorings</button>
+      <button class="filter-chip" data-source="BVI Yacht Sales">BVI Yacht</button>
+      <button class="filter-chip" data-source="The Multihull Company">Multihull Co.</button>
+      <button class="filter-chip" data-source="Just Catamarans">Just Cats</button>
+      <span class="filter-spacer"></span>
+      <span class="filter-count"><strong id="count">0</strong> candidates</span>
+    </div>
+
+    <div style="background:var(--card); border:1px solid var(--border); border-radius:var(--r-lg); padding:14px 22px; margin-bottom:18px; display:grid; grid-template-columns:1fr 140px 140px 120px 110px; gap:18px; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-3); font-weight:600;">
+      <div>Boat / Source</div>
+      <div style="text-align:right;">BVI Ask</div>
+      <div style="text-align:right;">Est. Margin</div>
+      <div style="text-align:center;">Score</div>
+      <div style="text-align:center;">Action</div>
+    </div>
+
+    <div id="sourceList"></div>
+
+    <div style="margin-top:32px; padding:20px 24px; background:var(--bg-alt); border-radius:var(--r-lg); font-size:13px; color:var(--text-2); line-height:1.6;">
+      <strong style="color:var(--text);">How the score works:</strong> 0-100, factoring estimated gross margin, buyer savings vs US comp, number of source price cuts (motivated seller signal), days listed (fresher = less competition), and hull age. Anything 80+ is a candidate to acquire on the next inquiry; 65-79 is worth monitoring; under 65 is a pass unless circumstances change.
+    </div>
+
+    <div style="margin-top:18px; font-size:12px; color:var(--text-3); text-align:right;">
+      Run scraper manually: <code style="background:var(--bg-alt); padding:2px 6px; border-radius:3px;">node scraper.js</code>
+      &nbsp;·&nbsp; Schedule via cron for nightly updates.
+    </div>
+  </main>
+</div>
+
+<script src="data.js"></script>
+<script src="data/scraped.js"></script>
+<script src="app.js"></script>
+<script>
+  mountHeader('admin');
+  mountAdminSidebar('admin-sources');
+
+  let scoreFilter = 'all';
+  let sourceFilter = 'all';
+
+  function scoreBucket(score) {
+    if (score >= 80) return 'hot';
+    if (score >= 65) return 'warm';
+    return 'cold';
+  }
+
+  function render() {
+    document.getElementById('metaLastRun').textContent = new Date(SCRAPE_META.lastRun).toLocaleDateString();
+    document.getElementById('metaTime').textContent = new Date(SCRAPE_META.lastRun).toLocaleTimeString();
+    document.getElementById('metaSources').textContent = SCRAPE_META.sourcesScanned;
+    document.getElementById('metaTotal').textContent = SCRAPE_META.totalListings;
+    document.getElementById('metaMatched').textContent = SCRAPE_META.matchedFilter;
+
+    const filtered = SCRAPED_LISTINGS.filter((l) => {
+      if (scoreFilter !== 'all' && scoreBucket(l.score) !== scoreFilter) return false;
+      if (sourceFilter !== 'all' && l.source !== sourceFilter) return false;
+      return true;
+    });
+
+    document.getElementById('count').textContent = filtered.length;
+    document.getElementById('sourceList').innerHTML = filtered.map((l) => {
+      const bucket = scoreBucket(l.score);
+      const cuts = l.priceCuts;
+      const cutText = cuts > 0
+        ? `<span class="down">−${fmtUSDShort(l.priceHistory[0].price - l.price)}</span> · ${cuts} cut${cuts > 1 ? 's' : ''}`
+        : 'No cuts';
+      return `
+        <div class="source-row">
+          <div>
+            <div class="src-title">${l.year} ${l.make} ${l.model} — ${l.name}</div>
+            <div class="src-sub">${l.source} · ${l.location} · ${l.daysListed}d listed</div>
+          </div>
+          <div>
+            <div class="src-price">${fmtUSD(l.price)}</div>
+            <div class="src-cuts">${cutText}</div>
+          </div>
+          <div>
+            <div class="src-price">+${fmtUSDShort(l.grossMargin)}</div>
+            <div class="src-cuts">buyer saves ${fmtUSDShort(l.buyerSavings)}</div>
+          </div>
+          <div style="text-align:center;">
+            <div class="src-score ${bucket}">${l.score}</div>
+          </div>
+          <div style="text-align:center;">
+            <a class="btn btn-secondary btn-sm" href="${l.url}" target="_blank">View →</a>
+          </div>
+        </div>
+      `;
+    }).join('') || `<div style="padding:40px; text-align:center; color:var(--text-3); font-style:italic;">No candidates match these filters.</div>`;
+  }
+
+  document.querySelectorAll('[data-score]').forEach((b) => b.addEventListener('click', () => {
+    document.querySelectorAll('[data-score]').forEach((x) => x.classList.remove('active'));
+    b.classList.add('active');
+    scoreFilter = b.dataset.score;
+    render();
+  }));
+  document.querySelectorAll('[data-source]').forEach((b) => b.addEventListener('click', () => {
+    document.querySelectorAll('[data-source]').forEach((x) => x.classList.remove('active'));
+    b.classList.add('active');
+    sourceFilter = b.dataset.source;
+    render();
+  }));
+
+  render();
+</script>
+
+</body>
+</html>

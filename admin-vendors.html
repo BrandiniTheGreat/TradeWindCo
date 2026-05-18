@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vendors — Internal · Trade Wind &amp; Co.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<div class="admin-banner">
+  <div class="container">
+    <span><strong>INTERNAL</strong> · Vendor Directory</span>
+    <span>The roster that runs every deal · Not visible to customers</span>
+  </div>
+</div>
+
+<header class="site-header" data-header></header>
+
+<div class="admin-layout">
+  <aside class="admin-sidebar" data-admin-sidebar></aside>
+
+  <main class="admin-main">
+    <div style="margin-bottom:24px;">
+      <h1 style="font-family:var(--sans); font-size:26px; font-weight:700; letter-spacing:-0.01em; margin-bottom:4px;">Vendor Directory</h1>
+      <p style="color:var(--text-2); font-size:14px; margin:0;">The eighteen relationships that make every deal possible. Keep last-contact dates current. Run a quarterly check-in with each.</p>
+    </div>
+
+    <div class="filter-bar">
+      <span class="filter-label">Category</span>
+      <button class="filter-chip active" data-cat="all">All</button>
+      <button class="filter-chip" data-cat="Legal — US">Legal (US)</button>
+      <button class="filter-chip" data-cat="Legal — BVI">Legal (BVI)</button>
+      <button class="filter-chip" data-cat="Accounting">Accounting</button>
+      <button class="filter-chip" data-cat="Escrow">Escrow</button>
+      <button class="filter-chip" data-cat="Customs">Customs</button>
+      <button class="filter-chip" data-cat="Survey">Survey</button>
+      <button class="filter-chip" data-cat="Delivery">Delivery</button>
+      <button class="filter-chip" data-cat="Insurance">Insurance</button>
+      <button class="filter-chip" data-cat="Documentation">USCG Docs</button>
+      <button class="filter-chip" data-cat="Yard">Yard</button>
+      <button class="filter-chip" data-cat="Source brokers">Source Brokers</button>
+      <span class="filter-spacer"></span>
+      <span class="filter-count"><strong id="count">0</strong> vendors</span>
+    </div>
+
+    <div id="vendorList"></div>
+  </main>
+</div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+<script>
+  mountHeader('admin');
+  mountAdminSidebar('admin-vendors');
+
+  let catFilter = 'all';
+
+  function render() {
+    const filtered = catFilter === 'all' ? VENDORS : VENDORS.filter((v) => v.category === catFilter);
+    document.getElementById('count').textContent = filtered.length;
+
+    // Group by category
+    const grouped = filtered.reduce((acc, v) => {
+      if (!acc[v.category]) acc[v.category] = [];
+      acc[v.category].push(v);
+      return acc;
+    }, {});
+
+    document.getElementById('vendorList').innerHTML = Object.keys(grouped).map((cat) => `
+      <div class="vendor-section">
+        <h3>${cat}</h3>
+        <div class="vendor-grid">
+          ${grouped[cat].map((v) => `
+            <div class="vendor-card">
+              <div class="vname">${v.name}</div>
+              <div class="vrole">${v.role}</div>
+              <div class="vcontact">${v.contact.split(' · ').map((part) => {
+                if (part.includes('@')) return `<a href="mailto:${part.trim()}">${part.trim()}</a>`;
+                if (/[0-9]/.test(part) && part.length > 8) return `<a href="tel:${part.replace(/[^0-9+]/g, '')}">${part}</a>`;
+                return part;
+              }).join('<br/>')}</div>
+              <div class="vlocation">${v.location}</div>
+              <div class="vnotes">${v.notes}</div>
+              <div class="vlast">Last contact: ${fmtDate(v.lastContact)}</div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `).join('') || `<div style="padding:40px; text-align:center; color:var(--text-3); font-style:italic;">No vendors in this category.</div>`;
+  }
+
+  document.querySelectorAll('[data-cat]').forEach((b) => b.addEventListener('click', () => {
+    document.querySelectorAll('[data-cat]').forEach((x) => x.classList.remove('active'));
+    b.classList.add('active');
+    catFilter = b.dataset.cat;
+    render();
+  }));
+
+  render();
+</script>
+
+</body>
+</html>

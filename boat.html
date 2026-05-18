@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Boat Detail — Trade Wind &amp; Co.</title>
+  <meta name="description" content="Catamaran detail — full specs, transparent landed-cost breakdown, inspection options, and dual-CTA inspection request." />
+  <meta name="theme-color" content="#1f6e72" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="site-header" data-header></header>
+
+<div class="container">
+  <div class="crumbs" id="crumbs"></div>
+</div>
+
+<main class="container" id="detail-root"></main>
+
+<footer class="site-footer" data-footer></footer>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+<script>
+  mountHeader('inventory');
+  mountFooter();
+
+  const id = getQueryParam('id');
+  const b = findBoat(id) || BOATS[0];
+  const root = document.getElementById('detail-root');
+
+  // Crumbs
+  document.getElementById('crumbs').innerHTML = `
+    <a href="index.html">Home</a><span>/</span>
+    <a href="inventory.html?cat=${b.category}">${b.categoryLabel}</a><span>/</span>
+    ${b.year} ${b.make} ${b.model} · ${b.name}
+  `;
+
+  // Gallery — first 4 thumbnails visible, all photos browseable via lightbox.
+  const realPhotos = b.photos.filter((p) => p.url);
+  const galleryPhotos = b.photos.slice(0, 4);
+  const galleryHTML = galleryPhotos.map((ph, i) => {
+    if (ph.url) return `<img src="${ph.url}" alt="${ph.label}" data-lightbox-i="${i}" />`;
+    return `<div class="placeholder" data-lightbox-i="${i}">
+      <div>
+        <strong>${ph.label}</strong>
+        <small>Walkthrough video on request</small>
+      </div>
+    </div>`;
+  }).join('') + (b.photoCount > galleryPhotos.length
+    ? `<div class="more has-photos" data-lightbox-i="0"><div><strong>+${b.photoCount - galleryPhotos.length}</strong>more on source</div></div>`
+    : '');
+
+  // Pricing
+  const list = listPriceFor(b);
+  const savings = buyerSavings(b);
+  const landed = landedCost(b);
+  const duty = SETTINGS.importDuty;
+  const dutyDollars = b.bviAsk * duty;
+  const margin = grossMargin(b);
+
+  // Inspection windows / remote
+  const inspectionWindowsHTML = b.inspectionWindows.map((w) => `<li>${w}</li>`).join('');
+
+  root.innerHTML = `
+    <section class="detail-head">
+      <div class="detail-title-block">
+        <div class="listing-category">${b.categoryLabel} · ex-${b.originatingFleet}</div>
+        <h1>${b.year} ${b.make} ${b.model} — ${b.name}</h1>
+        <p class="headline">${b.headline}</p>
+        <div class="detail-key-row">
+          <div class="detail-key"><small>LOA</small><strong>${b.loa}</strong></div>
+          <div class="detail-key"><small>Beam</small><strong>${b.beam}</strong></div>
+          <div class="detail-key"><small>Cabins</small><strong>${b.cabins}</strong></div>
+          <div class="detail-key"><small>Engine Hours</small><strong>${fmtNum(b.engineHours)}</strong></div>
+          <div class="detail-key"><small>Phase-out</small><strong>${fmtDate(b.phaseOutDate)}</strong></div>
+        </div>
+      </div>
+      <aside class="price-card">
+        <div class="label">Delivered list price</div>
+        <div class="price">${fmtUSD(list)}</div>
+        <div class="price-sub">Duty-paid · USCG documented · delivered to ${b.destinationPort}</div>
+        ${savings > 0 ? `<div class="savings-line">
+          You save vs comparable US-listed inventory
+          <strong>${fmtUSD(savings)}</strong>
+        </div>` : ''}
+        <div class="price-row"><span>BVI broker ask</span><span>${fmtUSD(b.bviAsk)}</span></div>
+        <div class="price-row"><span>Import duty (${fmtPct(duty, 0)})</span><span>${fmtUSD(dutyDollars)}</span></div>
+        <div class="price-row"><span>Survey + delivery + customs</span><span>${fmtUSD(SETTINGS.prepCost + SETTINGS.oceanDelivery + SETTINGS.customsRegistration)}</span></div>
+        <div class="price-row"><span>Current location</span><span>${b.location.harbor}</span></div>
+        <a class="btn btn-primary" href="#inspection">Request Inspection</a>
+        <a class="btn btn-coral" href="#inspection">Reserve at Deposit</a>
+        <div class="price-foot">Your wire is held by ${SETTINGS.escrowAgent}, an independent maritime escrow. Funds release to each vendor (BVI seller, CBP duty, delivery captain, customs) as milestones clear. Trade Wind &amp; Co. never holds your principal — and we never acquire a boat we haven't pre-sold.</div>
+      </aside>
+    </section>
+
+    <section class="gallery">${galleryHTML}</section>
+
+    <section class="description-block">
+      <p>${b.description}</p>
+    </section>
+
+    <section class="landed-block">
+      <div class="eyebrow">Transparent landed-cost</div>
+      <h2>Why our price beats US-listed inventory.</h2>
+      <p class="lede">Every dollar between the BVI broker's ask and your wire is a service we render. Here's the math, line by line, at the current ${fmtPct(duty, 0)} US import duty rate.</p>
+      <table class="landed-table">
+        <tr>
+          <td>BVI broker acquisition</td>
+          <td>${b.sourceBroker}</td>
+          <td>${fmtUSD(b.bviAsk)}</td>
+        </tr>
+        <tr>
+          <td>Pre-purchase survey + prep</td>
+          <td>Sea trial · cosmetic prep · commissioning</td>
+          <td>${fmtUSD(SETTINGS.prepCost)}</td>
+        </tr>
+        <tr>
+          <td>US import duty</td>
+          <td>${fmtPct(duty, 0)} of transaction value (CBP)</td>
+          <td>${fmtUSD(dutyDollars)}</td>
+        </tr>
+        <tr>
+          <td>Ocean delivery</td>
+          <td>BVI → ${b.destinationPort}</td>
+          <td>${fmtUSD(SETTINGS.oceanDelivery)}</td>
+        </tr>
+        <tr>
+          <td>Customs broker + USCG registration</td>
+          <td>Documentation · title · flag</td>
+          <td>${fmtUSD(SETTINGS.customsRegistration)}</td>
+        </tr>
+        <tr class="subtotal">
+          <td>Total landed cost</td>
+          <td>Our cost basis, delivered to ${b.destinationPort}</td>
+          <td>${fmtUSD(landed)}</td>
+        </tr>
+        <tr class="retail">
+          <td>Comparable US-listed retail</td>
+          <td>Same year/model on YachtWorld &amp; The Multihull Co.</td>
+          <td>${fmtUSD(b.usRetailComp)}</td>
+        </tr>
+        <tr class="list">
+          <td>Our delivered list price</td>
+          <td>Total wire to escrow at signing</td>
+          <td>${fmtUSD(list)}</td>
+        </tr>
+      </table>
+      <div class="landed-savings-row">
+        <span>Buyer savings vs US-listed comp</span>
+        <strong>${fmtUSD(savings)}</strong>
+      </div>
+    </section>
+
+    <section style="margin-bottom:48px;">
+      <div class="section-eyebrow">What we handle</div>
+      <h2 style="font-size:30px; margin-bottom:6px;">Five services, one wire, one timeline.</h2>
+      <p class="dim" style="max-width:720px;">When you wire your deposit to escrow, all five of the below begin in parallel. Typical timeline from deposit to delivery: 10-14 weeks.</p>
+      <div class="services-grid">
+        <div class="service">
+          <div class="svc-num">01</div>
+          <h4>Inspection coordination</h4>
+          <p>You fly down for the sea trial, or we run a live video walkthrough with our BVI surveyor. Survey report is yours.</p>
+        </div>
+        <div class="service">
+          <div class="svc-num">02</div>
+          <h4>BVI acquisition</h4>
+          <p>We close on the hull in BVI after your deposit clears escrow. Maritime attorney, bill of sale, title transfer.</p>
+        </div>
+        <div class="service">
+          <div class="svc-num">03</div>
+          <h4>Import &amp; customs</h4>
+          <p>We pay the 20% US import duty, file CBP entry, and handle the customs broker. All landed at our cost basis.</p>
+        </div>
+        <div class="service">
+          <div class="svc-num">04</div>
+          <h4>Ocean delivery</h4>
+          <p>Licensed delivery captain ferries the boat BVI → ${b.destinationPort}. Transit insurance binder in place.</p>
+        </div>
+        <div class="service">
+          <div class="svc-num">05</div>
+          <h4>Final delivery</h4>
+          <p>USCG documentation filed, state registration where applicable, and final delivery to your home marina.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="spec-section">
+      <div class="spec-block">
+        <h3>General &amp; Provenance</h3>
+        <ul class="spec-list">
+          <li><span>Year</span><span>${b.year}</span></li>
+          <li><span>Make / Model</span><span>${b.make} ${b.model}</span></li>
+          <li><span>Hull Name</span><span>${b.name}</span></li>
+          <li><span>LOA</span><span>${b.loa}</span></li>
+          <li><span>Beam</span><span>${b.beam}</span></li>
+          <li><span>Draft</span><span>${b.draft}</span></li>
+          <li><span>Cabins / Heads / Berths</span><span>${b.cabins} / ${b.heads} / ${b.berths}</span></li>
+          <li><span>Originating Fleet</span><span>ex-${b.originatingFleet}</span></li>
+          <li><span>Phase-out Date</span><span>${fmtDate(b.phaseOutDate)}</span></li>
+          <li><span>Current Location</span><span>${b.location.harbor}, ${b.location.country}</span></li>
+          <li><span>Destination Port</span><span>${b.destinationPort}</span></li>
+        </ul>
+      </div>
+      <div class="spec-block">
+        <h3>Engines, Tanks &amp; Equipment</h3>
+        <ul class="spec-list">
+          <li><span>Engines</span><span style="font-size:13px;">${b.engines}</span></li>
+          <li><span>Engine Hours</span><span>${fmtNum(b.engineHours)}</span></li>
+          <li><span>Fuel</span><span>${b.fuelGal} gal</span></li>
+          <li><span>Water</span><span>${b.waterGal} gal</span></li>
+          <li><span>Sails</span><span style="font-size:13px;">${b.sails}</span></li>
+          <li><span>Electronics</span><span style="font-size:13px;">${b.electronics}</span></li>
+        </ul>
+
+        <h3 style="margin-top:36px;">Onboard Systems &amp; Tender</h3>
+        <ul class="spec-list bullets">
+          ${b.extras.split(' · ').map((x) => `<li>${x}</li>`).join('')}
+        </ul>
+      </div>
+    </section>
+
+    <section class="inspection-card" id="inspection">
+      <h2>Request an inspection</h2>
+      <p class="sub">Tell us how you'd like to inspect <strong>${b.year} ${b.make} ${b.model} "${b.name}"</strong>. We confirm within one business day and coordinate directly with our BVI surveyor and the source broker.</p>
+
+      <div class="inspection-choice">
+        <div class="choice selected" data-mode="in-person" id="choice-inperson">
+          <h4>In-person sea trial</h4>
+          <p>Fly to ${b.location.country} (typically Tortola, BVI or San Juan, PR connection). Our surveyor meets you at the hull; full sea trial day; report and engine survey by 48h. We coordinate hotel and slip access.</p>
+          <small>Recommended for buyers &gt; $400K</small>
+        </div>
+        <div class="choice" data-mode="remote" id="choice-remote">
+          <h4>Remote video walkthrough</h4>
+          <p>${b.remoteVideoAvailable ? `Our BVI surveyor walks the boat live over video with you on a scheduled 90-minute call. Full engine compartment, all cabins, sail unfurl. Recorded for your records. Compressed report by next business day.` : `Not currently available on this hull — boat is in transit. In-person inspection on arrival.`}</p>
+          <small>${b.remoteVideoAvailable ? 'Available — schedule within 5 business days' : 'Currently unavailable'}</small>
+        </div>
+      </div>
+
+      <div style="background:var(--bg-alt); padding:16px 20px; border-radius:var(--r); margin-bottom:24px;">
+        <div style="font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-3); font-weight:600; margin-bottom:8px;">Inspection windows available</div>
+        <ul style="margin:0; padding-left:18px; color:var(--text); font-size:14px;">${inspectionWindowsHTML}</ul>
+      </div>
+
+      <form id="form" onsubmit="event.preventDefault(); document.getElementById('form-success').style.display='block'; document.getElementById('form').style.display='none';">
+        <div class="form-grid">
+          <div class="form-field">
+            <label>Full Name</label>
+            <input type="text" required placeholder="Jane Doe" />
+          </div>
+          <div class="form-field">
+            <label>Phone</label>
+            <input type="tel" required placeholder="(555) 555-5555" />
+          </div>
+          <div class="form-field full">
+            <label>Email</label>
+            <input type="email" required placeholder="jane@example.com" />
+          </div>
+          <div class="form-field">
+            <label>Preferred Window</label>
+            <select>
+              ${b.inspectionWindows.map((w) => `<option>${w}</option>`).join('')}
+            </select>
+          </div>
+          <div class="form-field">
+            <label>Boating Background</label>
+            <select>
+              <option>USCG-licensed captain</option>
+              <option>Own a sailboat now</option>
+              <option>Cruised on charters previously</option>
+              <option>New to cruising — looking for first boat</option>
+            </select>
+          </div>
+          <div class="form-field full">
+            <label>Anything we should know?</label>
+            <textarea placeholder="Financing in place, prefer specific marina for final delivery, want to inspect engines specifically, etc."></textarea>
+          </div>
+        </div>
+        <button class="btn btn-primary mt-32" type="submit">Request Inspection</button>
+      </form>
+      <div id="form-success" class="success" style="display:none;">
+        <strong>Request received.</strong> A Trade Wind &amp; Co. import coordinator will be in touch within one business day to confirm your inspection slot with our BVI surveyor and the source broker. Deposit-to-escrow paperwork follows after the sea trial.
+      </div>
+    </section>
+  `;
+
+  // Toggle inspection mode
+  document.getElementById('choice-inperson').addEventListener('click', () => {
+    document.getElementById('choice-inperson').classList.add('selected');
+    document.getElementById('choice-remote').classList.remove('selected');
+  });
+  const remote = document.getElementById('choice-remote');
+  if (b.remoteVideoAvailable) {
+    remote.addEventListener('click', () => {
+      remote.classList.add('selected');
+      document.getElementById('choice-inperson').classList.remove('selected');
+    });
+  } else {
+    remote.style.opacity = 0.55;
+    remote.style.cursor = 'not-allowed';
+  }
+
+  // ============================ Photo Lightbox ============================
+  // Mount lightbox modal at body level so it overlays everything
+  const lightboxPhotos = realPhotos;
+  if (lightboxPhotos.length > 0) {
+    const lb = document.createElement('div');
+    lb.className = 'lightbox';
+    lb.id = 'lightbox';
+    lb.innerHTML = `
+      <button class="lightbox-close" aria-label="Close">&times;</button>
+      <button class="lightbox-prev" aria-label="Previous">&larr;</button>
+      <div class="lightbox-image-wrap">
+        <img class="lightbox-image" src="" alt="" />
+        <div class="lightbox-caption"></div>
+        <div class="lightbox-counter"></div>
+      </div>
+      <button class="lightbox-next" aria-label="Next">&rarr;</button>
+      <div class="lightbox-source">View the full listing on <a href="${b.sourceUrl}" target="_blank" rel="noopener">${b.sourceBroker}</a> &mdash; ${b.photoCount} photos total</div>
+    `;
+    document.body.appendChild(lb);
+
+    let lbIdx = 0;
+    const lbImg = lb.querySelector('.lightbox-image');
+    const lbCaption = lb.querySelector('.lightbox-caption');
+    const lbCounter = lb.querySelector('.lightbox-counter');
+    const lbPrev = lb.querySelector('.lightbox-prev');
+    const lbNext = lb.querySelector('.lightbox-next');
+    const lbClose = lb.querySelector('.lightbox-close');
+
+    function renderLightbox() {
+      const p = lightboxPhotos[lbIdx];
+      lbImg.src = p.url;
+      lbImg.alt = p.label;
+      lbCaption.textContent = p.label;
+      lbCounter.textContent = `${lbIdx + 1} / ${lightboxPhotos.length}`;
+      lbPrev.disabled = lbIdx === 0;
+      lbNext.disabled = lbIdx === lightboxPhotos.length - 1;
+    }
+    function openLightbox(i) {
+      lbIdx = Math.max(0, Math.min(i, lightboxPhotos.length - 1));
+      renderLightbox();
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      lb.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    function nextPhoto() {
+      if (lbIdx < lightboxPhotos.length - 1) {
+        lbIdx++;
+        renderLightbox();
+      }
+    }
+    function prevPhoto() {
+      if (lbIdx > 0) {
+        lbIdx--;
+        renderLightbox();
+      }
+    }
+
+    lbClose.addEventListener('click', closeLightbox);
+    lbPrev.addEventListener('click', prevPhoto);
+    lbNext.addEventListener('click', nextPhoto);
+    lb.addEventListener('click', (e) => {
+      if (e.target === lb) closeLightbox();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (!lb.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') nextPhoto();
+      if (e.key === 'ArrowLeft') prevPhoto();
+    });
+
+    // Click handlers on gallery thumbnails
+    document.querySelectorAll('[data-lightbox-i]').forEach((el) => {
+      el.addEventListener('click', () => {
+        const requestedIdx = parseInt(el.dataset.lightboxI, 10);
+        // Find first real photo at or after that index
+        let realIdx = 0;
+        for (let i = 0; i <= requestedIdx && i < b.photos.length; i++) {
+          if (b.photos[i].url) {
+            realIdx = lightboxPhotos.findIndex((p) => p.url === b.photos[i].url);
+          }
+        }
+        openLightbox(Math.max(0, realIdx));
+      });
+    });
+  }
+</script>
+
+</body>
+</html>

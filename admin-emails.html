@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Email Templates — Internal · Trade Wind &amp; Co.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<div class="admin-banner">
+  <div class="container">
+    <span><strong>INTERNAL</strong> · Email Templates</span>
+    <span>Pre-written for every phase · Copy, edit, send</span>
+  </div>
+</div>
+
+<header class="site-header" data-header></header>
+
+<div class="admin-layout">
+  <aside class="admin-sidebar" data-admin-sidebar></aside>
+
+  <main class="admin-main">
+    <div style="margin-bottom:24px;">
+      <h1 style="font-family:var(--sans); font-size:26px; font-weight:700; letter-spacing:-0.01em; margin-bottom:4px;">Email Templates</h1>
+      <p style="color:var(--text-2); font-size:14px; margin:0;">Seven canonical messages covering every phase from inquiry to post-close. Replace bracketed placeholders ([BUYER_NAME], [BOAT_NAME], etc.) with deal-specific data. Click <strong>Copy</strong> to grab the full message.</p>
+    </div>
+
+    <div style="background:var(--bg-alt); border:1px solid var(--border); border-radius:var(--r-lg); padding:18px 24px; margin-bottom:24px; font-size:13px; color:var(--text-2); line-height:1.6;">
+      <strong style="color:var(--text);">Placeholder reference:</strong>
+      <code style="background:var(--card); padding:2px 6px; border-radius:3px; margin:0 4px;">[BUYER_NAME]</code>
+      <code style="background:var(--card); padding:2px 6px; border-radius:3px; margin:0 4px;">[BOAT_NAME]</code>
+      <code style="background:var(--card); padding:2px 6px; border-radius:3px; margin:0 4px;">[BOAT_YEAR_MAKE_MODEL]</code>
+      <code style="background:var(--card); padding:2px 6px; border-radius:3px; margin:0 4px;">[DELIVERED_PRICE]</code>
+      <code style="background:var(--card); padding:2px 6px; border-radius:3px; margin:0 4px;">[SAVINGS]</code>
+      <code style="background:var(--card); padding:2px 6px; border-radius:3px; margin:0 4px;">[YOUR_NAME]</code>
+      <code style="background:var(--card); padding:2px 6px; border-radius:3px; margin:0 4px;">[PHONE]</code>
+    </div>
+
+    <div id="templateList"></div>
+  </main>
+</div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+<script>
+  mountHeader('admin');
+  mountAdminSidebar('admin-emails');
+
+  function render() {
+    document.getElementById('templateList').innerHTML = EMAIL_TEMPLATES.map((t, i) => `
+      <div class="template-card">
+        <div class="template-head">
+          <div>
+            <div class="template-phase">${t.phase}</div>
+            <div class="template-title">${t.title}</div>
+          </div>
+          <button class="copy-btn" data-i="${i}">Copy</button>
+        </div>
+        <div class="template-subject"><strong>Subject:</strong> ${t.subject}</div>
+        <div class="template-body" id="body-${i}">${t.body}</div>
+      </div>
+    `).join('');
+
+    document.querySelectorAll('.copy-btn').forEach((b) => {
+      b.addEventListener('click', async () => {
+        const i = b.dataset.i;
+        const tpl = EMAIL_TEMPLATES[i];
+        const full = `Subject: ${tpl.subject}\n\n${tpl.body}`;
+        try {
+          await navigator.clipboard.writeText(full);
+          const original = b.textContent;
+          b.textContent = 'Copied ✓';
+          b.style.background = 'var(--green)';
+          setTimeout(() => {
+            b.textContent = original;
+            b.style.background = '';
+          }, 1800);
+        } catch (err) {
+          alert('Copy failed — select the text manually.');
+        }
+      });
+    });
+  }
+
+  render();
+</script>
+
+</body>
+</html>

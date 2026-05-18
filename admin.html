@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Internal Desk — Trade Wind &amp; Co.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<div class="admin-banner">
+  <div class="container">
+    <span><strong>INTERNAL</strong> · Trade Wind &amp; Co. Operations Desk</span>
+    <span>Not visible to customers · For broker review only</span>
+  </div>
+</div>
+
+<header class="site-header" data-header></header>
+
+<div class="admin-layout">
+  <aside class="admin-sidebar" data-admin-sidebar></aside>
+
+  <main class="admin-main">
+
+    <div style="margin-bottom:24px;">
+      <h1 style="font-family:var(--sans); font-size:26px; font-weight:700; letter-spacing:-0.01em; margin-bottom:4px;">Operations Desk</h1>
+      <p style="color:var(--text-2); font-size:14px; margin:0;">Live arbitrage economics, sales pipeline, and source-side risk monitoring.</p>
+    </div>
+
+    <div class="admin-stats" id="stats"></div>
+
+  <!-- Duty rate slider -->
+  <div class="duty-card">
+    <div>
+      <h3>US Import Duty Rate</h3>
+      <p>Drag to model alternate tariff regimes. List prices, gross margin, and buyer savings recompute live across all inventory and pipeline. Pre-2025 baseline was 1.5%; current statutory rate is 20%.</p>
+      <div class="duty-display"><span id="dutyValue">20.0</span><small>%</small></div>
+    </div>
+    <div class="duty-controls">
+      <input id="duty-slider" type="range" min="1.5" max="25" step="0.5" value="20" />
+      <div class="duty-readout">
+        <span>1.5%</span>
+        <span>10.0%</span>
+        <span>20.0%</span>
+        <span>25.0%</span>
+      </div>
+      <div class="duty-meta">
+        Inventory at current list: <strong id="totalList"></strong>
+        &nbsp;·&nbsp; Gross potential spread: <strong id="totalMargin" class="delta"></strong>
+        &nbsp;·&nbsp; Aggregate buyer savings: <strong id="totalSavings" class="delta"></strong>
+        <div style="margin-top:8px; font-size:11.5px; color:var(--text-3);">
+          <a href="legacy/charter_model_interactive.jsx">Full Financial Model →</a>
+          <span style="margin:0 8px;">·</span>
+          <a href="legacy/charter_business_plan.md">Original Business Plan →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Capital structure callout -->
+  <div style="background:var(--card); border:1px solid var(--border); border-left:4px solid var(--teal); border-radius:var(--r-lg); padding:22px 28px; margin-bottom:28px; display:grid; grid-template-columns:auto 1fr; gap:24px; align-items:center;">
+    <div>
+      <div style="font-size:11px; letter-spacing:0.15em; text-transform:uppercase; color:var(--text-3); font-weight:600; margin-bottom:6px;">Operating capital required per deal</div>
+      <div style="font-family:var(--serif); font-size:48px; color:var(--teal); font-weight:600; line-height:1;">$0</div>
+    </div>
+    <div style="font-size:13.5px; color:var(--text-2); line-height:1.6;">
+      <strong style="color:var(--text);">Buyer-funded escrow flow.</strong> Buyer wires full delivered price to <strong>Yachtworld Escrow</strong> (third-party maritime escrow) at signing. Escrow disburses milestone-by-milestone: BVI seller on title transfer, CBP on duty wire, delivery captain on departure, customs broker on entry, Trade Wind margin on buyer handover acknowledgment. <strong>Trade Wind never holds principal.</strong> Fallback for buyers who won't wire 100% upfront: 40/40/20 staged wires — small float risk (~$1K opportunity cost per deal).
+    </div>
+  </div>
+
+  <!-- Annual run-rate economics -->
+  <h3 style="font-family:var(--sans); font-size:14px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-3); margin:32px 0 12px;">Annual Run-Rate Economics</h3>
+  <div class="admin-stats" id="runrateStats"></div>
+
+  <!-- Risk banners -->
+  <div id="risk-banners"></div>
+
+  <!-- Arbitrage table -->
+  <div class="admin-table-wrap">
+    <h3>Inventory Arbitrage — Live at <span id="dutyTitleRate">20.0%</span> duty</h3>
+    <div style="overflow-x:auto;">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Catamaran</th>
+            <th>Source / Fleet</th>
+            <th class="num">BVI Ask</th>
+            <th class="num">Duty</th>
+            <th class="num">Landed</th>
+            <th class="num">Our List</th>
+            <th class="num">Gross M.</th>
+            <th class="num">Net M.</th>
+            <th class="num">Buyer Saves</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="invBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Pipeline funnel -->
+  <div class="lead-funnel">
+    <h3>Sales Pipeline — Active &amp; YTD</h3>
+    <div class="funnel-bars" id="funnel"></div>
+    <div style="display:flex; justify-content:space-between; font-size:12px; color:var(--text-3); margin-top:14px;">
+      <span>Industry benchmark: 12-18% inquiry→close (yachts)</span>
+      <span>Our current: <strong style="color:var(--text);" id="conv">—</strong></span>
+    </div>
+  </div>
+
+  <!-- Pipeline detail -->
+  <div class="admin-table-wrap">
+    <h3>Active Pipeline — Buyer Detail</h3>
+    <div style="overflow-x:auto;">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Stage</th>
+            <th>Buyer</th>
+            <th>Boat</th>
+            <th>Stage Date</th>
+            <th>Note</th>
+          </tr>
+        </thead>
+        <tbody id="pipelineBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Source price-change monitor -->
+  <div class="admin-table-wrap">
+    <h3>Source Price-Change Monitor</h3>
+    <div style="overflow-x:auto;">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Catamaran</th>
+            <th>Source Broker</th>
+            <th class="num">First Ask</th>
+            <th class="num">Current Ask</th>
+            <th class="num">Δ</th>
+            <th>Last Checked</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody id="changeBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Closed deals reference -->
+  <div class="admin-table-wrap">
+    <h3>Recently Closed Deals</h3>
+    <div style="overflow-x:auto;">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Catamaran</th>
+            <th>Buyer</th>
+            <th class="num">BVI Cost</th>
+            <th class="num">Delivered</th>
+            <th class="num">Margin</th>
+            <th>Closed</th>
+          </tr>
+        </thead>
+        <tbody id="closedBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  </main>
+</div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+<script>
+  mountHeader('admin');
+  mountAdminSidebar('admin');
+
+  // Live duty state (overrides SETTINGS.importDuty for display purposes)
+  let liveDuty = SETTINGS.importDuty;
+
+  function liveLanded(b) { return landedCost(b, liveDuty); }
+  function liveList(b) { return listPriceFor(b, liveDuty); }
+  function liveMargin(b) { return grossMargin(b, liveDuty); }
+  function liveSavings(b) { return buyerSavings(b, liveDuty); }
+
+  // Filter to deals still on our books (exclude under-delivery sold ones from inventory aggregate? keep all for now)
+  function aggregateBoats() {
+    return BOATS.filter((b) => b.status !== 'closed');
+  }
+
+  function renderStats() {
+    const aggs = aggregateBoats();
+    const totalBvi = aggs.reduce((s, b) => s + b.bviAsk, 0);
+    const totalList = aggs.reduce((s, b) => s + liveList(b), 0);
+    const totalMargin = aggs.reduce((s, b) => s + liveMargin(b), 0);
+    const totalSavings = aggs.reduce((s, b) => s + liveSavings(b), 0);
+
+    document.getElementById('stats').innerHTML = `
+      <div class="stat-card">
+        <div class="stat-label">Active Inventory</div>
+        <div class="stat-value">${aggs.length}</div>
+        <div class="stat-sub">catamarans live on site</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Total BVI Cost Basis</div>
+        <div class="stat-value">${fmtUSDShort(totalBvi)}</div>
+        <div class="stat-sub">source acquisition</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Total Delivered List</div>
+        <div class="stat-value">${fmtUSDShort(totalList)}</div>
+        <div class="stat-sub">at ${(liveDuty * 100).toFixed(1)}% duty</div>
+      </div>
+      <div class="stat-card accent">
+        <div class="stat-label">Gross Potential Spread</div>
+        <div class="stat-value">${fmtUSDShort(totalMargin)}</div>
+        <div class="stat-sub">if all current inventory closes</div>
+      </div>
+    `;
+
+    document.getElementById('totalList').textContent = fmtUSD(totalList);
+    document.getElementById('totalMargin').textContent = fmtUSD(totalMargin);
+    document.getElementById('totalSavings').textContent = fmtUSD(totalSavings);
+    document.getElementById('dutyTitleRate').textContent = (liveDuty * 100).toFixed(1) + '%';
+  }
+
+  function renderRunrateStats() {
+    const aggs = aggregateBoats();
+    const dealsPerYear = 8;
+    const avgGrossMargin = aggs.length ? aggs.reduce((s, b) => s + grossMargin(b, liveDuty), 0) / aggs.length : 0;
+    const annualGross = avgGrossMargin * dealsPerYear;
+    const annualSoftCosts = perDealCost() * dealsPerYear;
+    const fixedOverhead = 80000; // legal retainers, marketing infra, ops salary base, software
+    const annualNet = annualGross - annualSoftCosts - fixedOverhead;
+    const cardClass = annualNet > 0 ? 'stat-card accent' : 'stat-card';
+
+    document.getElementById('runrateStats').innerHTML = `
+      <div class="stat-card">
+        <div class="stat-label">Target Deals / Year</div>
+        <div class="stat-value">${dealsPerYear}</div>
+        <div class="stat-sub">~one close every 6-7 weeks</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Avg Gross Margin / Deal</div>
+        <div class="stat-value">${fmtUSDShort(avgGrossMargin)}</div>
+        <div class="stat-sub">across current inventory at ${(liveDuty * 100).toFixed(1)}% duty</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Per-deal Soft Costs</div>
+        <div class="stat-value">${fmtUSDShort(perDealCost())}</div>
+        <div class="stat-sub">CAC ${fmtUSDShort(SETTINGS.cacPerDeal)} · legal ${fmtUSDShort(SETTINGS.legalPerDeal)} · reserve ${fmtUSDShort(SETTINGS.transitReserve)}</div>
+      </div>
+      <div class="${cardClass}">
+        <div class="stat-label">Annual Net P&amp;L</div>
+        <div class="stat-value">${fmtUSDShort(annualNet)}</div>
+        <div class="stat-sub">${fmtUSDShort(annualGross)} gross − ${fmtUSDShort(annualSoftCosts)} soft − ${fmtUSDShort(fixedOverhead)} fixed</div>
+      </div>
+    `;
+  }
+
+  function renderInventoryTable() {
+    document.getElementById('invBody').innerHTML = BOATS.map((b) => {
+      const dutyAmt = b.bviAsk * liveDuty;
+      const savings = liveSavings(b);
+      return `
+        <tr>
+          <td class="boat-cell">
+            <strong>${b.year} ${b.make} ${b.model} — ${b.name}</strong>
+            <small>${b.location.harbor}, ${b.location.country.split(',')[0]}</small>
+          </td>
+          <td>
+            <div>${b.sourceBroker}</div>
+            <div style="font-size:11px; color:var(--text-3);">ex-${b.originatingFleet}</div>
+          </td>
+          <td class="num">${fmtUSD(b.bviAsk)}</td>
+          <td class="num">${fmtUSD(dutyAmt)}</td>
+          <td class="num">${fmtUSD(liveLanded(b))}</td>
+          <td class="num"><strong>${fmtUSD(liveList(b))}</strong></td>
+          <td class="num pos">+${fmtUSD(liveMargin(b))}</td>
+          <td class="num ${netMargin(b, liveDuty) > 0 ? 'pos' : 'neg'}">${netMargin(b, liveDuty) > 0 ? '+' : ''}${fmtUSD(netMargin(b, liveDuty))}</td>
+          <td class="num savings-num">${savings > 0 ? fmtUSD(savings) : '<span style="color:var(--red);">' + fmtUSD(savings) + '</span>'}</td>
+          <td><span class="status-pill ${b.status}">${statusLabel(b.status)}</span></td>
+        </tr>
+      `;
+    }).join('');
+  }
+
+  function renderRiskBanners() {
+    const banners = [];
+
+    // Tariff regime warning at extremes
+    if (liveDuty >= 0.22) {
+      banners.push(`
+        <div class="risk-banner">
+          <h4>Tariff stress — buyer savings compressing</h4>
+          <p>At ${(liveDuty * 100).toFixed(1)}% duty, three boats in current inventory show buyer savings under $50K. Re-anchor messaging to "ex-fleet pedigree + turnkey" rather than absolute savings.</p>
+        </div>
+      `);
+    }
+    if (liveDuty <= 0.05) {
+      banners.push(`
+        <div class="risk-banner warn">
+          <h4>Tariff regime change — model assumption</h4>
+          <p>At ${(liveDuty * 100).toFixed(1)}% duty, the structural arbitrage erodes. BVI sellers would re-price upward as DIY US buyers return. Spread compresses; reposition value prop around service stack, not savings.</p>
+        </div>
+      `);
+    }
+
+    // Hurricane window
+    banners.push(`
+      <div class="risk-banner warn">
+        <h4>Hurricane season Jun 1 – Nov 30</h4>
+        <p>Three deliveries in the Aug-Oct window (Bali 4.5 Reef Diamond mid-delivery, Lagoon 450S Cinnamon Bay planned Sep). Monitor NHC tropical weather outlook; staged Bahamas ports identified as fallback shelter.</p>
+      </div>
+    `);
+
+    // Price-cut watches
+    BOATS.forEach((b) => {
+      if (b.sourcePriceHistory.length >= 3) {
+        const first = b.sourcePriceHistory[0].price;
+        const last = b.sourcePriceHistory[b.sourcePriceHistory.length - 1].price;
+        banners.push(`
+          <div class="risk-banner warn">
+            <h4>Opportunity · ${b.year} ${b.make} ${b.model} ${b.name}</h4>
+            <p>${b.sourceBroker} has cut BVI ask ${b.sourcePriceHistory.length - 1}× since ${fmtDate(b.sourcePriceHistory[0].date)} (${fmtUSD(first - last)} total reduction). Source motivation increasing — consider raising deposit-to-acquire authorization to lock current ask.</p>
+          </div>
+        `);
+      }
+    });
+
+    document.getElementById('risk-banners').innerHTML = banners.join('');
+  }
+
+  function renderFunnel() {
+    const inquiry = PIPELINE.filter((p) => p.stage === 'inquiry').length;
+    const inspection = PIPELINE.filter((p) => p.stage === 'inspection').length;
+    const deposit = PIPELINE.filter((p) => p.stage === 'deposit').length;
+    const delivery = PIPELINE.filter((p) => p.stage === 'delivery').length;
+    const closed = CLOSED_DEALS.length;
+
+    const stages = [
+      { label: 'Inquiry', value: inquiry, cls: 'stage-1' },
+      { label: 'Inspection', value: inspection, cls: 'stage-2' },
+      { label: 'Under Deposit', value: deposit, cls: 'stage-3' },
+      { label: 'Under Delivery', value: delivery, cls: 'stage-4' },
+      { label: 'Closed YTD', value: closed, cls: 'stage-5' },
+    ];
+    const maxVal = Math.max(...stages.map((s) => s.value), 1);
+    document.getElementById('funnel').innerHTML = stages.map((s) => {
+      const h = Math.max(8, (s.value / maxVal) * 100);
+      return `
+        <div class="funnel-stage">
+          <div class="funnel-value">${s.value}</div>
+          <div class="funnel-bar ${s.cls}" style="height:${h}%;"></div>
+          <div class="funnel-label">${s.label}</div>
+        </div>
+      `;
+    }).join('');
+
+    const totalLeads = inquiry + inspection + deposit + delivery + closed;
+    const conv = totalLeads ? ((closed / totalLeads) * 100).toFixed(1) : '—';
+    document.getElementById('conv').textContent = `${conv}% (${closed} / ${totalLeads})`;
+  }
+
+  function renderPipeline() {
+    const stageLabels = {
+      inquiry: 'Inquiry',
+      inspection: 'Inspection',
+      deposit: 'Under Deposit',
+      delivery: 'Under Delivery',
+    };
+    const sortOrder = { inquiry: 0, inspection: 1, deposit: 2, delivery: 3 };
+    const sorted = [...PIPELINE].sort((a, b) => sortOrder[a.stage] - sortOrder[b.stage]);
+    document.getElementById('pipelineBody').innerHTML = sorted.map((p) => {
+      const b = findBoat(p.boatId);
+      const statusClass = { inquiry: 'inquiry', inspection: 'inspection-scheduled', deposit: 'under-deposit', delivery: 'under-delivery' }[p.stage];
+      return `
+        <tr>
+          <td><span class="status-pill ${statusClass}">${stageLabels[p.stage]}</span></td>
+          <td>${p.buyer}</td>
+          <td class="boat-cell"><strong>${b ? `${b.year} ${b.make} ${b.model}` : '—'}</strong><small>${b ? b.name : ''}</small></td>
+          <td>${fmtDate(p.stageDate)}</td>
+          <td style="font-size:12px; color:var(--text-2);">${p.note}</td>
+        </tr>
+      `;
+    }).join('');
+  }
+
+  function renderChangeMonitor() {
+    document.getElementById('changeBody').innerHTML = BOATS.map((b) => {
+      const first = b.sourcePriceHistory[0];
+      const last = b.sourcePriceHistory[b.sourcePriceHistory.length - 1];
+      const delta = last.price - first.price;
+      const deltaCls = delta < 0 ? 'neg' : (delta > 0 ? 'pos' : '');
+      const deltaText = delta === 0 ? '—' : (delta < 0 ? `−${fmtUSD(Math.abs(delta))}` : `+${fmtUSD(delta)}`);
+      const note = b.sourcePriceHistory.length > 1
+        ? `Cut ${b.sourcePriceHistory.length - 1}× since list — motivated seller`
+        : 'No changes';
+      return `
+        <tr>
+          <td class="boat-cell"><strong>${b.year} ${b.make} ${b.model} ${b.name}</strong><small>${b.sourceListing}</small></td>
+          <td>${b.sourceBroker}</td>
+          <td class="num">${fmtUSD(first.price)}</td>
+          <td class="num">${fmtUSD(last.price)}</td>
+          <td class="num ${deltaCls}">${deltaText}</td>
+          <td>${fmtDate(b.sourceLastChecked)}</td>
+          <td style="font-size:12px; color:var(--text-2);">${note}</td>
+        </tr>
+      `;
+    }).join('');
+  }
+
+  function renderClosed() {
+    document.getElementById('closedBody').innerHTML = CLOSED_DEALS.map((d) => {
+      const landedAtClose = d.bviAsk + SETTINGS.prepCost + d.bviAsk * d.duty + SETTINGS.oceanDelivery + SETTINGS.customsRegistration;
+      const margin = d.delivered - landedAtClose;
+      return `
+        <tr>
+          <td class="boat-cell"><strong>${d.label}</strong><small>→ ${d.destination}</small></td>
+          <td>${d.buyer}</td>
+          <td class="num">${fmtUSD(d.bviAsk)}</td>
+          <td class="num"><strong>${fmtUSD(d.delivered)}</strong></td>
+          <td class="num pos">+${fmtUSD(margin)}</td>
+          <td>${fmtDate(d.closed)}</td>
+        </tr>
+      `;
+    }).join('');
+  }
+
+  function renderAll() {
+    renderStats();
+    renderRunrateStats();
+    renderInventoryTable();
+    renderRiskBanners();
+    renderFunnel();
+    renderPipeline();
+    renderChangeMonitor();
+    renderClosed();
+  }
+
+  document.getElementById('duty-slider').addEventListener('input', (e) => {
+    liveDuty = parseFloat(e.target.value) / 100;
+    document.getElementById('dutyValue').textContent = (liveDuty * 100).toFixed(1);
+    renderAll();
+  });
+
+  renderAll();
+</script>
+
+</body>
+</html>
