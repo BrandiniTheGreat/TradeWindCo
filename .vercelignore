@@ -1,0 +1,17 @@
+# Dev-only files — present in the repo so Claude / local Node can use them,
+# but not needed at runtime and not worth shipping to the public CDN.
+
+# Build / dev tooling
+scraper.js
+watermark.mjs
+package.json
+package-lock.json
+node_modules/
+
+# Developer docs (not customer-facing)
+README.md
+
+# Local-only worktree machinery
+.claude/
+.git/
+.gitignore
