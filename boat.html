@@ -11,9 +11,9 @@
   <meta property="og:type" content="product" />
   <meta property="og:title" content="Caribbean catamaran — Trade Wind & Co." />
   <meta property="og:description" content="Duty-paid, USCG documented, delivered to your US marina. One price, one contract, one timeline." />
-  <meta property="og:image" content="https://tradewindandco.com/og-image.svg" />
+  <meta property="og:image" content="https://tradewindandco.com/og-image.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="https://tradewindandco.com/og-image.svg" />
+  <meta name="twitter:image" content="https://tradewindandco.com/og-image.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -61,7 +61,7 @@
   const realPhotos = b.photos.filter((p) => p.url);
   const galleryPhotos = b.photos.slice(0, 4);
   const galleryHTML = galleryPhotos.map((ph, i) => {
-    if (ph.url) return `<img src="${ph.url}" alt="${ph.label}" data-lightbox-i="${i}" />`;
+    if (ph.url) return `<img src="${ph.url}" alt="${ph.label}" data-lightbox-i="${i}" loading="lazy" />`;
     return `<div class="placeholder" data-lightbox-i="${i}">
       <div>
         <strong>${ph.label}</strong>
@@ -131,6 +131,7 @@
         <div class="label">Delivered list price</div>
         <div class="price">${fmtUSD(list)}</div>
         <div class="price-sub">Duty-paid · USCG documented · delivered to ${b.destinationPort}</div>
+        <div style="font-size:11px; color:var(--text-3); margin-top:6px; line-height:1.55;">Includes 20% US import duty, USCG documentation, ocean delivery, customs clearance, and state registration. No closing fees.</div>
         ${savings > 0 ? `<div class="savings-line">
           Below comparable US-listed inventory
           <strong>${fmtUSD(savings)}</strong>
@@ -146,6 +147,15 @@
     </section>
 
     <section class="gallery">${galleryHTML}</section>
+
+    ${b.whyWeSelected ? `
+    <section style="margin: 8px 0 40px;">
+      <div style="background: var(--card); border: 1px solid var(--border); border-left: 4px solid var(--coral); border-radius: var(--r); padding: 22px 28px;">
+        <div style="font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--coral-2); font-weight: 600; margin-bottom: 10px;">Why we selected this boat</div>
+        <p style="font-size: 16px; color: var(--text); line-height: 1.65; margin: 0; font-style: italic;">${b.whyWeSelected}</p>
+      </div>
+    </section>
+    ` : ''}
 
     <section class="description-block">
       <p>${b.description}</p>
@@ -397,6 +407,14 @@
       lbCounter.textContent = `${lbIdx + 1} / ${lightboxPhotos.length}`;
       lbPrev.disabled = lbIdx === 0;
       lbNext.disabled = lbIdx === lightboxPhotos.length - 1;
+      // Preload adjacent images so prev/next feels instant.
+      for (const offset of [-1, 1, 2]) {
+        const j = lbIdx + offset;
+        if (j >= 0 && j < lightboxPhotos.length) {
+          const preload = new Image();
+          preload.src = lightboxPhotos[j].url;
+        }
+      }
     }
     function openLightbox(i) {
       lbIdx = Math.max(0, Math.min(i, lightboxPhotos.length - 1));

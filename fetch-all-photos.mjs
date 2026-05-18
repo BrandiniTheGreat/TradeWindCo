@@ -235,6 +235,16 @@ async function main() {
 
   for (const boat of BOATS) {
     console.log(`\n=== ${boat.id} ===`);
+
+    // Skip boats that already have a populated photo folder (>4 files).
+    // Re-runs default to "only fetch new boats" — set FORCE=1 to refresh everything.
+    const boatDir = path.join(PHOTOS_DIR, boat.id);
+    const existingFiles = fs.existsSync(boatDir) ? fs.readdirSync(boatDir).filter((f) => f.endsWith('.jpg')) : [];
+    if (existingFiles.length > 4 && !process.env.FORCE) {
+      console.log(`  Skipping — already has ${existingFiles.length} watermarked photos (set FORCE=1 to refresh).`);
+      continue;
+    }
+
     console.log(`  Source: ${boat.sourceUrl}`);
 
     let urls;
@@ -253,7 +263,6 @@ async function main() {
       continue;
     }
 
-    const boatDir = path.join(PHOTOS_DIR, boat.id);
     clearDir(boatDir);
     ensureDir(boatDir);
 

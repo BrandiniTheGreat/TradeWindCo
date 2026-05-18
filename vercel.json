@@ -14,7 +14,11 @@
     { "source": "/soul-rebel", "destination": "/boat.html?id=leopard45-soul-rebel" },
     { "source": "/miss-summer", "destination": "/boat.html?id=lagoon450f-miss-summer" },
     { "source": "/frost-free", "destination": "/boat.html?id=lagoon42-frost-free" },
-    { "source": "/four-sevens", "destination": "/boat.html?id=bali45-four-sevens" }
+    { "source": "/four-sevens", "destination": "/boat.html?id=bali45-four-sevens" },
+    { "source": "/fan-sea", "destination": "/boat.html?id=leopard45-fan-sea" },
+    { "source": "/pure-joy-iii", "destination": "/boat.html?id=leopard45-pure-joy-iii" },
+    { "source": "/donna-june", "destination": "/boat.html?id=lagoon42-donna-june" },
+    { "source": "/sagitta", "destination": "/boat.html?id=leopard42-sagitta" }
   ],
   "headers": [
     {
