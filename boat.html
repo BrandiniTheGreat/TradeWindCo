@@ -7,6 +7,7 @@
   <meta name="description" content="Catamaran detail — full specs, transparent landed-cost breakdown, inspection options, and dual-CTA inspection request." />
   <meta name="theme-color" content="#1f6e72" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="canonical" id="canonical-link" href="https://tradewindandco.com/" />
   <meta property="og:type" content="product" />
   <meta property="og:title" content="Caribbean catamaran — Trade Wind & Co." />
   <meta property="og:description" content="Duty-paid, delivered to your US marina. Full landed cost transparency." />
@@ -40,6 +41,15 @@
   const b = findBoat(id) || BOATS[0];
   const root = document.getElementById('detail-root');
 
+  // Canonical URL — uses the boat's friendly slug for SEO. Vercel rewrites
+  // /<slug> to /boat.html?id=<full-id>, so search engines should index the slug form.
+  const canonicalLink = document.getElementById('canonical-link');
+  if (canonicalLink && b.slug) {
+    canonicalLink.href = `https://${SETTINGS.domain}/${b.slug}`;
+  }
+  // Page title + OG description reflect the actual boat
+  document.title = `${b.year} ${b.make} ${b.model} — ${b.name} · Trade Wind & Co.`;
+
   // Crumbs
   document.getElementById('crumbs').innerHTML = `
     <a href="index.html">Home</a><span>/</span>
@@ -72,6 +82,38 @@
 
   // Inspection windows / remote
   const inspectionWindowsHTML = b.inspectionWindows.map((w) => `<li>${w}</li>`).join('');
+
+  // US comps — comparable boats listed in US right now (search URLs to broker inventory pages)
+  const compsHTML = (b.usComps && b.usComps.length) ? (() => {
+    const sortedComps = [...b.usComps].sort((a, c) => a.priceUSD - c.priceUSD);
+    const compMedian = sortedComps[Math.floor(sortedComps.length / 2)].priceUSD;
+    const vsMedian = list < compMedian
+      ? `<strong style="color:var(--teal);">${fmtUSD(compMedian - list)} below</strong> the median US asking`
+      : `<strong>${fmtUSD(list - compMedian)} above</strong> the median US asking`;
+    return `
+    <section style="margin-bottom:48px;">
+      <div class="section-eyebrow">Verify the savings</div>
+      <h2 style="font-size:30px; margin-bottom:6px;">Comparable boats listed in the US right now.</h2>
+      <p class="dim" style="max-width:720px;">Same year/make/model class on the major US listing platforms. Your delivered price of <strong>${fmtUSD(list)}</strong> sits ${vsMedian} for this class.</p>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:16px; margin-top:24px;">
+        ${b.usComps.map((c) => `
+          <a href="${c.searchUrl}" target="_blank" rel="noopener noreferrer" style="display:block; background:var(--card); border:1px solid var(--border); border-radius:var(--r); padding:18px 20px; text-decoration:none; color:var(--text); transition:border-color 0.2s, transform 0.2s;" onmouseover="this.style.borderColor='var(--teal)'" onmouseout="this.style.borderColor='var(--border)'">
+            <div style="font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-3); font-weight:600;">${c.source}</div>
+            <div style="font-family:var(--serif); font-size:20px; margin:8px 0 4px; color:var(--text); line-height:1.2;">${c.year} ${c.make} ${c.model}</div>
+            <div style="font-size:13px; color:var(--text-2); margin-bottom:14px;">${c.location}</div>
+            <div style="display:flex; align-items:baseline; justify-content:space-between; gap:12px;">
+              <div>
+                <div style="font-size:11px; color:var(--text-3); margin-bottom:2px; letter-spacing:0.04em;">US asking</div>
+                <div style="font-family:var(--mono); font-size:20px; font-weight:700; color:var(--text);">${fmtUSD(c.priceUSD)}</div>
+              </div>
+              <div style="font-size:12px; color:var(--teal); font-weight:600; white-space:nowrap;">View →</div>
+            </div>
+          </a>
+        `).join('')}
+      </div>
+      <p style="font-size:12px; color:var(--text-3); margin-top:16px;">Comp prices observed May 2026 across YachtWorld, The Multihull Company, Boat Trader, and Just Catamarans. Links open the broker's full inventory for that make and model — current asking prices may have moved since last refresh.</p>
+    </section>`;
+  })() : '';
 
   root.innerHTML = `
     <section class="detail-head">
@@ -162,6 +204,8 @@
         <strong>${fmtUSD(savings)}</strong>
       </div>
     </section>
+
+    ${compsHTML}
 
     <section style="margin-bottom:48px;">
       <div class="section-eyebrow">What we handle</div>

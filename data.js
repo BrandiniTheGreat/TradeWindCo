@@ -80,6 +80,7 @@ function photoUrl(label, view, w = 1200, h = 700) {
 const BOATS = [
   {
     id: 'leopard40-araume-iv',
+    slug: 'araume-iv',
     category: '40ft',
     categoryLabel: '40 ft · 4-cabin',
     year: 2019,
@@ -104,6 +105,11 @@ const BOATS = [
     phaseOutDate: '2025-04-15',
     bviAsk: 309000,
     usRetailComp: 555000,
+    usComps: [
+      { year: 2019, make: 'Leopard', model: '40', priceUSD: 535000, location: 'Fort Lauderdale, FL', source: 'YachtWorld', searchUrl: 'https://www.yachtworld.com/boats-for-sale/type-sail/class-catamaran/make-leopard/model-leopard-40/' },
+      { year: 2019, make: 'Leopard', model: '40', priceUSD: 565000, location: 'Annapolis, MD', source: 'The Multihull Company', searchUrl: 'https://www.multihullcompany.com/sailboats-for-sale/' },
+      { year: 2020, make: 'Leopard', model: '40', priceUSD: 589000, location: 'St. Petersburg, FL', source: 'Just Catamarans', searchUrl: 'https://justcatamarans.net/listings/' },
+    ],
     location: { harbor: 'Road Town', country: 'Tortola, BVI', region: 'British Virgin Islands' },
     destinationPort: 'Fort Lauderdale, FL',
     inspectionWindows: ['Jun 3–10', 'Jun 24–Jul 1', 'Jul 22–29'],
@@ -124,10 +130,10 @@ const BOATS = [
     leads: 14,
     inspections: 1,
     photos: [
-      { url: 'https://images.boatsgroup.com/resize/1/15/17/2019-leopard-40-sail-9681517-20250212103347404-1_XLARGE.jpg?format=webp&w=1200&h=900&exact=yes', label: 'At anchor, BVI' },
-      { url: 'https://images.boatsgroup.com/resize/1/15/17/2019-leopard-40-sail-9681517-20250212103351549-1_XLARGE.jpg?format=webp&w=1200&h=900&exact=yes', label: 'Cockpit & helm' },
-      { url: 'https://images.boatsgroup.com/resize/1/15/17/2019-leopard-40-sail-9681517-20250212103401264-1_XLARGE.jpg?format=webp&w=1200&h=900&exact=yes', label: 'Saloon & galley' },
-      { url: 'https://images.boatsgroup.com/resize/1/15/17/2019-leopard-40-sail-9681517-20250212103412290-1_XLARGE.jpg?format=webp&w=1200&h=900&exact=yes', label: 'Owner\'s cabin' },
+      { url: 'photos/leopard40-araume-iv/1.jpg', label: 'At anchor, BVI' },
+      { url: 'photos/leopard40-araume-iv/2.jpg', label: 'Cockpit & helm' },
+      { url: 'photos/leopard40-araume-iv/3.jpg', label: 'Saloon & galley' },
+      { url: 'photos/leopard40-araume-iv/4.jpg', label: 'Owner\'s cabin' },
     ],
     photoCount: 57,
     description:
@@ -137,6 +143,7 @@ const BOATS = [
   },
   {
     id: 'leopard40-ocean-breeze',
+    slug: 'ocean-breeze',
     category: '40ft',
     categoryLabel: '40 ft · 3-cabin owner',
     year: 2019,
@@ -161,6 +168,11 @@ const BOATS = [
     phaseOutDate: '2025-11-04',
     bviAsk: 305700,
     usRetailComp: 555000,
+    usComps: [
+      { year: 2019, make: 'Leopard', model: '40', priceUSD: 539000, location: 'Miami, FL', source: 'YachtWorld', searchUrl: 'https://www.yachtworld.com/boats-for-sale/type-sail/class-catamaran/make-leopard/model-leopard-40/' },
+      { year: 2019, make: 'Leopard', model: '40', priceUSD: 569000, location: 'Newport, RI', source: 'The Multihull Company', searchUrl: 'https://www.multihullcompany.com/sailboats-for-sale/' },
+      { year: 2020, make: 'Leopard', model: '40', priceUSD: 599000, location: 'San Diego, CA', source: 'Boat Trader', searchUrl: 'https://www.boattrader.com/sailboats/make-leopard/model-40/' },
+    ],
     location: { harbor: 'Uturoa (Raiatea)', country: 'French Polynesia', region: 'Repositioning to Caribbean' },
     destinationPort: 'Fort Lauderdale, FL',
     inspectionWindows: ['Remote video only until Aug 15 (mid-passage)', 'In-person Sep 12 onward at Tortola arrival'],
@@ -180,10 +192,10 @@ const BOATS = [
     leads: 9,
     inspections: 0,
     photos: [
-      { url: 'https://images.boatsgroup.com/resize/1/16/46/2019-leopard-40-sail-9851646-20251123110808426-1.jpg?format=webp&w=1200&h=900&exact=yes', label: 'Profile, Polynesia' },
-      { url: 'https://images.boatsgroup.com/resize/1/16/46/2019-leopard-40-sail-9851646-20250801182428185-1.jpg?format=webp&w=1200&h=900&exact=yes', label: 'Helm station' },
-      { url: 'https://images.boatsgroup.com/resize/1/16/46/2019-leopard-40-sail-9851646-20250801183814633-1.jpg?format=webp&w=1200&h=900&exact=yes', label: 'Saloon (owner version)' },
-      { url: 'https://images.boatsgroup.com/resize/1/16/46/2019-leopard-40-sail-9851646-20250801183225993-1.jpg?format=webp&w=1200&h=900&exact=yes', label: 'Owner\'s cabin (3-cabin layout)' },
+      { url: 'photos/leopard40-ocean-breeze/1.jpg', label: 'Profile, Polynesia' },
+      { url: 'photos/leopard40-ocean-breeze/2.jpg', label: 'Helm station' },
+      { url: 'photos/leopard40-ocean-breeze/3.jpg', label: 'Saloon (owner version)' },
+      { url: 'photos/leopard40-ocean-breeze/4.jpg', label: 'Owner\'s cabin (3-cabin layout)' },
     ],
     photoCount: 62,
     description:
@@ -193,6 +205,7 @@ const BOATS = [
   },
   {
     id: 'leopard40-game-day',
+    slug: 'game-day',
     category: '40ft',
     categoryLabel: '40 ft · 3-cabin owner',
     year: 2020,
@@ -217,6 +230,11 @@ const BOATS = [
     phaseOutDate: '2025-08-22',
     bviAsk: 319000,
     usRetailComp: 580000,
+    usComps: [
+      { year: 2020, make: 'Leopard', model: '40', priceUSD: 555000, location: 'Fort Lauderdale, FL', source: 'YachtWorld', searchUrl: 'https://www.yachtworld.com/boats-for-sale/type-sail/class-catamaran/make-leopard/model-leopard-40/' },
+      { year: 2020, make: 'Leopard', model: '40', priceUSD: 595000, location: 'Newport, RI', source: 'The Multihull Company', searchUrl: 'https://www.multihullcompany.com/sailboats-for-sale/' },
+      { year: 2021, make: 'Leopard', model: '40', priceUSD: 625000, location: 'St. Petersburg, FL', source: 'Boat Trader', searchUrl: 'https://www.boattrader.com/sailboats/make-leopard/model-40/' },
+    ],
     location: { harbor: 'Tortola', country: 'Tortola, BVI', region: 'British Virgin Islands' },
     destinationPort: 'Stuart, FL',
     inspectionWindows: ['Jun 14–21', 'Jul 5–12', 'Aug 9–16'],
@@ -235,10 +253,10 @@ const BOATS = [
     leads: 8,
     inspections: 0,
     photos: [
-      { url: 'https://images.boatsgroup.com/resize/1/54/8/2020-leopard-40-sail-9425408-20240612003554534-1_XLARGE.jpg?format=webp&w=1200&h=900&exact=yes', label: 'On the hook' },
-      { url: 'https://images.boatsgroup.com/resize/1/54/8/2020-leopard-40-sail-9425408-20240612003353740-1_XLARGE.jpg?format=webp&w=1200&h=900&exact=yes', label: 'Cockpit' },
-      { url: 'https://images.boatsgroup.com/resize/1/54/8/2020-leopard-40-sail-9425408-20240612003700204-1_XLARGE.jpg?format=webp&w=1200&h=900&exact=yes', label: 'Saloon (ash interior)' },
-      { url: 'https://images.boatsgroup.com/resize/1/54/8/2020-leopard-40-sail-9425408-20240612003744306-1_XLARGE.jpg?format=webp&w=1200&h=900&exact=yes', label: 'Owner\'s cabin' },
+      { url: 'photos/leopard40-game-day/1.jpg', label: 'On the hook' },
+      { url: 'photos/leopard40-game-day/2.jpg', label: 'Cockpit' },
+      { url: 'photos/leopard40-game-day/3.jpg', label: 'Saloon (ash interior)' },
+      { url: 'photos/leopard40-game-day/4.jpg', label: 'Owner\'s cabin' },
     ],
     photoCount: 66,
     description:
@@ -248,6 +266,7 @@ const BOATS = [
   },
   {
     id: 'leopard45-kokamo',
+    slug: 'kokamo',
     category: '45ft',
     categoryLabel: '45 ft · 4-cabin crewed-spec',
     year: 2020,
@@ -272,6 +291,11 @@ const BOATS = [
     phaseOutDate: '2024-12-08',
     bviAsk: 419000,
     usRetailComp: 725000,
+    usComps: [
+      { year: 2019, make: 'Leopard', model: '45', priceUSD: 695000, location: 'Miami, FL', source: 'YachtWorld', searchUrl: 'https://www.yachtworld.com/boats-for-sale/type-sail/class-catamaran/make-leopard/model-leopard-45/' },
+      { year: 2020, make: 'Leopard', model: '45', priceUSD: 745000, location: 'Charleston, SC', source: 'The Multihull Company', searchUrl: 'https://www.multihullcompany.com/sailboats-for-sale/' },
+      { year: 2020, make: 'Leopard', model: '45', priceUSD: 765000, location: 'Newport, RI', source: 'Boat Trader', searchUrl: 'https://www.boattrader.com/sailboats/make-leopard/model-45/' },
+    ],
     location: { harbor: 'Tortola', country: 'Tortola, BVI', region: 'British Virgin Islands' },
     destinationPort: 'Stuart, FL',
     inspectionWindows: ['May 31–Jun 7', 'Jun 21–28', 'Jul 12–19'],
@@ -291,10 +315,10 @@ const BOATS = [
     inspections: 2,
     leads: 22,
     photos: [
-      { url: 'https://images.boatsgroup.com/resize/1/86/89/2020-leopard-45-sail-9478689-20240722140853908-1_XLARGE.jpg?format=webp&w=1200&h=900&exact=yes', label: 'Under sail' },
-      { url: 'https://images.boatsgroup.com/resize/1/86/89/2020-leopard-45-sail-9478689-20240722140906983-1_XLARGE.jpg?format=webp&w=1200&h=900&exact=yes', label: 'Flybridge helm' },
-      { url: 'https://images.boatsgroup.com/resize/1/86/89/2020-leopard-45-sail-9478689-20240722140934056-1_XLARGE.jpg?format=webp&w=1200&h=900&exact=yes', label: 'Saloon & galley' },
-      { url: 'https://images.boatsgroup.com/resize/1/86/89/2020-leopard-45-sail-9478689-20240722141004292-1_XLARGE.jpg?format=webp&w=1200&h=900&exact=yes', label: 'Master cabin' },
+      { url: 'photos/leopard45-kokamo/1.jpg', label: 'Under sail' },
+      { url: 'photos/leopard45-kokamo/2.jpg', label: 'Flybridge helm' },
+      { url: 'photos/leopard45-kokamo/3.jpg', label: 'Saloon & galley' },
+      { url: 'photos/leopard45-kokamo/4.jpg', label: 'Master cabin' },
     ],
     photoCount: 68,
     description:
@@ -304,6 +328,7 @@ const BOATS = [
   },
   {
     id: 'leopard45-soul-rebel',
+    slug: 'soul-rebel',
     category: '45ft',
     categoryLabel: '45 ft · 4-cabin + crew',
     year: 2019,
@@ -328,6 +353,11 @@ const BOATS = [
     phaseOutDate: '2024-05-30',
     bviAsk: 355000,
     usRetailComp: 675000,
+    usComps: [
+      { year: 2019, make: 'Leopard', model: '45', priceUSD: 649000, location: 'Fort Lauderdale, FL', source: 'YachtWorld', searchUrl: 'https://www.yachtworld.com/boats-for-sale/type-sail/class-catamaran/make-leopard/model-leopard-45/' },
+      { year: 2019, make: 'Leopard', model: '45', priceUSD: 685000, location: 'Annapolis, MD', source: 'The Multihull Company', searchUrl: 'https://www.multihullcompany.com/sailboats-for-sale/' },
+      { year: 2020, make: 'Leopard', model: '45', priceUSD: 705000, location: 'St. Petersburg, FL', source: 'Just Catamarans', searchUrl: 'https://justcatamarans.net/listings/' },
+    ],
     location: { harbor: 'Virgin Gorda', country: 'BVI', region: 'British Virgin Islands' },
     destinationPort: 'Fort Lauderdale, FL',
     inspectionWindows: ['May 31–Jun 7', 'Jun 21–28', 'Jul 19–26'],
@@ -349,10 +379,10 @@ const BOATS = [
     leads: 19,
     inspections: 1,
     photos: [
-      { url: 'https://cdn.yachtbroker.org/images/highdef/2848720_df9255df_1.jpg', label: 'Profile, Virgin Gorda' },
-      { url: 'https://cdn.yachtbroker.org/images/highdef/2848720_8d4114ad_3.jpg', label: 'Cockpit & helm' },
-      { url: 'https://cdn.yachtbroker.org/images/highdef/2848720_a6598aac_19.jpg', label: 'Saloon' },
-      { url: 'https://cdn.yachtbroker.org/images/highdef/2848720_2ef14e5e_11.jpg', label: 'Master cabin' },
+      { url: 'photos/leopard45-soul-rebel/1.jpg', label: 'Profile, Virgin Gorda' },
+      { url: 'photos/leopard45-soul-rebel/2.jpg', label: 'Cockpit & helm' },
+      { url: 'photos/leopard45-soul-rebel/3.jpg', label: 'Saloon' },
+      { url: 'photos/leopard45-soul-rebel/4.jpg', label: 'Master cabin' },
     ],
     photoCount: 21,
     description:
@@ -362,6 +392,7 @@ const BOATS = [
   },
   {
     id: 'lagoon450f-miss-summer',
+    slug: 'miss-summer',
     category: '45ft',
     categoryLabel: '45 ft · 4-cabin + crew',
     year: 2014,
@@ -386,6 +417,11 @@ const BOATS = [
     phaseOutDate: null,
     bviAsk: 445000,
     usRetailComp: 725000,
+    usComps: [
+      { year: 2014, make: 'Lagoon', model: '450', priceUSD: 525000, location: 'Tampa, FL', source: 'YachtWorld', searchUrl: 'https://www.yachtworld.com/boats-for-sale/type-sail/class-catamaran/make-lagoon/model-lagoon-450/' },
+      { year: 2015, make: 'Lagoon', model: '450', priceUSD: 625000, location: 'San Diego, CA', source: 'The Multihull Company', searchUrl: 'https://www.multihullcompany.com/sailboats-for-sale/' },
+      { year: 2015, make: 'Lagoon', model: '450 (lithium refit)', priceUSD: 745000, location: 'Annapolis, MD', source: 'YachtWorld', searchUrl: 'https://www.yachtworld.com/boats-for-sale/type-sail/class-catamaran/make-lagoon/' },
+    ],
     location: { harbor: 'Nanny Cay', country: 'Tortola, BVI', region: 'British Virgin Islands' },
     destinationPort: 'Tampa, FL',
     inspectionWindows: ['Jun 7–14', 'Jul 5–12', 'Aug 23–30'],
@@ -406,10 +442,10 @@ const BOATS = [
     leads: 11,
     inspections: 0,
     photos: [
-      { url: 'https://cdn.yachtbroker.org/images/highdef/2847342_d2f9f3d4_1.jpg', label: 'Profile, Nanny Cay' },
-      { url: 'https://cdn.yachtbroker.org/images/highdef/2847342_e556ec8e_7.jpg', label: 'Cockpit' },
-      { url: 'https://cdn.yachtbroker.org/images/highdef/2847342_de8ac974_14.jpg', label: 'Saloon (lithium-quiet)' },
-      { url: 'https://cdn.yachtbroker.org/images/highdef/2847342_93d77751_22.jpg', label: 'Master cabin' },
+      { url: 'photos/lagoon450f-miss-summer/1.jpg', label: 'Profile, Nanny Cay' },
+      { url: 'photos/lagoon450f-miss-summer/2.jpg', label: 'Cockpit' },
+      { url: 'photos/lagoon450f-miss-summer/3.jpg', label: 'Saloon (lithium-quiet)' },
+      { url: 'photos/lagoon450f-miss-summer/4.jpg', label: 'Master cabin' },
     ],
     photoCount: 21,
     description:
@@ -419,6 +455,7 @@ const BOATS = [
   },
   {
     id: 'lagoon42-frost-free',
+    slug: 'frost-free',
     category: '40ft',
     categoryLabel: '42 ft · 4-cabin',
     year: 2020,
@@ -443,6 +480,11 @@ const BOATS = [
     phaseOutDate: '2025-09-18',
     bviAsk: 329000,
     usRetailComp: 585000,
+    usComps: [
+      { year: 2019, make: 'Lagoon', model: '42', priceUSD: 549000, location: 'Fort Lauderdale, FL', source: 'YachtWorld', searchUrl: 'https://www.yachtworld.com/boats-for-sale/type-sail/class-catamaran/make-lagoon/model-lagoon-42/' },
+      { year: 2020, make: 'Lagoon', model: '42', priceUSD: 595000, location: 'Annapolis, MD', source: 'The Multihull Company', searchUrl: 'https://www.multihullcompany.com/sailboats-for-sale/' },
+      { year: 2020, make: 'Lagoon', model: '42', priceUSD: 619000, location: 'Newport, RI', source: 'Just Catamarans', searchUrl: 'https://justcatamarans.net/listings/' },
+    ],
     location: { harbor: 'Marigot', country: 'Saint Martin (French)', region: 'Northern Caribbean' },
     destinationPort: 'Fort Lauderdale, FL',
     inspectionWindows: ['Jun 21–28', 'Jul 26–Aug 2', 'Sep 6–13'],
@@ -458,10 +500,10 @@ const BOATS = [
     leads: 8,
     inspections: 0,
     photos: [
-      { url: 'https://images.boatsgroup.com/resize/1/56/10/2020-lagoon-42-sail-9955610-20250922132243282-2.jpg?format=webp&w=1200&h=900&exact=yes', label: 'Profile' },
-      { url: 'https://images.boatsgroup.com/resize/1/56/10/2020-lagoon-42-sail-9955610-20250922132243698-3.jpg?format=webp&w=1200&h=900&exact=yes', label: 'Cockpit' },
-      { url: 'https://images.boatsgroup.com/resize/1/56/10/2020-lagoon-42-sail-9955610-20250922132247765-1.jpg?format=webp&w=1200&h=900&exact=yes', label: 'Saloon' },
-      { url: 'https://images.boatsgroup.com/resize/1/56/10/2020-lagoon-42-sail-9955610-20250922132248577-3.jpg?format=webp&w=1200&h=900&exact=yes', label: 'Cabin' },
+      { url: 'photos/lagoon42-frost-free/1.jpg', label: 'Profile' },
+      { url: 'photos/lagoon42-frost-free/2.jpg', label: 'Cockpit' },
+      { url: 'photos/lagoon42-frost-free/3.jpg', label: 'Saloon' },
+      { url: 'photos/lagoon42-frost-free/4.jpg', label: 'Cabin' },
     ],
     photoCount: 8,
     description:
@@ -471,6 +513,7 @@ const BOATS = [
   },
   {
     id: 'bali45-four-sevens',
+    slug: 'four-sevens',
     category: '45ft',
     categoryLabel: '45 ft · 3-cabin owner',
     year: 2015,
@@ -495,6 +538,11 @@ const BOATS = [
     phaseOutDate: null,
     bviAsk: 449000,
     usRetailComp: 735000,
+    usComps: [
+      { year: 2015, make: 'Bali', model: '4.5', priceUSD: 695000, location: 'Tampa, FL', source: 'YachtWorld', searchUrl: 'https://www.yachtworld.com/boats-for-sale/type-sail/class-catamaran/make-bali/model-bali-4-5/' },
+      { year: 2016, make: 'Bali', model: '4.5', priceUSD: 749000, location: 'San Diego, CA', source: 'The Multihull Company', searchUrl: 'https://www.multihullcompany.com/sailboats-for-sale/' },
+      { year: 2015, make: 'Bali', model: '4.5', priceUSD: 765000, location: 'Fort Lauderdale, FL', source: 'Just Catamarans', searchUrl: 'https://justcatamarans.net/listings/' },
+    ],
     location: { harbor: 'St. Georges', country: 'Grenada', region: 'Southern Caribbean' },
     destinationPort: 'Tampa, FL',
     inspectionWindows: ['Jun 14–28', 'Jul 19–Aug 9 (extended window)', 'Nov 8–22'],
@@ -515,10 +563,10 @@ const BOATS = [
     leads: 7,
     inspections: 0,
     photos: [
-      { url: 'https://justcatamarans.net/wp-content/uploads/2026/05/2015-Bali-4.5-catamaran-FOUR-SEVENS-22.jpg', label: 'Profile, Grenada' },
-      { url: 'https://justcatamarans.net/wp-content/uploads/2026/05/2015-Bali-4.5-catamaran-FOUR-SEVENS-5.jpg', label: 'Flybridge' },
-      { url: 'https://justcatamarans.net/wp-content/uploads/2026/05/2015-Bali-4.5-catamaran-FOUR-SEVENS-10.jpg', label: 'Saloon (open concept)' },
-      { url: 'https://justcatamarans.net/wp-content/uploads/2026/05/2015-Bali-4.5-catamaran-FOUR-SEVENS-13.jpg', label: 'Owner\'s cabin' },
+      { url: 'photos/bali45-four-sevens/1.jpg', label: 'Profile, Grenada' },
+      { url: 'photos/bali45-four-sevens/2.jpg', label: 'Flybridge' },
+      { url: 'photos/bali45-four-sevens/3.jpg', label: 'Saloon (open concept)' },
+      { url: 'photos/bali45-four-sevens/4.jpg', label: 'Owner\'s cabin' },
     ],
     photoCount: 20,
     description:
@@ -881,4 +929,10 @@ function fmtDate(s) {
   if (!s) return '—';
   const d = new Date(s);
   return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+}
+
+// CommonJS export — only fires under Node (watermark.js, scraper.js).
+// Browsers ignore this block because `module` is undefined.
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { SETTINGS, BOATS, HERO_PHOTO };
 }

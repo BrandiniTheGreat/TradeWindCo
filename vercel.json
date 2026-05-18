@@ -1,0 +1,23 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/araume-iv", "destination": "/boat.html?id=leopard40-araume-iv" },
+    { "source": "/ocean-breeze", "destination": "/boat.html?id=leopard40-ocean-breeze" },
+    { "source": "/game-day", "destination": "/boat.html?id=leopard40-game-day" },
+    { "source": "/kokamo", "destination": "/boat.html?id=leopard45-kokamo" },
+    { "source": "/soul-rebel", "destination": "/boat.html?id=leopard45-soul-rebel" },
+    { "source": "/miss-summer", "destination": "/boat.html?id=lagoon450f-miss-summer" },
+    { "source": "/frost-free", "destination": "/boat.html?id=lagoon42-frost-free" },
+    { "source": "/four-sevens", "destination": "/boat.html?id=bali45-four-sevens" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+      ]
+    }
+  ]
+}
