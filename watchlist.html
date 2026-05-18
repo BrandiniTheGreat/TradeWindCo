@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Watchlist — Trade Wind &amp; Co.</title>
+  <meta name="description" content="Catamarans you've saved to revisit." />
+  <meta name="theme-color" content="#1f6e72" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="site-header" data-header></header>
+
+<section class="inventory-hero">
+  <div class="container">
+    <h1>Your watchlist</h1>
+    <p>Catamarans you've saved to revisit. Stored privately in your browser — no account, no email required.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:48px;">
+  <div class="container">
+    <div class="filter-bar" id="watchlist-actions" style="display:none;">
+      <span class="filter-count"><strong id="count">0</strong> saved</span>
+      <span class="filter-spacer"></span>
+      <button id="compare-btn" class="btn btn-secondary btn-sm">Compare Selected →</button>
+      <button id="clear-btn" class="btn btn-ghost btn-sm" style="margin-left:8px;">Clear All</button>
+    </div>
+    <div class="grid-listings" id="grid"></div>
+    <div id="empty" style="display:none; padding: 80px 0; text-align: center; color: var(--text-3); font-style: italic;">
+      <div style="font-size: 16px; color:var(--text-2); margin-bottom:8px;">No saved catamarans yet.</div>
+      <div style="font-size:14px;">Click the <span style="color:var(--coral);">♡</span> on any boat to save it here.</div>
+      <a href="inventory.html" class="btn btn-primary mt-32" style="display:inline-flex; margin-top:24px;">Browse Inventory</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer" data-footer></footer>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+<script>
+  mountHeader('inventory');
+  mountFooter();
+
+  function render() {
+    const ids = getWatchlist();
+    const boats = ids.map(findBoat).filter(Boolean);
+    const grid = document.getElementById('grid');
+    const empty = document.getElementById('empty');
+    const actions = document.getElementById('watchlist-actions');
+    if (boats.length === 0) {
+      grid.innerHTML = '';
+      empty.style.display = 'block';
+      actions.style.display = 'none';
+    } else {
+      grid.innerHTML = boats.map(renderListingCard).join('');
+      empty.style.display = 'none';
+      actions.style.display = 'flex';
+      document.getElementById('count').textContent = boats.length;
+      bindWatchlistButtons();
+      // After unchecking, re-render
+      document.querySelectorAll('[data-watch-id]').forEach((btn) => {
+        btn.addEventListener('click', () => setTimeout(render, 50));
+      });
+    }
+  }
+
+  document.getElementById('compare-btn').addEventListener('click', () => {
+    const ids = getWatchlist();
+    if (ids.length < 2) {
+      alert('Select at least 2 boats to compare. Save another from the inventory page.');
+      return;
+    }
+    if (ids.length > 4) {
+      alert('Compare is best with 2-4 boats. Showing your first 4.');
+    }
+    location.href = 'compare.html?ids=' + ids.slice(0, 4).join(',');
+  });
+
+  document.getElementById('clear-btn').addEventListener('click', () => {
+    if (confirm('Clear all saved boats from your watchlist?')) {
+      localStorage.removeItem(WATCHLIST_KEY);
+      render();
+    }
+  });
+
+  render();
+</script>
+
+</body>
+</html>

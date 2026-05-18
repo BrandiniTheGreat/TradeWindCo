@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Compare Catamarans — Trade Wind &amp; Co.</title>
+  <meta name="description" content="Side-by-side comparison of Caribbean catamarans — specs, landed cost, buyer savings." />
+  <meta name="theme-color" content="#1f6e72" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .compare-grid {
+      display: grid;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      margin-top: 32px;
+      overflow-x: auto;
+    }
+    .compare-row {
+      display: grid;
+      grid-template-columns: 180px repeat(var(--cols, 2), 1fr);
+      background: var(--card);
+      align-items: center;
+    }
+    .compare-row.head {
+      background: var(--bg);
+      border-bottom: 2px solid var(--teal);
+    }
+    .compare-cell {
+      padding: 14px 18px;
+      font-size: 13.5px;
+      color: var(--text);
+      border-right: 1px solid var(--border);
+      min-width: 0;
+    }
+    .compare-cell:last-child { border-right: 0; }
+    .compare-row.head .compare-cell {
+      padding: 22px 18px 18px;
+    }
+    .compare-row.head img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      border-radius: var(--r);
+      margin-bottom: 14px;
+    }
+    .compare-row.head .boat-name {
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.2;
+      margin-bottom: 4px;
+    }
+    .compare-row.head .boat-sub {
+      font-size: 11px;
+      color: var(--text-3);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .compare-row.head .boat-price {
+      font-family: var(--serif);
+      font-size: 26px;
+      font-weight: 600;
+      color: var(--teal);
+      margin-bottom: 6px;
+    }
+    .compare-row.head .boat-savings {
+      font-size: 12px;
+      color: var(--green);
+      font-weight: 600;
+    }
+    .compare-label {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      font-weight: 600;
+      background: var(--bg);
+      border-right: 1px solid var(--border);
+    }
+    .compare-row.section-head { background: var(--bg-alt); }
+    .compare-row.section-head .compare-cell {
+      font-family: var(--sans);
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--coral-2);
+      font-weight: 700;
+      padding: 14px 18px;
+    }
+    .compare-row.best .compare-cell.best-val {
+      background: rgba(45,106,79,0.08);
+      color: var(--green);
+      font-weight: 700;
+    }
+    .remove-x {
+      background: rgba(166,61,64,0.1);
+      color: var(--red);
+      border: 0;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 14px;
+      line-height: 1;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    .remove-x:hover { background: var(--red); color: #fff; }
+  </style>
+</head>
+<body>
+
+<header class="site-header" data-header></header>
+
+<section class="inventory-hero">
+  <div class="container">
+    <h1>Compare catamarans</h1>
+    <p>Side-by-side specs, landed cost, and buyer savings. Green highlights the best value in each row.</p>
+  </div>
+</section>
+
+<main class="container" style="padding: 32px 32px 80px;">
+  <div id="compare-root">
+    <div style="padding: 60px 0; text-align: center; color: var(--text-3); font-style: italic;">Loading…</div>
+  </div>
+</main>
+
+<footer class="site-footer" data-footer></footer>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+<script>
+  mountHeader('inventory');
+  mountFooter();
+
+  function paramIds() {
+    const raw = getQueryParam('ids') || '';
+    return raw.split(',').map((s) => s.trim()).filter(Boolean);
+  }
+
+  function removeBoat(id) {
+    const ids = paramIds().filter((x) => x !== id);
+    if (ids.length === 0) {
+      location.href = 'inventory.html';
+    } else {
+      location.href = 'compare.html?ids=' + ids.join(',');
+    }
+  }
+
+  function render() {
+    const ids = paramIds().slice(0, 4);
+    const boats = ids.map(findBoat).filter(Boolean);
+    const root = document.getElementById('compare-root');
+
+    if (boats.length === 0) {
+      root.innerHTML = `
+        <div style="padding: 80px 0; text-align: center; color: var(--text-3);">
+          <div style="font-size: 17px; color:var(--text-2); margin-bottom:12px;">No boats selected to compare.</div>
+          <div style="font-size:14px; margin-bottom:24px;">Save 2-4 boats to your watchlist first, then click "Compare Selected" on the watchlist page.</div>
+          <a href="inventory.html" class="btn btn-primary">Browse Inventory</a>
+          <a href="watchlist.html" class="btn btn-secondary" style="margin-left:8px;">Open Watchlist</a>
+        </div>
+      `;
+      return;
+    }
+
+    if (boats.length === 1) {
+      root.innerHTML = `
+        <div style="padding: 60px 0; text-align: center;">
+          <div style="font-size: 16px; color:var(--text-2); margin-bottom:12px;">Compare works with 2-4 boats. You have one selected:</div>
+          <div style="font-family:var(--serif); font-size:22px; color:var(--text);">${boats[0].year} ${boats[0].make} ${boats[0].model} "${boats[0].name}"</div>
+          <a href="inventory.html" class="btn btn-primary" style="margin-top:24px;">Browse Inventory to Add More</a>
+        </div>
+      `;
+      return;
+    }
+
+    const cols = boats.length;
+    // Compute helpers
+    const prices = boats.map(listPriceFor);
+    const savings = boats.map((b) => buyerSavings(b));
+    const hours = boats.map((b) => b.engineHours);
+    const years = boats.map((b) => b.year);
+    const bviAsks = boats.map((b) => b.bviAsk);
+    const minPrice = Math.min(...prices);
+    const maxSavings = Math.max(...savings);
+    const minHours = Math.min(...hours);
+    const maxYear = Math.max(...years);
+    const minBvi = Math.min(...bviAsks);
+
+    const rowsHTML = [];
+
+    // Header row (photo + identity + price)
+    rowsHTML.push(`
+      <div class="compare-row head" style="--cols:${cols};">
+        <div class="compare-cell compare-label" style="font-size:11px;">Boat</div>
+        ${boats.map((b) => `
+          <div class="compare-cell">
+            <img src="${b.photos[0]?.url || ''}" alt="${b.name}" />
+            <div class="boat-name">
+              <a href="boat.html?id=${b.id}" style="color:inherit;">${b.year} ${b.make} ${b.model}</a>
+              <button class="remove-x" onclick="removeBoat('${b.id}')" title="Remove from comparison">×</button>
+            </div>
+            <div class="boat-sub">${b.name} · ${b.location.harbor}</div>
+            <div class="boat-price">${fmtUSD(listPriceFor(b))}</div>
+            <div class="boat-savings">Save ${fmtUSD(buyerSavings(b))}</div>
+          </div>
+        `).join('')}
+      </div>
+    `);
+
+    // Section: Basics
+    rowsHTML.push(`<div class="compare-row section-head" style="--cols:${cols};"><div class="compare-cell" style="grid-column: 1 / span ${cols + 1};">Basics</div></div>`);
+    rowsHTML.push(rowFor('Year', boats, (b) => b.year, (b) => b.year === maxYear, cols));
+    rowsHTML.push(rowFor('LOA', boats, (b) => b.loa, () => false, cols));
+    rowsHTML.push(rowFor('Beam', boats, (b) => b.beam, () => false, cols));
+    rowsHTML.push(rowFor('Cabins / Heads', boats, (b) => `${b.cabins} / ${b.heads}`, () => false, cols));
+    rowsHTML.push(rowFor('Originating Fleet', boats, (b) => 'ex-' + b.originatingFleet, () => false, cols));
+
+    // Section: Engines
+    rowsHTML.push(`<div class="compare-row section-head" style="--cols:${cols};"><div class="compare-cell" style="grid-column: 1 / span ${cols + 1};">Engines &amp; Tanks</div></div>`);
+    rowsHTML.push(rowFor('Engine Hours', boats, (b) => fmtNum(b.engineHours), (b) => b.engineHours === minHours, cols));
+    rowsHTML.push(rowFor('Engines', boats, (b) => b.engines, () => false, cols));
+    rowsHTML.push(rowFor('Fuel', boats, (b) => b.fuelGal + ' gal', () => false, cols));
+    rowsHTML.push(rowFor('Water', boats, (b) => b.waterGal + ' gal', () => false, cols));
+
+    // Section: Economics
+    rowsHTML.push(`<div class="compare-row section-head" style="--cols:${cols};"><div class="compare-cell" style="grid-column: 1 / span ${cols + 1};">Economics</div></div>`);
+    rowsHTML.push(rowFor('BVI ask', boats, (b) => fmtUSD(b.bviAsk), (b) => b.bviAsk === minBvi, cols));
+    rowsHTML.push(rowFor('20% duty', boats, (b) => fmtUSD(b.bviAsk * SETTINGS.importDuty), () => false, cols));
+    rowsHTML.push(rowFor('Landed cost', boats, (b) => fmtUSD(landedCost(b)), () => false, cols));
+    rowsHTML.push(rowFor('Our list', boats, (b) => fmtUSD(listPriceFor(b)), (b) => listPriceFor(b) === minPrice, cols));
+    rowsHTML.push(rowFor('US retail comp', boats, (b) => fmtUSD(b.usRetailComp), () => false, cols));
+    rowsHTML.push(rowFor('Buyer savings', boats, (b) => fmtUSD(buyerSavings(b)), (b) => buyerSavings(b) === maxSavings, cols));
+
+    // Section: Location & status
+    rowsHTML.push(`<div class="compare-row section-head" style="--cols:${cols};"><div class="compare-cell" style="grid-column: 1 / span ${cols + 1};">Location &amp; Status</div></div>`);
+    rowsHTML.push(rowFor('Current location', boats, (b) => b.location.harbor + ', ' + b.location.country, () => false, cols));
+    rowsHTML.push(rowFor('Destination port', boats, (b) => b.destinationPort, () => false, cols));
+    rowsHTML.push(rowFor('Status', boats, (b) => `<span class="status-pill ${b.status}">${statusLabel(b.status)}</span>`, () => false, cols));
+    rowsHTML.push(rowFor('Source broker', boats, (b) => b.sourceBroker, () => false, cols));
+
+    // CTA row
+    rowsHTML.push(`
+      <div class="compare-row" style="--cols:${cols};">
+        <div class="compare-cell compare-label">Next step</div>
+        ${boats.map((b) => `
+          <div class="compare-cell" style="padding:18px;">
+            <a class="btn btn-primary btn-sm" href="boat.html?id=${b.id}#inspection" style="width:100%; box-sizing:border-box; text-align:center;">Request Inspection</a>
+          </div>
+        `).join('')}
+      </div>
+    `);
+
+    root.innerHTML = `<div class="compare-grid">${rowsHTML.join('')}</div>`;
+  }
+
+  function rowFor(label, boats, getter, isBest, cols) {
+    return `
+      <div class="compare-row best" style="--cols:${cols};">
+        <div class="compare-cell compare-label">${label}</div>
+        ${boats.map((b) => `<div class="compare-cell ${isBest(b) ? 'best-val' : ''}">${getter(b)}</div>`).join('')}
+      </div>
+    `;
+  }
+
+  render();
+</script>
+
+</body>
+</html>

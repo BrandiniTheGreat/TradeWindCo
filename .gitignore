@@ -10,6 +10,8 @@ broker_playbook.md
 complete_workflow.md
 go_live_checklist.md
 site_audit_*.md
+public_launch_audit_*.md
+*_audit_*.md
 legacy/
 
 # OS cruft

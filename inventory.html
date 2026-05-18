@@ -7,6 +7,13 @@
   <meta name="description" content="Current catamaran inventory — each boat duty-paid and delivered to your US marina at $50K-$100K below comparable US-listed inventory." />
   <meta name="theme-color" content="#1f6e72" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://tradewindandco.com/inventory.html" />
+  <meta property="og:title" content="Inventory — Trade Wind & Co." />
+  <meta property="og:description" content="Caribbean catamarans available now — duty-paid and delivered to your US marina." />
+  <meta property="og:image" content="https://tradewindandco.com/og-image.svg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://tradewindandco.com/og-image.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -37,6 +44,16 @@
       <button class="filter-chip" data-price="under-500">Under $500K</button>
       <button class="filter-chip" data-price="500-750">$500K – $750K</button>
       <button class="filter-chip" data-price="750-plus">$750K+</button>
+      <span class="filter-divider"></span>
+      <span class="filter-label">Sort</span>
+      <select id="sort-select" class="sort-select">
+        <option value="default">Featured</option>
+        <option value="price-low">Price: Low → High</option>
+        <option value="price-high">Price: High → Low</option>
+        <option value="savings">Biggest Savings</option>
+        <option value="newest">Newest Year</option>
+        <option value="hours-low">Fewest Engine Hours</option>
+      </select>
       <span class="filter-spacer"></span>
       <span class="filter-count"><strong id="count">0</strong> catamarans showing</span>
     </div>
@@ -59,14 +76,22 @@
 
   let currentCat = 'all';
   let currentPrice = 'all';
+  let currentSort = 'default';
 
   function render() {
-    const items = priceFilter(categoryFilter(BOATS, currentCat), currentPrice);
+    const filtered = priceFilter(categoryFilter(BOATS, currentCat), currentPrice);
+    const items = currentSort === 'default' ? filtered : sortBoats(filtered, currentSort);
     grid.innerHTML = items.length
       ? items.map(renderListingCard).join('')
-      : `<div style="grid-column: 1 / -1; padding: 60px 0; text-align: center; color: var(--text-3); font-style: italic;">No catamarans match this filter. Try widening the criteria — or <a href="#" style="color:var(--teal);">tell us what you're looking for</a> and we'll source it.</div>`;
+      : `<div style="grid-column: 1 / -1; padding: 60px 0; text-align: center; color: var(--text-3); font-style: italic;">No catamarans match this filter. Try widening the criteria — or <a href="contact.html" style="color:var(--teal);">tell us what you're looking for</a> and we'll source it.</div>`;
     countEl.textContent = items.length;
+    bindWatchlistButtons();
   }
+
+  document.getElementById('sort-select').addEventListener('change', (e) => {
+    currentSort = e.target.value;
+    render();
+  });
 
   catChips.forEach((c) => {
     c.addEventListener('click', () => {

@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1f6e72"/>
+      <stop offset="100%" stop-color="#07393d"/>
+    </linearGradient>
+    <linearGradient id="wave1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f7f3eb" stop-opacity="0.15"/>
+      <stop offset="50%" stop-color="#f7f3eb" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#f7f3eb" stop-opacity="0.15"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background gradient -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Decorative waves at bottom -->
+  <path d="M0,520 Q300,460 600,500 T1200,500 L1200,630 L0,630 Z" fill="url(#wave1)"/>
+  <path d="M0,560 Q300,510 600,540 T1200,540 L1200,630 L0,630 Z" fill="#d96846" fill-opacity="0.15"/>
+  <path d="M0,590 Q300,570 600,580 T1200,580 L1200,630 L0,630 Z" fill="#d96846" fill-opacity="0.25"/>
+
+  <!-- Brand mark — wave icon in circle -->
+  <circle cx="120" cy="120" r="48" fill="none" stroke="#f7f3eb" stroke-width="2.5"/>
+  <path d="M85 122 Q105 110, 120 122 T155 122" stroke="#f7f3eb" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+  <path d="M85 134 Q105 122, 120 134 T155 134" stroke="#d96846" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.85"/>
+
+  <!-- Brand name next to mark -->
+  <text x="195" y="115" font-family="'Playfair Display', Georgia, serif" font-size="32" font-weight="700" fill="#f7f3eb" letter-spacing="3">TRADE WIND</text>
+  <text x="195" y="115" font-family="'Playfair Display', Georgia, serif" font-size="32" font-weight="700" fill="transparent">          </text>
+  <text x="430" y="115" font-family="'Playfair Display', Georgia, serif" font-size="32" font-weight="500" fill="#d96846" font-style="italic">&amp;</text>
+  <text x="460" y="115" font-family="'Playfair Display', Georgia, serif" font-size="32" font-weight="700" fill="#f7f3eb" letter-spacing="3">CO.</text>
+
+  <!-- Main headline -->
+  <text x="600" y="290" font-family="'Playfair Display', Georgia, serif" font-size="68" font-weight="600" fill="#f7f3eb" text-anchor="middle">Caribbean catamarans,</text>
+  <text x="600" y="370" font-family="'Playfair Display', Georgia, serif" font-size="68" font-weight="500" fill="#f7f3eb" text-anchor="middle" font-style="italic">duty-paid and delivered.</text>
+
+  <!-- Tagline -->
+  <text x="600" y="445" font-family="'Inter', sans-serif" font-size="22" fill="#f7f3eb" text-anchor="middle" opacity="0.85">$50K–$100K below comparable US-listed inventory.</text>
+
+  <!-- Bottom domain -->
+  <text x="600" y="615" font-family="'Inter', sans-serif" font-size="14" font-weight="600" fill="#f7f3eb" text-anchor="middle" opacity="0.6" letter-spacing="3">TRADEWINDANDCO.COM</text>
+</svg>

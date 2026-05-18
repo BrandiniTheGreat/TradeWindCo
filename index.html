@@ -7,6 +7,19 @@
   <meta name="description" content="Trade Wind & Co. imports curated ex-fleet Caribbean catamarans to US buyers, duty-paid and delivered to your marina, $50K-$100K below comparable US-listed inventory." />
   <meta name="theme-color" content="#1f6e72" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://tradewindandco.com/" />
+  <meta property="og:title" content="Trade Wind & Co. — Caribbean Catamarans, Duty-Paid & Delivered" />
+  <meta property="og:description" content="Caribbean catamarans, duty-paid and delivered to your US marina. $50K-$100K below comparable US-listed inventory." />
+  <meta property="og:image" content="https://tradewindandco.com/og-image.svg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Trade Wind & Co." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Trade Wind & Co. — Caribbean Catamarans, Duty-Paid & Delivered" />
+  <meta name="twitter:description" content="Caribbean catamarans, duty-paid and delivered to your US marina." />
+  <meta name="twitter:image" content="https://tradewindandco.com/og-image.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -115,11 +128,38 @@
   </div>
 </section>
 
-<section class="container-narrow">
-  <div class="quote">
-    <div class="quote-mark">"</div>
-    <p>I'd spent eight months trying to import a Lagoon myself. Customs, the surveyor in Tortola, the delivery captain — none of it lined up. Trade Wind handled all of it for a fixed price and the boat was on my dock in Stuart in eleven weeks.</p>
-    <div class="quote-attr">— D. Whitfield · Charleston, SC · 2018 FP Helia 44 buyer</div>
+<section class="section" style="background:var(--bg-alt);">
+  <div class="container">
+    <div class="section-eyebrow text-center" style="text-align:center;">By the Numbers</div>
+    <h2 style="text-align:center; max-width:760px; margin:0 auto 12px;">The market we operate in.</h2>
+    <p style="text-align:center; color:var(--text-2); max-width:640px; margin:0 auto 48px;">Public data on the Caribbean catamaran market that shapes our acquisition strategy.</p>
+
+    <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:18px;">
+      <div class="stat-card" style="text-align:center;">
+        <div class="stat-value" style="color:var(--teal);">160+</div>
+        <div class="stat-label" style="margin-top:8px;">Moorings new boats / yr</div>
+        <div class="stat-sub" style="margin-top:6px;">drives annual phase-out supply</div>
+      </div>
+      <div class="stat-card" style="text-align:center;">
+        <div class="stat-value" style="color:var(--teal);">20%</div>
+        <div class="stat-label" style="margin-top:8px;">2025 US import duty</div>
+        <div class="stat-sub" style="margin-top:6px;">up from 1.5% pre-tariff</div>
+      </div>
+      <div class="stat-card" style="text-align:center;">
+        <div class="stat-label" style="margin-bottom:8px;">Active BVI listings</div>
+        <div class="stat-value" style="color:var(--teal);" id="counter-listings">—</div>
+        <div class="stat-sub" style="margin-top:6px;">monitored via daily scrape</div>
+      </div>
+      <div class="stat-card" style="text-align:center;">
+        <div class="stat-label" style="margin-bottom:8px;">Avg US buyer savings</div>
+        <div class="stat-value" style="color:var(--teal);" id="counter-savings">—</div>
+        <div class="stat-sub" style="margin-top:6px;">vs comparable US-listed</div>
+      </div>
+    </div>
+
+    <p style="text-align:center; color:var(--text-3); font-size:12px; margin-top:32px; letter-spacing:0.04em;">
+      Sources: <a href="https://www.mooringsbrokerage.com" target="_blank" rel="noopener" style="color:var(--text-2);">Moorings Brokerage</a> · <a href="https://bviyachtsales.com" target="_blank" rel="noopener" style="color:var(--text-2);">BVI Yacht Sales</a> · <a href="https://www.multihullcompany.com" target="_blank" rel="noopener" style="color:var(--text-2);">The Multihull Company</a> · <a href="https://justcatamarans.net" target="_blank" rel="noopener" style="color:var(--text-2);">Just Catamarans</a> · <a href="https://www.cbp.gov" target="_blank" rel="noopener" style="color:var(--text-2);">US Customs &amp; Border Protection</a>
+    </p>
   </div>
 </section>
 
@@ -134,9 +174,16 @@
   // Featured: pick three with badges first, then fill
   const featured = [...BOATS].sort((a, b) => (b.badge ? 1 : 0) - (a.badge ? 1 : 0)).slice(0, 3);
   document.getElementById('featured-grid').innerHTML = featured.map(renderListingCard).join('');
+  bindWatchlistButtons();
 
   document.getElementById('hero-photo').src = HERO_PHOTO;
   document.getElementById('hero-count').textContent = `${BOATS.length} catamarans`;
+
+  // By-the-numbers panel — live computed from real data
+  const activeListings = BOATS.length + (typeof SCRAPED_LISTINGS !== 'undefined' ? SCRAPED_LISTINGS.length : 0);
+  const avgSavings = BOATS.reduce((s, b) => s + buyerSavings(b), 0) / BOATS.length;
+  document.getElementById('counter-listings').textContent = activeListings;
+  document.getElementById('counter-savings').textContent = fmtUSDShort(avgSavings);
 </script>
 
 </body>

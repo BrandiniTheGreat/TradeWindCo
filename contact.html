@@ -7,6 +7,13 @@
   <meta name="description" content="Talk to a Trade Wind & Co. import coordinator. Caribbean catamarans, duty-paid and delivered to your US marina." />
   <meta name="theme-color" content="#1f6e72" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://tradewindandco.com/contact.html" />
+  <meta property="og:title" content="Contact — Trade Wind & Co." />
+  <meta property="og:description" content="Talk to a real human about Caribbean catamarans, import logistics, and delivered pricing." />
+  <meta property="og:image" content="https://tradewindandco.com/og-image.svg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://tradewindandco.com/og-image.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -33,23 +40,28 @@
         <h2 style="font-size:28px; margin-bottom:8px;">Tell us what you're looking for.</h2>
         <p style="color:var(--text-2); margin-bottom:24px;">We'll respond within one business day with two or three boats that match your budget and timeline, plus straight talk on what's realistic and what isn't.</p>
 
-        <form id="contact-form" onsubmit="event.preventDefault(); document.getElementById('contact-form').style.display='none'; document.getElementById('form-success').style.display='block';">
+        <form id="contact-form" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
+          <!-- Honeypot — bots fill this, humans don't see it -->
+          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+          <!-- Formspree subject line -->
+          <input type="hidden" name="_subject" value="New Trade Wind & Co. inquiry" />
+
           <div class="form-grid">
             <div class="form-field">
               <label>Full Name</label>
-              <input type="text" required placeholder="Jane Doe" />
+              <input type="text" name="name" required placeholder="Jane Doe" />
             </div>
             <div class="form-field">
               <label>Phone</label>
-              <input type="tel" required placeholder="(555) 555-5555" />
+              <input type="tel" name="phone" required placeholder="(555) 555-5555" />
             </div>
             <div class="form-field full">
               <label>Email</label>
-              <input type="email" required placeholder="jane@example.com" />
+              <input type="email" name="email" required placeholder="jane@example.com" />
             </div>
             <div class="form-field">
               <label>Budget Range (Delivered)</label>
-              <select>
+              <select name="budget">
                 <option>Under $500K</option>
                 <option>$500K – $650K</option>
                 <option>$650K – $800K</option>
@@ -59,7 +71,7 @@
             </div>
             <div class="form-field">
               <label>Timeline</label>
-              <select>
+              <select name="timeline">
                 <option>Next 3 months</option>
                 <option>3-6 months</option>
                 <option>6-12 months</option>
@@ -68,7 +80,7 @@
             </div>
             <div class="form-field">
               <label>Boat Class</label>
-              <select>
+              <select name="boat_class">
                 <option>40 ft catamaran</option>
                 <option>45 ft catamaran</option>
                 <option>50 ft catamaran</option>
@@ -77,11 +89,11 @@
             </div>
             <div class="form-field">
               <label>Destination Port</label>
-              <input type="text" placeholder="Stuart, FL · Annapolis, MD · etc." />
+              <input type="text" name="destination" placeholder="Stuart, FL · Annapolis, MD · etc." />
             </div>
             <div class="form-field full">
               <label>Boating Background</label>
-              <select>
+              <select name="background">
                 <option>USCG-licensed captain</option>
                 <option>Currently own a sailboat</option>
                 <option>Chartered Caribbean cats previously</option>
@@ -91,7 +103,7 @@
             </div>
             <div class="form-field full">
               <label>Anything else?</label>
-              <textarea placeholder="Financing status, specific concerns, particular boats you've been watching, etc."></textarea>
+              <textarea name="message" placeholder="Financing status, specific concerns, particular boats you've been watching, etc."></textarea>
             </div>
           </div>
           <button class="btn btn-primary mt-32" type="submit">Send Inquiry</button>
@@ -192,6 +204,34 @@
       <p class="team-bio">${t.bio}</p>
     </div>
   `).join('');
+
+  // AJAX form submission — keep our success message, don't redirect to Formspree
+  document.getElementById('contact-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = 'Sending...';
+    submitBtn.disabled = true;
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' },
+      });
+      if (res.ok) {
+        form.style.display = 'none';
+        document.getElementById('form-success').style.display = 'block';
+      } else {
+        throw new Error('Submission failed');
+      }
+    } catch (err) {
+      submitBtn.textContent = originalText;
+      submitBtn.disabled = false;
+      alert('Could not send right now. Please call us directly at ' + SETTINGS.phone + ' or email ' + SETTINGS.email);
+    }
+  });
 </script>
 
 </body>
