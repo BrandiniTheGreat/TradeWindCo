@@ -114,33 +114,31 @@ function uniqOrdered(arr) {
 }
 
 function extractBoatsgroup(html, listingId) {
-  // boatsgroup.com URLs include the listing ID and look like:
-  // https://images.boatsgroup.com/resize/1/15/17/2019-leopard-40-sail-9681517-20250212103347404-1_XLARGE.jpg?format=webp&w=1200&h=900&exact=yes
-  // We want the XLARGE variant (or whatever maps to the original boat).
-  // Be inclusive: match ANY .jpg URL on the boatsgroup CDN that contains the listing ID.
+  // boatsgroup.com URLs include the listing ID. Two patterns observed:
+  //   /<a>/<b>/<c>/2019-leopard-40-sail-9681517-20250212103347404-1_XLARGE.jpg  (newer listings, dash-separated)
+  //   /<a>/<b>/<c>/7342198_20220516110221328_1_XLARGE.jpg                       (older listings, underscore-separated)
+  // The HTML body often contains many size variants of the same photo
+  // (w=320, w=585, w=1200, etc.) — we dedup by URL path and keep the biggest.
+  //
+  // Source HTML uses &amp; in attribute values; decode before matching so we
+  // get clean &-separated query strings.
+  const decodedHtml = html.replace(/&amp;/g, '&');
   const pattern = new RegExp(
     `https:\\/\\/images\\.boatsgroup\\.com\\/resize\\/[^"' ]*${listingId}[^"' ]*\\.jpg(?:\\?[^"' ]*)?`,
     'g',
   );
-  const all = html.match(pattern) || [];
-  // Prefer XLARGE; collapse the same photo at different sizes by stripping the
-  // size suffix and dedup keys.
-  const collapsed = new Map();
+  const all = decodedHtml.match(pattern) || [];
+  // Dedup by path (everything before `?`). Keep the highest-w variant.
+  const byPath = new Map();
   for (const url of all) {
-    // Photo key = the timestamp + index portion (eg 20250212103347404-1)
-    const m = url.match(/(\d{14,17}-\d+)/);
-    const key = m ? m[1] : url;
-    // Prefer XLARGE variant for this key
-    const existing = collapsed.get(key);
-    if (!existing) {
-      collapsed.set(key, url);
-    } else if (!existing.includes('XLARGE') && url.includes('XLARGE')) {
-      collapsed.set(key, url);
-    } else if (existing.includes('LARGE') && url.includes('XLARGE')) {
-      collapsed.set(key, url);
+    const path = url.split('?')[0];
+    const w = parseInt(url.match(/[?&]w=(\d+)/)?.[1] || '0', 10);
+    const existing = byPath.get(path);
+    if (!existing || w > existing.w) {
+      byPath.set(path, { url, w });
     }
   }
-  return [...collapsed.values()];
+  return [...byPath.values()].map((x) => x.url);
 }
 
 function extractYachtBroker(html, listingId) {
@@ -256,6 +254,13 @@ async function main() {
       continue;
     }
 
+    // Safety cap — even the biggest yacht should not exceed 100 photos.
+    // If we got more, the source page probably has duplicates we failed to dedup.
+    const MAX_PHOTOS = 100;
+    if (urls.length > MAX_PHOTOS) {
+      console.log(`  Found ${urls.length} URLs, capping at ${MAX_PHOTOS}.`);
+      urls = urls.slice(0, MAX_PHOTOS);
+    }
     console.log(`  Found ${urls.length} unique photo URL(s) on source page.`);
     if (urls.length === 0) {
       console.log(`  No URLs extracted — likely the source page uses lazy-load JSON we can't parse with regex.`);
