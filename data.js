@@ -27,7 +27,7 @@ const SETTINGS = {
   license: 'Pending FL DBPR Yacht & Ship Broker License (FS 326)',
   // Contact
   domain: 'tradewindandco.com',
-  phone: '(305) 555-0188',
+  phone: '(305) 775-0254',
   email: 'desk@tradewindandco.com',
   emailLeads: 'inquiries@tradewindandco.com',
   hq: 'Miami, Florida',
