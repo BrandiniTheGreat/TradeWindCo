@@ -52,13 +52,8 @@ node scraper.js
 - `scraper.js` — Node.js script (axios + cheerio) that pulls live inventory from Moorings Brokerage, BVI Yacht Sales, The Multihull Company, and Just Catamarans. Filters by acquisition profile, scores opportunities, tracks price history across runs. Output: `data/scraped.js`.
 - `package.json` / `package-lock.json` — scraper dependencies
 
-### Internal reference docs
-These ship with the repo as operational reference. Not deployed by Vercel by default (Vercel serves only what's linked).
-- `complete_workflow.md` — Day-0 to keys-in-hand narrative for the operator
-- `broker_playbook.md` — pre-launch + per-deal playbook
-- `go_live_checklist.md` — call list for activating the business when the first buyer materializes
-- `site_audit_YYYY-MM-DD.md` — periodic site audit (real/demo/broken/todo)
-- `legacy/` — original business plan, financial models, memos
+### Internal reference docs (not in repo)
+Operational playbooks, the periodic site audit, the original business plan, and the financial models live alongside the project locally but are excluded from version control via `.gitignore`. They contain margins, vendor contact details, and internal economics that don't belong in a public-facing repo.
 
 ## Inventory data
 

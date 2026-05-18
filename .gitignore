@@ -5,6 +5,13 @@ node_modules/
 .env.local
 .env.*.local
 
+# Internal operational docs — keep local, never push to public repo
+broker_playbook.md
+complete_workflow.md
+go_live_checklist.md
+site_audit_*.md
+legacy/
+
 # OS cruft
 .DS_Store
 Thumbs.db
