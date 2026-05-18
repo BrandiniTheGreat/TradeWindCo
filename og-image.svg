@@ -19,10 +19,10 @@
   <path d="M0,560 Q300,510 600,540 T1200,540 L1200,630 L0,630 Z" fill="#d96846" fill-opacity="0.15"/>
   <path d="M0,590 Q300,570 600,580 T1200,580 L1200,630 L0,630 Z" fill="#d96846" fill-opacity="0.25"/>
 
-  <!-- Brand mark — wave icon in circle -->
-  <circle cx="120" cy="120" r="48" fill="none" stroke="#f7f3eb" stroke-width="2.5"/>
-  <path d="M85 122 Q105 110, 120 122 T155 122" stroke="#f7f3eb" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-  <path d="M85 134 Q105 122, 120 134 T155 134" stroke="#d96846" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.85"/>
+  <!-- Brand mark — wave logo in rounded square (matches favicon) -->
+  <rect x="72" y="72" width="96" height="96" rx="18" fill="#f7f3eb"/>
+  <path d="M85 122 Q105 110, 120 122 T155 122" stroke="#1f6e72" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <path d="M85 138 Q105 126, 120 138 T155 138" stroke="#d96846" stroke-width="5" fill="none" stroke-linecap="round" opacity="0.95"/>
 
   <!-- Brand name next to mark -->
   <text x="195" y="115" font-family="'Playfair Display', Georgia, serif" font-size="32" font-weight="700" fill="#f7f3eb" letter-spacing="3">TRADE WIND</text>

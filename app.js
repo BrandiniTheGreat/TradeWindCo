@@ -143,7 +143,7 @@ function mountHeader(active) {
   el.innerHTML = `
     <div class="container">
       <a href="index.html" class="brand">
-        <span class="brand-mark">T</span>
+        <span class="brand-mark"><svg viewBox="0 0 32 32" width="36" height="36" aria-hidden="true"><rect width="32" height="32" rx="6" fill="#1f6e72"/><path d="M4 17 Q 10 13, 16 17 T 28 17" stroke="#f7f3eb" stroke-width="2.5" fill="none" stroke-linecap="round"/><path d="M4 22 Q 10 18, 16 22 T 28 22" stroke="#d96846" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.85"/></svg></span>
         <span class="brand-name">Trade Wind <span class="amp">&amp;</span> Co.</span>
       </a>
       <nav class="nav">${links}</nav>
@@ -204,7 +204,7 @@ function mountFooter() {
       <div class="footer-grid">
         <div class="footer-brand">
           <div class="brand">
-            <span class="brand-mark" style="color:#fff;border-color:#fff;">T</span>
+            <span class="brand-mark"><svg viewBox="0 0 32 32" width="36" height="36" aria-hidden="true"><rect width="32" height="32" rx="6" fill="#f7f3eb"/><path d="M4 17 Q 10 13, 16 17 T 28 17" stroke="#1f6e72" stroke-width="2.5" fill="none" stroke-linecap="round"/><path d="M4 22 Q 10 18, 16 22 T 28 22" stroke="#d96846" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.95"/></svg></span>
             <span class="brand-name">Trade Wind <span class="amp">&amp;</span> Co.</span>
           </div>
           <p>${SETTINGS.tagline} Curated ex-fleet catamarans, duty-paid and delivered to your US marina.</p>

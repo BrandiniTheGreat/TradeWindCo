@@ -81,14 +81,19 @@ h4 { font-size: 18px; line-height: 1.3; font-weight: 600; font-family: var(--san
 .brand { display: flex; align-items: center; gap: 12px; }
 
 .brand-mark {
-  width: 36px; height: 36px;
-  border: 1.5px solid var(--teal);
-  border-radius: 50%;
-  display: grid; place-items: center;
-  color: var(--teal);
-  font-family: var(--serif);
-  font-weight: 700;
-  font-size: 16px;
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 7px;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: 0 1px 2px rgba(7,57,61,0.08);
+}
+.brand-mark svg {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .brand-name {
@@ -1386,11 +1391,7 @@ h4 { font-size: 18px; line-height: 1.3; font-weight: 600; font-family: var(--san
   transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
 
-/* Polished brand mark — gives it a wave/anchor feel */
-.brand-mark {
-  background: linear-gradient(135deg, rgba(31,110,114,0.04) 0%, rgba(217,104,70,0.06) 100%);
-  position: relative;
-}
+/* Brand mark — SVG handles its own fill */
 
 /* Hero with subtle wave SVG bottom */
 .hero {
