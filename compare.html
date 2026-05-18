@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Compare Catamarans — Trade Wind &amp; Co.</title>
-  <meta name="description" content="Side-by-side comparison of Caribbean catamarans — specs, landed cost, buyer savings." />
+  <meta name="description" content="Side-by-side comparison of Caribbean catamarans — specs, delivered prices, and savings vs US-listed inventory." />
   <meta name="theme-color" content="#1f6e72" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -124,7 +124,7 @@
 <section class="inventory-hero">
   <div class="container">
     <h1>Compare catamarans</h1>
-    <p>Side-by-side specs, landed cost, and buyer savings. Green highlights the best value in each row.</p>
+    <p>Side-by-side specs and delivered prices. Green highlights the best value in each row.</p>
   </div>
 </section>
 
@@ -190,12 +190,10 @@
     const savings = boats.map((b) => buyerSavings(b));
     const hours = boats.map((b) => b.engineHours);
     const years = boats.map((b) => b.year);
-    const bviAsks = boats.map((b) => b.bviAsk);
     const minPrice = Math.min(...prices);
     const maxSavings = Math.max(...savings);
     const minHours = Math.min(...hours);
     const maxYear = Math.max(...years);
-    const minBvi = Math.min(...bviAsks);
 
     const rowsHTML = [];
 
@@ -233,21 +231,17 @@
     rowsHTML.push(rowFor('Fuel', boats, (b) => b.fuelGal + ' gal', () => false, cols));
     rowsHTML.push(rowFor('Water', boats, (b) => b.waterGal + ' gal', () => false, cols));
 
-    // Section: Economics
-    rowsHTML.push(`<div class="compare-row section-head" style="--cols:${cols};"><div class="compare-cell" style="grid-column: 1 / span ${cols + 1};">Economics</div></div>`);
-    rowsHTML.push(rowFor('BVI ask', boats, (b) => fmtUSD(b.bviAsk), (b) => b.bviAsk === minBvi, cols));
-    rowsHTML.push(rowFor('20% duty', boats, (b) => fmtUSD(b.bviAsk * SETTINGS.importDuty), () => false, cols));
-    rowsHTML.push(rowFor('Landed cost', boats, (b) => fmtUSD(landedCost(b)), () => false, cols));
-    rowsHTML.push(rowFor('Our list', boats, (b) => fmtUSD(listPriceFor(b)), (b) => listPriceFor(b) === minPrice, cols));
-    rowsHTML.push(rowFor('US retail comp', boats, (b) => fmtUSD(b.usRetailComp), () => false, cols));
-    rowsHTML.push(rowFor('Buyer savings', boats, (b) => fmtUSD(buyerSavings(b)), (b) => buyerSavings(b) === maxSavings, cols));
+    // Section: Pricing
+    rowsHTML.push(`<div class="compare-row section-head" style="--cols:${cols};"><div class="compare-cell" style="grid-column: 1 / span ${cols + 1};">Pricing</div></div>`);
+    rowsHTML.push(rowFor('Delivered price', boats, (b) => fmtUSD(listPriceFor(b)), (b) => listPriceFor(b) === minPrice, cols));
+    rowsHTML.push(rowFor('Comparable US-listed asking', boats, (b) => fmtUSD(b.usRetailComp), () => false, cols));
+    rowsHTML.push(rowFor('Savings vs US-listed comp', boats, (b) => fmtUSD(buyerSavings(b)), (b) => buyerSavings(b) === maxSavings, cols));
 
     // Section: Location & status
     rowsHTML.push(`<div class="compare-row section-head" style="--cols:${cols};"><div class="compare-cell" style="grid-column: 1 / span ${cols + 1};">Location &amp; Status</div></div>`);
     rowsHTML.push(rowFor('Current location', boats, (b) => b.location.harbor + ', ' + b.location.country, () => false, cols));
     rowsHTML.push(rowFor('Destination port', boats, (b) => b.destinationPort, () => false, cols));
     rowsHTML.push(rowFor('Status', boats, (b) => `<span class="status-pill ${b.status}">${statusLabel(b.status)}</span>`, () => false, cols));
-    rowsHTML.push(rowFor('Source broker', boats, (b) => b.sourceBroker, () => false, cols));
 
     // CTA row
     rowsHTML.push(`

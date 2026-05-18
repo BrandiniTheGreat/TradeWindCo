@@ -4,13 +4,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Boat Detail — Trade Wind &amp; Co.</title>
-  <meta name="description" content="Catamaran detail — full specs, transparent landed-cost breakdown, inspection options, and dual-CTA inspection request." />
+  <meta name="description" content="Catamaran detail — full specs, delivered price, what's included, and inspection request. Duty-paid, delivered to your US marina." />
   <meta name="theme-color" content="#1f6e72" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="canonical" id="canonical-link" href="https://tradewindandco.com/" />
   <meta property="og:type" content="product" />
   <meta property="og:title" content="Caribbean catamaran — Trade Wind & Co." />
-  <meta property="og:description" content="Duty-paid, delivered to your US marina. Full landed cost transparency." />
+  <meta property="og:description" content="Duty-paid, USCG documented, delivered to your US marina. One price, one contract, one timeline." />
   <meta property="og:image" content="https://tradewindandco.com/og-image.svg" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://tradewindandco.com/og-image.svg" />
@@ -72,13 +72,11 @@
     ? `<div class="more has-photos" data-lightbox-i="0"><div><strong>+${b.photoCount - galleryPhotos.length}</strong>more on source</div></div>`
     : '');
 
-  // Pricing
+  // Pricing — buyer-facing only. Cost basis (landed cost, duty $, gross margin)
+  // is intentionally NOT computed here so the template literal can't accidentally
+  // expose it on the public detail page. See admin pages for internal economics.
   const list = listPriceFor(b);
   const savings = buyerSavings(b);
-  const landed = landedCost(b);
-  const duty = SETTINGS.importDuty;
-  const dutyDollars = b.bviAsk * duty;
-  const margin = grossMargin(b);
 
   // Inspection windows / remote
   const inspectionWindowsHTML = b.inspectionWindows.map((w) => `<li>${w}</li>`).join('');
@@ -134,16 +132,16 @@
         <div class="price">${fmtUSD(list)}</div>
         <div class="price-sub">Duty-paid · USCG documented · delivered to ${b.destinationPort}</div>
         ${savings > 0 ? `<div class="savings-line">
-          You save vs comparable US-listed inventory
+          Below comparable US-listed inventory
           <strong>${fmtUSD(savings)}</strong>
         </div>` : ''}
-        <div class="price-row"><span>BVI broker ask</span><span>${fmtUSD(b.bviAsk)}</span></div>
-        <div class="price-row"><span>Import duty (${fmtPct(duty, 0)})</span><span>${fmtUSD(dutyDollars)}</span></div>
-        <div class="price-row"><span>Survey + delivery + customs</span><span>${fmtUSD(SETTINGS.prepCost + SETTINGS.oceanDelivery + SETTINGS.customsRegistration)}</span></div>
-        <div class="price-row"><span>Current location</span><span>${b.location.harbor}</span></div>
+        <div class="price-row"><span>Currently located</span><span>${b.location.harbor}, ${b.location.country}</span></div>
+        <div class="price-row"><span>Final delivery to</span><span>${b.destinationPort}</span></div>
+        <div class="price-row"><span>Inspection mode</span><span>${b.remoteVideoAvailable ? 'In-person or video' : 'In-person'}</span></div>
+        <div class="price-row"><span>Typical timeline</span><span>8–10 weeks to handover</span></div>
         <a class="btn btn-primary" href="#inspection">Request Inspection</a>
         <a class="btn btn-coral" href="#inspection">Reserve at Deposit</a>
-        <div class="price-foot">Your wire is held by ${SETTINGS.escrowAgent}, an independent maritime escrow. Funds release to each vendor (BVI seller, CBP duty, delivery captain, customs) as milestones clear. Trade Wind &amp; Co. never holds your principal — and we never acquire a boat we haven't pre-sold.</div>
+        <div class="price-foot">Your wire is held by ${SETTINGS.escrowAgent}, an independent maritime escrow. Funds release as each milestone of the import clears. Trade Wind &amp; Co. never holds your principal, and we never acquire a boat we haven't pre-sold.</div>
       </aside>
     </section>
 
@@ -154,55 +152,23 @@
     </section>
 
     <section class="landed-block">
-      <div class="eyebrow">Transparent landed-cost</div>
-      <h2>Why our price beats US-listed inventory.</h2>
-      <p class="lede">Every dollar between the BVI broker's ask and your wire is a service we render. Here's the math, line by line, at the current ${fmtPct(duty, 0)} US import duty rate.</p>
-      <table class="landed-table">
-        <tr>
-          <td>BVI broker acquisition</td>
-          <td>${b.sourceBroker}</td>
-          <td>${fmtUSD(b.bviAsk)}</td>
-        </tr>
-        <tr>
-          <td>Pre-purchase survey + prep</td>
-          <td>Sea trial · cosmetic prep · commissioning</td>
-          <td>${fmtUSD(SETTINGS.prepCost)}</td>
-        </tr>
-        <tr>
-          <td>US import duty</td>
-          <td>${fmtPct(duty, 0)} of transaction value (CBP)</td>
-          <td>${fmtUSD(dutyDollars)}</td>
-        </tr>
-        <tr>
-          <td>Ocean delivery</td>
-          <td>BVI → ${b.destinationPort}</td>
-          <td>${fmtUSD(SETTINGS.oceanDelivery)}</td>
-        </tr>
-        <tr>
-          <td>Customs broker + USCG registration</td>
-          <td>Documentation · title · flag</td>
-          <td>${fmtUSD(SETTINGS.customsRegistration)}</td>
-        </tr>
-        <tr class="subtotal">
-          <td>Total landed cost</td>
-          <td>Our cost basis, delivered to ${b.destinationPort}</td>
-          <td>${fmtUSD(landed)}</td>
-        </tr>
-        <tr class="retail">
-          <td>Comparable US-listed retail</td>
-          <td>Same year/model on YachtWorld &amp; The Multihull Co.</td>
-          <td>${fmtUSD(b.usRetailComp)}</td>
-        </tr>
-        <tr class="list">
-          <td>Our delivered list price</td>
-          <td>Total wire to escrow at signing</td>
-          <td>${fmtUSD(list)}</td>
-        </tr>
-      </table>
-      <div class="landed-savings-row">
-        <span>Buyer savings vs US-listed comp</span>
+      <div class="eyebrow">What's included</div>
+      <h2>One delivered price. No closing-day surprises.</h2>
+      <p class="lede">Your wire to escrow covers everything between the broker's slip in the Caribbean and the cleat at your home marina. This is the full scope of work we run on your behalf.</p>
+      <ul style="list-style:none; padding:0; margin:24px 0 0; display:grid; grid-template-columns:1fr 1fr; gap:14px 32px;">
+        <li style="padding:14px 0; border-top:1px solid var(--border);"><strong style="display:block; color:var(--text); margin-bottom:4px;">Pre-purchase inspection</strong><span style="color:var(--text-2); font-size:14px;">In-person sea trial in the Caribbean, or scheduled live-video walkthrough with our BVI surveyor. Independent report belongs to you.</span></li>
+        <li style="padding:14px 0; border-top:1px solid var(--border);"><strong style="display:block; color:var(--text); margin-bottom:4px;">Acquisition + title work</strong><span style="color:var(--text-2); font-size:14px;">Maritime attorney drafts the bill of sale, title transfer, and lien release. We close on the hull so you don't have to fly down twice.</span></li>
+        <li style="padding:14px 0; border-top:1px solid var(--border);"><strong style="display:block; color:var(--text); margin-bottom:4px;">US import duty</strong><span style="color:var(--text-2); font-size:14px;">Currently 20% on foreign-built vessels. Paid to CBP on your behalf, included in your delivered price.</span></li>
+        <li style="padding:14px 0; border-top:1px solid var(--border);"><strong style="display:block; color:var(--text); margin-bottom:4px;">Customs entry</strong><span style="color:var(--text-2); font-size:14px;">Customs broker files CBP-3461 and CBP-7501. Harbor maintenance and merchandise processing fees included.</span></li>
+        <li style="padding:14px 0; border-top:1px solid var(--border);"><strong style="display:block; color:var(--text); margin-bottom:4px;">Ocean delivery</strong><span style="color:var(--text-2); font-size:14px;">USCG-licensed delivery captain, crew, weather routing, and transit insurance binder. Caribbean → Florida, 7–10 days direct.</span></li>
+        <li style="padding:14px 0; border-top:1px solid var(--border);"><strong style="display:block; color:var(--text); margin-bottom:4px;">USCG documentation</strong><span style="color:var(--text-2); font-size:14px;">CG-1258 filed with the National Vessel Documentation Center. Temporary docs cover the gap until the permanent certificate mails.</span></li>
+        <li style="padding:14px 0; border-top:1px solid var(--border);"><strong style="display:block; color:var(--text); margin-bottom:4px;">State registration</strong><span style="color:var(--text-2); font-size:14px;">FL, NC, SC, and GA handled directly; other states quoted per request.</span></li>
+        <li style="padding:14px 0; border-top:1px solid var(--border);"><strong style="display:block; color:var(--text); margin-bottom:4px;">Final delivery + handover</strong><span style="color:var(--text-2); font-size:14px;">Ferry to your home marina, walkthrough at your slip, full document packet on signing.</span></li>
+      </ul>
+      ${savings > 0 ? `<div class="landed-savings-row" style="margin-top:32px;">
+        <span>Below comparable US-listed inventory</span>
         <strong>${fmtUSD(savings)}</strong>
-      </div>
+      </div>` : ''}
     </section>
 
     ${compsHTML}
@@ -225,7 +191,7 @@
         <div class="service">
           <div class="svc-num">03</div>
           <h4>Import &amp; customs</h4>
-          <p>We pay the 20% US import duty, file CBP entry, and handle the customs broker. All landed at our cost basis.</p>
+          <p>We pay the 20% US import duty, file CBP entry, and run the customs broker engagement. All included in your delivered price.</p>
         </div>
         <div class="service">
           <div class="svc-num">04</div>
