@@ -69,7 +69,7 @@
       </div>
     </div>`;
   }).join('') + (b.photoCount > galleryPhotos.length
-    ? `<div class="more has-photos" data-lightbox-i="0"><div><strong>+${b.photoCount - galleryPhotos.length}</strong>more on source</div></div>`
+    ? `<div class="more has-photos" data-lightbox-i="${galleryPhotos.length}"><div><strong>+${b.photoCount - galleryPhotos.length}</strong>more photos</div></div>`
     : '');
 
   // Pricing — buyer-facing only. Cost basis (landed cost, duty $, gross margin)
@@ -377,7 +377,7 @@
         <div class="lightbox-counter"></div>
       </div>
       <button class="lightbox-next" aria-label="Next">&rarr;</button>
-      <div class="lightbox-source">View the full listing on <a href="${b.sourceUrl}" target="_blank" rel="noopener">${b.sourceBroker}</a> &mdash; ${b.photoCount} photos total</div>
+      <div class="lightbox-source">Use &larr; &rarr; or click outside to close</div>
     `;
     document.body.appendChild(lb);
 

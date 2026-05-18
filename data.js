@@ -134,10 +134,62 @@ const BOATS = [
       { url: 'photos/leopard40-araume-iv/2.jpg', label: 'Cockpit & helm' },
       { url: 'photos/leopard40-araume-iv/3.jpg', label: 'Saloon & galley' },
       { url: 'photos/leopard40-araume-iv/4.jpg', label: 'Owner\'s cabin' },
+      { url: 'photos/leopard40-araume-iv/5.jpg', label: 'View 5' },
+      { url: 'photos/leopard40-araume-iv/6.jpg', label: 'View 6' },
+      { url: 'photos/leopard40-araume-iv/7.jpg', label: 'View 7' },
+      { url: 'photos/leopard40-araume-iv/8.jpg', label: 'View 8' },
+      { url: 'photos/leopard40-araume-iv/9.jpg', label: 'View 9' },
+      { url: 'photos/leopard40-araume-iv/10.jpg', label: 'View 10' },
+      { url: 'photos/leopard40-araume-iv/11.jpg', label: 'View 11' },
+      { url: 'photos/leopard40-araume-iv/12.jpg', label: 'View 12' },
+      { url: 'photos/leopard40-araume-iv/13.jpg', label: 'View 13' },
+      { url: 'photos/leopard40-araume-iv/14.jpg', label: 'View 14' },
+      { url: 'photos/leopard40-araume-iv/15.jpg', label: 'View 15' },
+      { url: 'photos/leopard40-araume-iv/16.jpg', label: 'View 16' },
+      { url: 'photos/leopard40-araume-iv/17.jpg', label: 'View 17' },
+      { url: 'photos/leopard40-araume-iv/18.jpg', label: 'View 18' },
+      { url: 'photos/leopard40-araume-iv/19.jpg', label: 'View 19' },
+      { url: 'photos/leopard40-araume-iv/20.jpg', label: 'View 20' },
+      { url: 'photos/leopard40-araume-iv/21.jpg', label: 'View 21' },
+      { url: 'photos/leopard40-araume-iv/22.jpg', label: 'View 22' },
+      { url: 'photos/leopard40-araume-iv/23.jpg', label: 'View 23' },
+      { url: 'photos/leopard40-araume-iv/24.jpg', label: 'View 24' },
+      { url: 'photos/leopard40-araume-iv/25.jpg', label: 'View 25' },
+      { url: 'photos/leopard40-araume-iv/26.jpg', label: 'View 26' },
+      { url: 'photos/leopard40-araume-iv/27.jpg', label: 'View 27' },
+      { url: 'photos/leopard40-araume-iv/28.jpg', label: 'View 28' },
+      { url: 'photos/leopard40-araume-iv/29.jpg', label: 'View 29' },
+      { url: 'photos/leopard40-araume-iv/30.jpg', label: 'View 30' },
+      { url: 'photos/leopard40-araume-iv/31.jpg', label: 'View 31' },
+      { url: 'photos/leopard40-araume-iv/32.jpg', label: 'View 32' },
+      { url: 'photos/leopard40-araume-iv/33.jpg', label: 'View 33' },
+      { url: 'photos/leopard40-araume-iv/34.jpg', label: 'View 34' },
+      { url: 'photos/leopard40-araume-iv/35.jpg', label: 'View 35' },
+      { url: 'photos/leopard40-araume-iv/36.jpg', label: 'View 36' },
+      { url: 'photos/leopard40-araume-iv/37.jpg', label: 'View 37' },
+      { url: 'photos/leopard40-araume-iv/38.jpg', label: 'View 38' },
+      { url: 'photos/leopard40-araume-iv/39.jpg', label: 'View 39' },
+      { url: 'photos/leopard40-araume-iv/40.jpg', label: 'View 40' },
+      { url: 'photos/leopard40-araume-iv/41.jpg', label: 'View 41' },
+      { url: 'photos/leopard40-araume-iv/42.jpg', label: 'View 42' },
+      { url: 'photos/leopard40-araume-iv/43.jpg', label: 'View 43' },
+      { url: 'photos/leopard40-araume-iv/44.jpg', label: 'View 44' },
+      { url: 'photos/leopard40-araume-iv/45.jpg', label: 'View 45' },
+      { url: 'photos/leopard40-araume-iv/46.jpg', label: 'View 46' },
+      { url: 'photos/leopard40-araume-iv/47.jpg', label: 'View 47' },
+      { url: 'photos/leopard40-araume-iv/48.jpg', label: 'View 48' },
+      { url: 'photos/leopard40-araume-iv/49.jpg', label: 'View 49' },
+      { url: 'photos/leopard40-araume-iv/50.jpg', label: 'View 50' },
+      { url: 'photos/leopard40-araume-iv/51.jpg', label: 'View 51' },
+      { url: 'photos/leopard40-araume-iv/52.jpg', label: 'View 52' },
+      { url: 'photos/leopard40-araume-iv/53.jpg', label: 'View 53' },
+      { url: 'photos/leopard40-araume-iv/54.jpg', label: 'View 54' },
+      { url: 'photos/leopard40-araume-iv/55.jpg', label: 'View 55' },
+      { url: 'photos/leopard40-araume-iv/56.jpg', label: 'View 56' },
     ],
-    photoCount: 57,
+    photoCount: 56,
     description:
-      'Ex-Moorings Leopard 40 in owner-version 4-cabin configuration. Recently completed world-class refit at the St Lucia base following a comprehensive independent survey. Featuring the modern Simonis & Voogd-designed hull with forward-facing galley, panoramic saloon windows, and large sliding glass doors creating fluid indoor-outdoor living between saloon and aft cockpit. Twin Yanmar 3YM30s with Sail Drive SD20, holding tank, generator, and complete navigation suite. Survey-clean, dock-ready. Broker: Richard Vass, The Moorings Yacht Brokerage.',
+      'Ex-Moorings Leopard 40 in owner-version 4-cabin configuration. Recently completed world-class refit at the St Lucia base following a comprehensive independent survey. Featuring the modern Simonis & Voogd-designed hull with forward-facing galley, panoramic saloon windows, and large sliding glass doors creating fluid indoor-outdoor living between saloon and aft cockpit. Twin Yanmar 3YM30s with Sail Drive SD20, holding tank, generator, and complete navigation suite. Survey-clean, dock-ready.',
     internalNotes:
       'Moorings has cut twice (-$20K). Local broker indicates seller would entertain $305K cash close. Sea-Tech Marine confirmed surveyor access on 48h notice.',
   },
@@ -196,10 +248,67 @@ const BOATS = [
       { url: 'photos/leopard40-ocean-breeze/2.jpg', label: 'Helm station' },
       { url: 'photos/leopard40-ocean-breeze/3.jpg', label: 'Saloon (owner version)' },
       { url: 'photos/leopard40-ocean-breeze/4.jpg', label: 'Owner\'s cabin (3-cabin layout)' },
+      { url: 'photos/leopard40-ocean-breeze/5.jpg', label: 'View 5' },
+      { url: 'photos/leopard40-ocean-breeze/6.jpg', label: 'View 6' },
+      { url: 'photos/leopard40-ocean-breeze/7.jpg', label: 'View 7' },
+      { url: 'photos/leopard40-ocean-breeze/8.jpg', label: 'View 8' },
+      { url: 'photos/leopard40-ocean-breeze/9.jpg', label: 'View 9' },
+      { url: 'photos/leopard40-ocean-breeze/10.jpg', label: 'View 10' },
+      { url: 'photos/leopard40-ocean-breeze/11.jpg', label: 'View 11' },
+      { url: 'photos/leopard40-ocean-breeze/12.jpg', label: 'View 12' },
+      { url: 'photos/leopard40-ocean-breeze/13.jpg', label: 'View 13' },
+      { url: 'photos/leopard40-ocean-breeze/14.jpg', label: 'View 14' },
+      { url: 'photos/leopard40-ocean-breeze/15.jpg', label: 'View 15' },
+      { url: 'photos/leopard40-ocean-breeze/16.jpg', label: 'View 16' },
+      { url: 'photos/leopard40-ocean-breeze/17.jpg', label: 'View 17' },
+      { url: 'photos/leopard40-ocean-breeze/18.jpg', label: 'View 18' },
+      { url: 'photos/leopard40-ocean-breeze/19.jpg', label: 'View 19' },
+      { url: 'photos/leopard40-ocean-breeze/20.jpg', label: 'View 20' },
+      { url: 'photos/leopard40-ocean-breeze/21.jpg', label: 'View 21' },
+      { url: 'photos/leopard40-ocean-breeze/22.jpg', label: 'View 22' },
+      { url: 'photos/leopard40-ocean-breeze/23.jpg', label: 'View 23' },
+      { url: 'photos/leopard40-ocean-breeze/24.jpg', label: 'View 24' },
+      { url: 'photos/leopard40-ocean-breeze/25.jpg', label: 'View 25' },
+      { url: 'photos/leopard40-ocean-breeze/26.jpg', label: 'View 26' },
+      { url: 'photos/leopard40-ocean-breeze/27.jpg', label: 'View 27' },
+      { url: 'photos/leopard40-ocean-breeze/28.jpg', label: 'View 28' },
+      { url: 'photos/leopard40-ocean-breeze/29.jpg', label: 'View 29' },
+      { url: 'photos/leopard40-ocean-breeze/30.jpg', label: 'View 30' },
+      { url: 'photos/leopard40-ocean-breeze/31.jpg', label: 'View 31' },
+      { url: 'photos/leopard40-ocean-breeze/32.jpg', label: 'View 32' },
+      { url: 'photos/leopard40-ocean-breeze/33.jpg', label: 'View 33' },
+      { url: 'photos/leopard40-ocean-breeze/34.jpg', label: 'View 34' },
+      { url: 'photos/leopard40-ocean-breeze/35.jpg', label: 'View 35' },
+      { url: 'photos/leopard40-ocean-breeze/36.jpg', label: 'View 36' },
+      { url: 'photos/leopard40-ocean-breeze/37.jpg', label: 'View 37' },
+      { url: 'photos/leopard40-ocean-breeze/38.jpg', label: 'View 38' },
+      { url: 'photos/leopard40-ocean-breeze/39.jpg', label: 'View 39' },
+      { url: 'photos/leopard40-ocean-breeze/40.jpg', label: 'View 40' },
+      { url: 'photos/leopard40-ocean-breeze/41.jpg', label: 'View 41' },
+      { url: 'photos/leopard40-ocean-breeze/42.jpg', label: 'View 42' },
+      { url: 'photos/leopard40-ocean-breeze/43.jpg', label: 'View 43' },
+      { url: 'photos/leopard40-ocean-breeze/44.jpg', label: 'View 44' },
+      { url: 'photos/leopard40-ocean-breeze/45.jpg', label: 'View 45' },
+      { url: 'photos/leopard40-ocean-breeze/46.jpg', label: 'View 46' },
+      { url: 'photos/leopard40-ocean-breeze/47.jpg', label: 'View 47' },
+      { url: 'photos/leopard40-ocean-breeze/48.jpg', label: 'View 48' },
+      { url: 'photos/leopard40-ocean-breeze/49.jpg', label: 'View 49' },
+      { url: 'photos/leopard40-ocean-breeze/50.jpg', label: 'View 50' },
+      { url: 'photos/leopard40-ocean-breeze/51.jpg', label: 'View 51' },
+      { url: 'photos/leopard40-ocean-breeze/52.jpg', label: 'View 52' },
+      { url: 'photos/leopard40-ocean-breeze/53.jpg', label: 'View 53' },
+      { url: 'photos/leopard40-ocean-breeze/54.jpg', label: 'View 54' },
+      { url: 'photos/leopard40-ocean-breeze/55.jpg', label: 'View 55' },
+      { url: 'photos/leopard40-ocean-breeze/56.jpg', label: 'View 56' },
+      { url: 'photos/leopard40-ocean-breeze/57.jpg', label: 'View 57' },
+      { url: 'photos/leopard40-ocean-breeze/58.jpg', label: 'View 58' },
+      { url: 'photos/leopard40-ocean-breeze/59.jpg', label: 'View 59' },
+      { url: 'photos/leopard40-ocean-breeze/60.jpg', label: 'View 60' },
+      { url: 'photos/leopard40-ocean-breeze/61.jpg', label: 'View 61' },
     ],
-    photoCount: 62,
+    photoCount: 61,
     description:
-      'Single-owner 3-cabin Leopard 40 with ash white interior finish, regularly maintained through The Moorings Raiatea charter program. Complete phase-out maintenance executed November 2025 prior to leaving the fleet. Generator, A/C, and solar panels fitted to the hard-top bimini for battery charging. Price includes Papeetized French tax — €260K with tax included. Buyer (Bell, Miami FL) under deposit; close scheduled on Tortola arrival following reposition. Broker: Moorings Yacht Brokerage, Dania Beach.',
+      'Single-owner 3-cabin Leopard 40 with ash white interior finish, regularly maintained through The Moorings Raiatea charter program. Complete phase-out maintenance executed November 2025 prior to leaving the fleet. Generator, A/C, and solar panels fitted to the hard-top bimini for battery charging. Price includes Papeetized French tax — €260K with tax included. Buyer (Bell, Miami FL) under deposit; close scheduled on Tortola arrival following reposition.',
     internalNotes:
       'Under deposit since 4/14 — buyer wired $30K. Hull arrival in Tortola tracking Sep 12. Insurance binder in place through transit.',
   },
@@ -257,10 +366,71 @@ const BOATS = [
       { url: 'photos/leopard40-game-day/2.jpg', label: 'Cockpit' },
       { url: 'photos/leopard40-game-day/3.jpg', label: 'Saloon (ash interior)' },
       { url: 'photos/leopard40-game-day/4.jpg', label: 'Owner\'s cabin' },
+      { url: 'photos/leopard40-game-day/5.jpg', label: 'View 5' },
+      { url: 'photos/leopard40-game-day/6.jpg', label: 'View 6' },
+      { url: 'photos/leopard40-game-day/7.jpg', label: 'View 7' },
+      { url: 'photos/leopard40-game-day/8.jpg', label: 'View 8' },
+      { url: 'photos/leopard40-game-day/9.jpg', label: 'View 9' },
+      { url: 'photos/leopard40-game-day/10.jpg', label: 'View 10' },
+      { url: 'photos/leopard40-game-day/11.jpg', label: 'View 11' },
+      { url: 'photos/leopard40-game-day/12.jpg', label: 'View 12' },
+      { url: 'photos/leopard40-game-day/13.jpg', label: 'View 13' },
+      { url: 'photos/leopard40-game-day/14.jpg', label: 'View 14' },
+      { url: 'photos/leopard40-game-day/15.jpg', label: 'View 15' },
+      { url: 'photos/leopard40-game-day/16.jpg', label: 'View 16' },
+      { url: 'photos/leopard40-game-day/17.jpg', label: 'View 17' },
+      { url: 'photos/leopard40-game-day/18.jpg', label: 'View 18' },
+      { url: 'photos/leopard40-game-day/19.jpg', label: 'View 19' },
+      { url: 'photos/leopard40-game-day/20.jpg', label: 'View 20' },
+      { url: 'photos/leopard40-game-day/21.jpg', label: 'View 21' },
+      { url: 'photos/leopard40-game-day/22.jpg', label: 'View 22' },
+      { url: 'photos/leopard40-game-day/23.jpg', label: 'View 23' },
+      { url: 'photos/leopard40-game-day/24.jpg', label: 'View 24' },
+      { url: 'photos/leopard40-game-day/25.jpg', label: 'View 25' },
+      { url: 'photos/leopard40-game-day/26.jpg', label: 'View 26' },
+      { url: 'photos/leopard40-game-day/27.jpg', label: 'View 27' },
+      { url: 'photos/leopard40-game-day/28.jpg', label: 'View 28' },
+      { url: 'photos/leopard40-game-day/29.jpg', label: 'View 29' },
+      { url: 'photos/leopard40-game-day/30.jpg', label: 'View 30' },
+      { url: 'photos/leopard40-game-day/31.jpg', label: 'View 31' },
+      { url: 'photos/leopard40-game-day/32.jpg', label: 'View 32' },
+      { url: 'photos/leopard40-game-day/33.jpg', label: 'View 33' },
+      { url: 'photos/leopard40-game-day/34.jpg', label: 'View 34' },
+      { url: 'photos/leopard40-game-day/35.jpg', label: 'View 35' },
+      { url: 'photos/leopard40-game-day/36.jpg', label: 'View 36' },
+      { url: 'photos/leopard40-game-day/37.jpg', label: 'View 37' },
+      { url: 'photos/leopard40-game-day/38.jpg', label: 'View 38' },
+      { url: 'photos/leopard40-game-day/39.jpg', label: 'View 39' },
+      { url: 'photos/leopard40-game-day/40.jpg', label: 'View 40' },
+      { url: 'photos/leopard40-game-day/41.jpg', label: 'View 41' },
+      { url: 'photos/leopard40-game-day/42.jpg', label: 'View 42' },
+      { url: 'photos/leopard40-game-day/43.jpg', label: 'View 43' },
+      { url: 'photos/leopard40-game-day/44.jpg', label: 'View 44' },
+      { url: 'photos/leopard40-game-day/45.jpg', label: 'View 45' },
+      { url: 'photos/leopard40-game-day/46.jpg', label: 'View 46' },
+      { url: 'photos/leopard40-game-day/47.jpg', label: 'View 47' },
+      { url: 'photos/leopard40-game-day/48.jpg', label: 'View 48' },
+      { url: 'photos/leopard40-game-day/49.jpg', label: 'View 49' },
+      { url: 'photos/leopard40-game-day/50.jpg', label: 'View 50' },
+      { url: 'photos/leopard40-game-day/51.jpg', label: 'View 51' },
+      { url: 'photos/leopard40-game-day/52.jpg', label: 'View 52' },
+      { url: 'photos/leopard40-game-day/53.jpg', label: 'View 53' },
+      { url: 'photos/leopard40-game-day/54.jpg', label: 'View 54' },
+      { url: 'photos/leopard40-game-day/55.jpg', label: 'View 55' },
+      { url: 'photos/leopard40-game-day/56.jpg', label: 'View 56' },
+      { url: 'photos/leopard40-game-day/57.jpg', label: 'View 57' },
+      { url: 'photos/leopard40-game-day/58.jpg', label: 'View 58' },
+      { url: 'photos/leopard40-game-day/59.jpg', label: 'View 59' },
+      { url: 'photos/leopard40-game-day/60.jpg', label: 'View 60' },
+      { url: 'photos/leopard40-game-day/61.jpg', label: 'View 61' },
+      { url: 'photos/leopard40-game-day/62.jpg', label: 'View 62' },
+      { url: 'photos/leopard40-game-day/63.jpg', label: 'View 63' },
+      { url: 'photos/leopard40-game-day/64.jpg', label: 'View 64' },
+      { url: 'photos/leopard40-game-day/65.jpg', label: 'View 65' },
     ],
-    photoCount: 66,
+    photoCount: 65,
     description:
-      'Newer ex-Moorings 3-cabin owner-version Leopard 40 with the lighter ash interior. Modern Simonis & Voogd design with forward-facing galley and panoramic saloon. No storm damage history. Equipped with air conditioning, generator, Yanmar engines, electric davits, and walk-through forward door. Available with phase-out OR as-is/where-is. Broker: Giles Wood, Moorings Yacht Brokerage.',
+      'Newer ex-Moorings 3-cabin owner-version Leopard 40 with the lighter ash interior. Modern Simonis & Voogd design with forward-facing galley and panoramic saloon. No storm damage history. Equipped with air conditioning, generator, Yanmar engines, electric davits, and walk-through forward door. Available with phase-out OR as-is/where-is.',
     internalNotes:
       'Recent $20K price cut. Seller open to as-is/where-is which removes phase-out lead time. Strong candidate for fast-close buyer.',
   },
@@ -319,10 +489,79 @@ const BOATS = [
       { url: 'photos/leopard45-kokamo/2.jpg', label: 'Flybridge helm' },
       { url: 'photos/leopard45-kokamo/3.jpg', label: 'Saloon & galley' },
       { url: 'photos/leopard45-kokamo/4.jpg', label: 'Master cabin' },
+      { url: 'photos/leopard45-kokamo/5.jpg', label: 'View 5' },
+      { url: 'photos/leopard45-kokamo/6.jpg', label: 'View 6' },
+      { url: 'photos/leopard45-kokamo/7.jpg', label: 'View 7' },
+      { url: 'photos/leopard45-kokamo/8.jpg', label: 'View 8' },
+      { url: 'photos/leopard45-kokamo/9.jpg', label: 'View 9' },
+      { url: 'photos/leopard45-kokamo/10.jpg', label: 'View 10' },
+      { url: 'photos/leopard45-kokamo/11.jpg', label: 'View 11' },
+      { url: 'photos/leopard45-kokamo/12.jpg', label: 'View 12' },
+      { url: 'photos/leopard45-kokamo/13.jpg', label: 'View 13' },
+      { url: 'photos/leopard45-kokamo/14.jpg', label: 'View 14' },
+      { url: 'photos/leopard45-kokamo/15.jpg', label: 'View 15' },
+      { url: 'photos/leopard45-kokamo/16.jpg', label: 'View 16' },
+      { url: 'photos/leopard45-kokamo/17.jpg', label: 'View 17' },
+      { url: 'photos/leopard45-kokamo/18.jpg', label: 'View 18' },
+      { url: 'photos/leopard45-kokamo/19.jpg', label: 'View 19' },
+      { url: 'photos/leopard45-kokamo/20.jpg', label: 'View 20' },
+      { url: 'photos/leopard45-kokamo/21.jpg', label: 'View 21' },
+      { url: 'photos/leopard45-kokamo/22.jpg', label: 'View 22' },
+      { url: 'photos/leopard45-kokamo/23.jpg', label: 'View 23' },
+      { url: 'photos/leopard45-kokamo/24.jpg', label: 'View 24' },
+      { url: 'photos/leopard45-kokamo/25.jpg', label: 'View 25' },
+      { url: 'photos/leopard45-kokamo/26.jpg', label: 'View 26' },
+      { url: 'photos/leopard45-kokamo/27.jpg', label: 'View 27' },
+      { url: 'photos/leopard45-kokamo/28.jpg', label: 'View 28' },
+      { url: 'photos/leopard45-kokamo/29.jpg', label: 'View 29' },
+      { url: 'photos/leopard45-kokamo/30.jpg', label: 'View 30' },
+      { url: 'photos/leopard45-kokamo/31.jpg', label: 'View 31' },
+      { url: 'photos/leopard45-kokamo/32.jpg', label: 'View 32' },
+      { url: 'photos/leopard45-kokamo/33.jpg', label: 'View 33' },
+      { url: 'photos/leopard45-kokamo/34.jpg', label: 'View 34' },
+      { url: 'photos/leopard45-kokamo/35.jpg', label: 'View 35' },
+      { url: 'photos/leopard45-kokamo/36.jpg', label: 'View 36' },
+      { url: 'photos/leopard45-kokamo/37.jpg', label: 'View 37' },
+      { url: 'photos/leopard45-kokamo/38.jpg', label: 'View 38' },
+      { url: 'photos/leopard45-kokamo/39.jpg', label: 'View 39' },
+      { url: 'photos/leopard45-kokamo/40.jpg', label: 'View 40' },
+      { url: 'photos/leopard45-kokamo/41.jpg', label: 'View 41' },
+      { url: 'photos/leopard45-kokamo/42.jpg', label: 'View 42' },
+      { url: 'photos/leopard45-kokamo/43.jpg', label: 'View 43' },
+      { url: 'photos/leopard45-kokamo/44.jpg', label: 'View 44' },
+      { url: 'photos/leopard45-kokamo/45.jpg', label: 'View 45' },
+      { url: 'photos/leopard45-kokamo/46.jpg', label: 'View 46' },
+      { url: 'photos/leopard45-kokamo/47.jpg', label: 'View 47' },
+      { url: 'photos/leopard45-kokamo/48.jpg', label: 'View 48' },
+      { url: 'photos/leopard45-kokamo/49.jpg', label: 'View 49' },
+      { url: 'photos/leopard45-kokamo/50.jpg', label: 'View 50' },
+      { url: 'photos/leopard45-kokamo/51.jpg', label: 'View 51' },
+      { url: 'photos/leopard45-kokamo/52.jpg', label: 'View 52' },
+      { url: 'photos/leopard45-kokamo/53.jpg', label: 'View 53' },
+      { url: 'photos/leopard45-kokamo/54.jpg', label: 'View 54' },
+      { url: 'photos/leopard45-kokamo/55.jpg', label: 'View 55' },
+      { url: 'photos/leopard45-kokamo/56.jpg', label: 'View 56' },
+      { url: 'photos/leopard45-kokamo/57.jpg', label: 'View 57' },
+      { url: 'photos/leopard45-kokamo/58.jpg', label: 'View 58' },
+      { url: 'photos/leopard45-kokamo/59.jpg', label: 'View 59' },
+      { url: 'photos/leopard45-kokamo/60.jpg', label: 'View 60' },
+      { url: 'photos/leopard45-kokamo/61.jpg', label: 'View 61' },
+      { url: 'photos/leopard45-kokamo/62.jpg', label: 'View 62' },
+      { url: 'photos/leopard45-kokamo/63.jpg', label: 'View 63' },
+      { url: 'photos/leopard45-kokamo/64.jpg', label: 'View 64' },
+      { url: 'photos/leopard45-kokamo/65.jpg', label: 'View 65' },
+      { url: 'photos/leopard45-kokamo/66.jpg', label: 'View 66' },
+      { url: 'photos/leopard45-kokamo/67.jpg', label: 'View 67' },
+      { url: 'photos/leopard45-kokamo/68.jpg', label: 'View 68' },
+      { url: 'photos/leopard45-kokamo/69.jpg', label: 'View 69' },
+      { url: 'photos/leopard45-kokamo/70.jpg', label: 'View 70' },
+      { url: 'photos/leopard45-kokamo/71.jpg', label: 'View 71' },
+      { url: 'photos/leopard45-kokamo/72.jpg', label: 'View 72' },
+      { url: 'photos/leopard45-kokamo/73.jpg', label: 'View 73' },
     ],
-    photoCount: 68,
+    photoCount: 73,
     description:
-      'Rare crewed-version Leopard 45 with upgraded specification throughout — only 1,273 engine hours due to reduced usage during Covid years. Notable upgrades include flexi teak in cockpits, cockpit refrigerator, watermaker, inverter, and 2× Cruisair 16K BTU air conditioning. Northern Lights 9kW generator, Sea Recovery watermaker, dual 100W solar panels, hardtop bimini. Ullman fully-battened mainsail with electric Lewmar primary winches and roller-furling genoa. Broker: Giles Wood, Moorings Yacht Brokerage.',
+      'Rare crewed-version Leopard 45 with upgraded specification throughout — only 1,273 engine hours due to reduced usage during Covid years. Notable upgrades include flexi teak in cockpits, cockpit refrigerator, watermaker, inverter, and 2× Cruisair 16K BTU air conditioning. Northern Lights 9kW generator, Sea Recovery watermaker, dual 100W solar panels, hardtop bimini. Ullman fully-battened mainsail with electric Lewmar primary winches and roller-furling genoa.',
     internalNotes:
       'Best margin/effort ratio in current inventory at $106K gross at 20% duty. Two inspections pending (Whitman 5/31, Royce 6/21). Hold price at $419K — broker confirmed seller firm above $410K.',
   },
@@ -384,9 +623,9 @@ const BOATS = [
       { url: 'photos/leopard45-soul-rebel/3.jpg', label: 'Saloon' },
       { url: 'photos/leopard45-soul-rebel/4.jpg', label: 'Master cabin' },
     ],
-    photoCount: 21,
+    photoCount: 4,
     description:
-      'Single-owner 2019 Leopard 45 in 4-cabin + crew cabin configuration, primary Moorings charter service Jan 2019 - May 2024, then transferred out of charter for handover work mid-2024 and lightly used since. Twin Yanmar 45HP engines with saildrives, Northern Lights 9kW generator, Sea Recovery 117 L/hr watermaker, 630Ah house bank, Raymarine Axiom 9 navigation suite. Large galley with Corian countertops and Vitrifrigo 2-drawer fridge/freezer. Stackpack lazyjack, mainsheet bridle, furling headsail. Routine maintenance only since charter exit. Broker: Ted Reshetiloff, BVI Yacht Sales.',
+      'Single-owner 2019 Leopard 45 in 4-cabin + crew cabin configuration, primary Moorings charter service Jan 2019 - May 2024, then transferred out of charter for handover work mid-2024 and lightly used since. Twin Yanmar 45HP engines with saildrives, Northern Lights 9kW generator, Sea Recovery 117 L/hr watermaker, 630Ah house bank, Raymarine Axiom 9 navigation suite. Large galley with Corian countertops and Vitrifrigo 2-drawer fridge/freezer. Stackpack lazyjack, mainsheet bridle, furling headsail. Routine maintenance only since charter exit.',
     internalNotes:
       'Three price cuts (-$44K total) since Sep 2024. Seller motivated — extended dockage exposure. Highest buyer-savings opportunity in current inventory at $135K vs comp.',
   },
@@ -447,9 +686,9 @@ const BOATS = [
       { url: 'photos/lagoon450f-miss-summer/3.jpg', label: 'Saloon (lithium-quiet)' },
       { url: 'photos/lagoon450f-miss-summer/4.jpg', label: 'Master cabin' },
     ],
-    photoCount: 21,
+    photoCount: 4,
     description:
-      'Although Miss Summer is a 2014 model, nothing about this yacht reflects her age. Exceptional level of refit including 1200Ah lithium house bank, Mastervolt inverter/charger suite, 600W solar, Micro-Air EasyStarts delivering true off-grid capability — silent nights on lithium power with one to two air-conditioning units overnight, no generator required. 2022 standing rigging, SD60 saildrives, refreshed upholstery and canvas. Cummins Onan 13.5kW generator, high-output watermaker. Most recent survey passed with NO recommendations. Broker: Elizabeth Day, BVI Yacht Sales.',
+      'Although Miss Summer is a 2014 model, nothing about this yacht reflects her age. Exceptional level of refit including 1200Ah lithium house bank, Mastervolt inverter/charger suite, 600W solar, Micro-Air EasyStarts delivering true off-grid capability — silent nights on lithium power with one to two air-conditioning units overnight, no generator required. 2022 standing rigging, SD60 saildrives, refreshed upholstery and canvas. Cummins Onan 13.5kW generator, high-output watermaker. Most recent survey passed with NO recommendations.',
     internalNotes:
       'Premium refit positioning supports higher retail comp ($725K). Margin tighter than other inventory but appeals to off-grid liveaboard buyer profile. Survey-clean.',
   },
@@ -504,10 +743,68 @@ const BOATS = [
       { url: 'photos/lagoon42-frost-free/2.jpg', label: 'Cockpit' },
       { url: 'photos/lagoon42-frost-free/3.jpg', label: 'Saloon' },
       { url: 'photos/lagoon42-frost-free/4.jpg', label: 'Cabin' },
+      { url: 'photos/lagoon42-frost-free/5.jpg', label: 'View 5' },
+      { url: 'photos/lagoon42-frost-free/6.jpg', label: 'View 6' },
+      { url: 'photos/lagoon42-frost-free/7.jpg', label: 'View 7' },
+      { url: 'photos/lagoon42-frost-free/8.jpg', label: 'View 8' },
+      { url: 'photos/lagoon42-frost-free/9.jpg', label: 'View 9' },
+      { url: 'photos/lagoon42-frost-free/10.jpg', label: 'View 10' },
+      { url: 'photos/lagoon42-frost-free/11.jpg', label: 'View 11' },
+      { url: 'photos/lagoon42-frost-free/12.jpg', label: 'View 12' },
+      { url: 'photos/lagoon42-frost-free/13.jpg', label: 'View 13' },
+      { url: 'photos/lagoon42-frost-free/14.jpg', label: 'View 14' },
+      { url: 'photos/lagoon42-frost-free/15.jpg', label: 'View 15' },
+      { url: 'photos/lagoon42-frost-free/16.jpg', label: 'View 16' },
+      { url: 'photos/lagoon42-frost-free/17.jpg', label: 'View 17' },
+      { url: 'photos/lagoon42-frost-free/18.jpg', label: 'View 18' },
+      { url: 'photos/lagoon42-frost-free/19.jpg', label: 'View 19' },
+      { url: 'photos/lagoon42-frost-free/20.jpg', label: 'View 20' },
+      { url: 'photos/lagoon42-frost-free/21.jpg', label: 'View 21' },
+      { url: 'photos/lagoon42-frost-free/22.jpg', label: 'View 22' },
+      { url: 'photos/lagoon42-frost-free/23.jpg', label: 'View 23' },
+      { url: 'photos/lagoon42-frost-free/24.jpg', label: 'View 24' },
+      { url: 'photos/lagoon42-frost-free/25.jpg', label: 'View 25' },
+      { url: 'photos/lagoon42-frost-free/26.jpg', label: 'View 26' },
+      { url: 'photos/lagoon42-frost-free/27.jpg', label: 'View 27' },
+      { url: 'photos/lagoon42-frost-free/28.jpg', label: 'View 28' },
+      { url: 'photos/lagoon42-frost-free/29.jpg', label: 'View 29' },
+      { url: 'photos/lagoon42-frost-free/30.jpg', label: 'View 30' },
+      { url: 'photos/lagoon42-frost-free/31.jpg', label: 'View 31' },
+      { url: 'photos/lagoon42-frost-free/32.jpg', label: 'View 32' },
+      { url: 'photos/lagoon42-frost-free/33.jpg', label: 'View 33' },
+      { url: 'photos/lagoon42-frost-free/34.jpg', label: 'View 34' },
+      { url: 'photos/lagoon42-frost-free/35.jpg', label: 'View 35' },
+      { url: 'photos/lagoon42-frost-free/36.jpg', label: 'View 36' },
+      { url: 'photos/lagoon42-frost-free/37.jpg', label: 'View 37' },
+      { url: 'photos/lagoon42-frost-free/38.jpg', label: 'View 38' },
+      { url: 'photos/lagoon42-frost-free/39.jpg', label: 'View 39' },
+      { url: 'photos/lagoon42-frost-free/40.jpg', label: 'View 40' },
+      { url: 'photos/lagoon42-frost-free/41.jpg', label: 'View 41' },
+      { url: 'photos/lagoon42-frost-free/42.jpg', label: 'View 42' },
+      { url: 'photos/lagoon42-frost-free/43.jpg', label: 'View 43' },
+      { url: 'photos/lagoon42-frost-free/44.jpg', label: 'View 44' },
+      { url: 'photos/lagoon42-frost-free/45.jpg', label: 'View 45' },
+      { url: 'photos/lagoon42-frost-free/46.jpg', label: 'View 46' },
+      { url: 'photos/lagoon42-frost-free/47.jpg', label: 'View 47' },
+      { url: 'photos/lagoon42-frost-free/48.jpg', label: 'View 48' },
+      { url: 'photos/lagoon42-frost-free/49.jpg', label: 'View 49' },
+      { url: 'photos/lagoon42-frost-free/50.jpg', label: 'View 50' },
+      { url: 'photos/lagoon42-frost-free/51.jpg', label: 'View 51' },
+      { url: 'photos/lagoon42-frost-free/52.jpg', label: 'View 52' },
+      { url: 'photos/lagoon42-frost-free/53.jpg', label: 'View 53' },
+      { url: 'photos/lagoon42-frost-free/54.jpg', label: 'View 54' },
+      { url: 'photos/lagoon42-frost-free/55.jpg', label: 'View 55' },
+      { url: 'photos/lagoon42-frost-free/56.jpg', label: 'View 56' },
+      { url: 'photos/lagoon42-frost-free/57.jpg', label: 'View 57' },
+      { url: 'photos/lagoon42-frost-free/58.jpg', label: 'View 58' },
+      { url: 'photos/lagoon42-frost-free/59.jpg', label: 'View 59' },
+      { url: 'photos/lagoon42-frost-free/60.jpg', label: 'View 60' },
+      { url: 'photos/lagoon42-frost-free/61.jpg', label: 'View 61' },
+      { url: 'photos/lagoon42-frost-free/62.jpg', label: 'View 62' },
     ],
-    photoCount: 8,
+    photoCount: 62,
     description:
-      'Released from the Moorings charter fleet with minimal usage during the Covid period — only 1,850 engine hours on a 2020-model hull. Notable upgrades include Northern Lights 6kW generator and Sea Recovery watermaker. Well-spec\'d throughout with extensive galley equipment and navigation electronics. B&G chart plotter, autopilot, complete Moorings nav suite. Twin Yanmar 4JH45s with 3-blade aluminum props. Broker: Giles Wood, Moorings Yacht Brokerage.',
+      'Released from the Moorings charter fleet with minimal usage during the Covid period — only 1,850 engine hours on a 2020-model hull. Notable upgrades include Northern Lights 6kW generator and Sea Recovery watermaker. Well-spec\'d throughout with extensive galley equipment and navigation electronics. B&G chart plotter, autopilot, complete Moorings nav suite. Twin Yanmar 4JH45s with 3-blade aluminum props.',
     internalNotes:
       'Just listed — no source price movement yet. Saint Martin location (French side) is European-VAT-not-paid which simplifies our offshore-export documentation. Photo set on source is light at 8 shots.',
   },
@@ -567,328 +864,33 @@ const BOATS = [
       { url: 'photos/bali45-four-sevens/2.jpg', label: 'Flybridge' },
       { url: 'photos/bali45-four-sevens/3.jpg', label: 'Saloon (open concept)' },
       { url: 'photos/bali45-four-sevens/4.jpg', label: 'Owner\'s cabin' },
+      { url: 'photos/bali45-four-sevens/5.jpg', label: 'View 5' },
+      { url: 'photos/bali45-four-sevens/6.jpg', label: 'View 6' },
+      { url: 'photos/bali45-four-sevens/7.jpg', label: 'View 7' },
+      { url: 'photos/bali45-four-sevens/8.jpg', label: 'View 8' },
+      { url: 'photos/bali45-four-sevens/9.jpg', label: 'View 9' },
+      { url: 'photos/bali45-four-sevens/10.jpg', label: 'View 10' },
+      { url: 'photos/bali45-four-sevens/11.jpg', label: 'View 11' },
+      { url: 'photos/bali45-four-sevens/12.jpg', label: 'View 12' },
+      { url: 'photos/bali45-four-sevens/13.jpg', label: 'View 13' },
+      { url: 'photos/bali45-four-sevens/14.jpg', label: 'View 14' },
+      { url: 'photos/bali45-four-sevens/15.jpg', label: 'View 15' },
+      { url: 'photos/bali45-four-sevens/16.jpg', label: 'View 16' },
+      { url: 'photos/bali45-four-sevens/17.jpg', label: 'View 17' },
+      { url: 'photos/bali45-four-sevens/18.jpg', label: 'View 18' },
+      { url: 'photos/bali45-four-sevens/19.jpg', label: 'View 19' },
+      { url: 'photos/bali45-four-sevens/20.jpg', label: 'View 20' },
+      { url: 'photos/bali45-four-sevens/21.jpg', label: 'View 21' },
+      { url: 'photos/bali45-four-sevens/22.jpg', label: 'View 22' },
     ],
-    photoCount: 20,
+    photoCount: 22,
     description:
-      'Owner-version Bali 4.5 with the signature folding aft door layout (saloon opens fully to cockpit, single indoor-outdoor living space). Equipped for cruising or liveaboard: solar panel array, lithium house bank, generator, large refrigerator/freezer, 48" smart TV, expansive viewing windows. Twin Nanni 50hp diesels. Three-cabin owner version with three heads. Currently at Port Louis Marina, Grenada. Broker: Just Catamarans (Harbour Towne Marina, Dania Beach FL).',
+      'Owner-version Bali 4.5 with the signature folding aft door layout (saloon opens fully to cockpit, single indoor-outdoor living space). Equipped for cruising or liveaboard: solar panel array, lithium house bank, generator, large refrigerator/freezer, 48" smart TV, expansive viewing windows. Twin Nanni 50hp diesels. Three-cabin owner version with three heads. Currently at Port Louis Marina, Grenada.',
     internalNotes:
       'Three price cuts (-$40K total) since Aug 2025. Grenada delivery adds 2-3 days vs BVI departure but customs paperwork identical. Hennessey Group (Sarasota, FL) inquiry from 5/11 — inspection booking pending.',
   },
 ];
 
-// ============================== Sales pipeline ==============================
-
-const PIPELINE = [
-  { id: 'inq-soul-rebel', boatId: 'leopard45-soul-rebel', buyer: 'Bell · Miami, FL', stage: 'inquiry', stageDate: '2026-05-08', note: 'Remote video walkthrough completed; awaiting second-look on Leopard 45.' },
-  { id: 'inq-bali45-foursevens', boatId: 'bali45-four-sevens', buyer: 'Hennessey Group · Sarasota, FL', stage: 'inquiry', stageDate: '2026-05-11', note: 'Three-call sequence; inspection slot pending for Jun 17.' },
-  { id: 'insp-kokamo', boatId: 'leopard45-kokamo', buyer: 'M. Whitman · Stuart, FL', stage: 'inspection', stageDate: '2026-05-31', note: 'Flying down for sea trial May 31; survey with Sea-Tech Marine.' },
-  { id: 'insp-kokamo-2', boatId: 'leopard45-kokamo', buyer: 'D. Royce · Annapolis, MD', stage: 'inspection', stageDate: '2026-06-21', note: 'Second inspection — backup buyer if Whitman walks.' },
-  { id: 'dep-ocean-breeze', boatId: 'leopard40-ocean-breeze', buyer: 'Bell · Miami, FL', stage: 'deposit', stageDate: '2026-04-14', note: 'Wired $30K deposit. Close on hull arrival Tortola Sep 12.' },
-];
-
-const CLOSED_DEALS = [
-  { id: 'closed-leopard45-tradewindstar', label: '2019 Leopard 45 "Tradewind Star"', bviAsk: 415000, delivered: 615000, duty: 0.20, closed: '2026-03-22', buyer: 'McAllister Family Trust · Naples, FL', destination: 'Naples, FL' },
-  { id: 'closed-helia44-marigold', label: '2018 Fountaine Pajot Helia 44 "Marigold"', bviAsk: 395000, delivered: 590000, duty: 0.20, closed: '2026-01-09', buyer: 'D. Whitfield · Charleston, SC', destination: 'Charleston, SC' },
-  { id: 'closed-lagoon42-pelican', label: '2017 Lagoon 42 "Pelican"', bviAsk: 275000, delivered: 425000, duty: 0.20, closed: '2025-11-20', buyer: 'Greenleaf · Sarasota, FL', destination: 'Sarasota, FL' },
-];
-
-const PIPELINE_STAGES = [
-  { key: 'inquiry', label: 'Inquiry', cls: 'stage-1' },
-  { key: 'inspection', label: 'Inspection', cls: 'stage-2' },
-  { key: 'deposit', label: 'Under Deposit', cls: 'stage-3' },
-  { key: 'delivery', label: 'Under Delivery', cls: 'stage-4' },
-  { key: 'closed', label: 'Closed YTD', cls: 'stage-5' },
-];
-
-// ============================== Leads / CRM ==============================
-
-const LEADS = [
-  {
-    id: 'lead-bell-miami',
-    name: 'Bell · Miami, FL',
-    contact: 'tbell@gmail.com · (305) 555-0117',
-    boatId: 'leopard45-soul-rebel',
-    status: 'qualified',
-    firstContact: '2026-04-29',
-    lastContact: '2026-05-08',
-    source: 'YachtWorld referral',
-    notes: 'Remote video walkthrough done 5/8. Wants 2nd look + financing terms on Soul Rebel.',
-    budget: '$650K',
-    timeline: 'Q3 2026',
-    financing: 'Pre-approved · Trident Funding',
-  },
-  {
-    id: 'lead-hennessey-sarasota',
-    name: 'Hennessey Group · Sarasota, FL',
-    contact: 'jhennessey@hennesseygrp.com · (941) 555-0142',
-    boatId: 'bali45-four-sevens',
-    status: 'inquiry',
-    firstContact: '2026-05-11',
-    lastContact: '2026-05-15',
-    source: 'Google Ads — "import catamaran Caribbean"',
-    notes: 'Flying down to inspect Four Sevens. Group decision — three principals. Wants delivery to St. Pete.',
-    budget: '$800K',
-    timeline: 'Q3 2026',
-    financing: 'Cash',
-  },
-  {
-    id: 'lead-whitman-stuart',
-    name: 'M. Whitman · Stuart, FL',
-    contact: 'mwhitman@whitmanfamily.com · (772) 555-0199',
-    boatId: 'leopard45-kokamo',
-    status: 'inspection-booked',
-    firstContact: '2026-04-22',
-    lastContact: '2026-05-14',
-    source: 'Cruisers Forum thread',
-    notes: 'In-person inspection May 31. Sea-Tech Marine engaged. Has owned a Leopard 38 before.',
-    budget: '$650K',
-    timeline: 'Q2 2026',
-    financing: 'Pre-approved · Essex Credit',
-  },
-  {
-    id: 'lead-royce-annapolis',
-    name: 'D. Royce · Annapolis, MD',
-    contact: 'royce@roycecpa.com · (410) 555-0166',
-    boatId: 'leopard45-kokamo',
-    status: 'inspection-booked',
-    firstContact: '2026-05-12',
-    lastContact: '2026-05-15',
-    source: 'LinkedIn outreach',
-    notes: 'Backup buyer for Kokamo. CPA, very analytical. Wants to see L12M source price history.',
-    budget: '$650K',
-    timeline: 'Q2-Q3 2026',
-    financing: 'Cash',
-  },
-  {
-    id: 'lead-mcallister-naples',
-    name: 'McAllister Family Trust · Naples, FL',
-    contact: 'gm@mcallistertrust.com · (239) 555-0150',
-    boatId: null,
-    status: 'closed',
-    firstContact: '2025-12-19',
-    lastContact: '2026-03-22',
-    source: 'Print ad — Cruising World',
-    notes: 'Closed 3/22 on Tradewind Star. Repeat buyer potential.',
-    budget: '$700K',
-    timeline: 'Closed',
-    financing: 'Cash',
-  },
-  {
-    id: 'lead-greenleaf-sarasota',
-    name: 'Greenleaf · Sarasota, FL',
-    contact: 'eg@greenleafmarine.com · (941) 555-0108',
-    boatId: null,
-    status: 'unqualified',
-    firstContact: '2026-05-13',
-    lastContact: '2026-05-13',
-    source: 'Facebook group — Caribbean Sailing',
-    notes: 'Budget $200K — below our threshold. Referred to Multihull Co. brokerage.',
-    budget: '$200K',
-    timeline: 'TBD',
-    financing: 'TBD',
-  },
-  {
-    id: 'lead-kim-sf',
-    name: 'A. Kim · San Francisco, CA',
-    contact: 'akim@kimmarine.com · (415) 555-0184',
-    boatId: 'bali45-four-sevens',
-    status: 'inquiry',
-    firstContact: '2026-05-14',
-    lastContact: '2026-05-15',
-    source: 'Google search — direct',
-    notes: 'West Coast buyer — wants Pacific delivery option on Four Sevens. Need to quote alt route via Panama.',
-    budget: '$850K',
-    timeline: 'Q4 2026',
-    financing: 'Pre-approved · Sterling Associates',
-  },
-];
-
-const LEAD_STAGES = [
-  { key: 'inquiry', label: 'Inquiry' },
-  { key: 'qualified', label: 'Qualified' },
-  { key: 'inspection-booked', label: 'Inspection Booked' },
-  { key: 'under-deposit', label: 'Under Deposit' },
-  { key: 'closed', label: 'Closed' },
-  { key: 'unqualified', label: 'Unqualified' },
-];
-
-// ============================== Vendor directory ==============================
-
-const VENDORS = [
-  { category: 'Legal — US', name: 'Robert Allen Law', role: 'US maritime attorney', contact: 'rallen@robertallenlaw.com · (305) 372-9800', location: 'Miami, FL', notes: 'Retained — drafts purchase agreements, escrow disbursement instructions, owner-exemption opinions.', lastContact: '2026-05-10' },
-  { category: 'Legal — US', name: 'Christian Reyes', role: 'General counsel (internal)', contact: 'christian@tradewindandco.com', location: 'Miami, FL', notes: 'In-house counsel. Insurance litigation background. Reviews every transaction.', lastContact: '2026-05-15' },
-  { category: 'Legal — BVI', name: 'Conyers Dill & Pearman', role: 'BVI maritime attorney', contact: 'm.smith@conyers.com · +1 284 494 7558', location: 'Road Town, Tortola, BVI', notes: 'BVI Ships Registry work, bill of sale, lien releases, BVI Customs export.', lastContact: '2026-05-12' },
-  { category: 'Accounting', name: 'Whitley Marine CPA', role: 'Maritime CPA', contact: 'jwhitley@whitleymarine.com · (954) 555-0177', location: 'Fort Lauderdale, FL', notes: 'Sales tax modeling, S-corp planning, quarterly estimates, FL DOR filings.', lastContact: '2026-04-30' },
-  { category: 'Escrow', name: 'Yachtworld Escrow', role: 'Primary maritime escrow', contact: 'closings@yachtworldescrow.com · (954) 524-4250', location: 'Fort Lauderdale, FL', notes: 'Master account active. Milestone-based disbursement workflow established.', lastContact: '2026-05-14' },
-  { category: 'Escrow', name: 'All Points Title', role: 'Backup maritime escrow', contact: 'service@allpointstitle.com · (954) 564-1212', location: 'Fort Lauderdale, FL', notes: 'Secondary relationship. Use if Yachtworld unavailable.', lastContact: '2026-04-22' },
-  { category: 'Customs', name: 'Bayport Customs Brokers', role: 'US customs broker', contact: 'imports@bayportcustoms.com · (954) 760-4404', location: 'Fort Lauderdale, FL', notes: 'CBP-7501 vessel-class entries. Handles 30+/year. Pre-arrival document review included.', lastContact: '2026-05-11' },
-  { category: 'Survey', name: 'Sea-Tech Marine', role: 'BVI marine surveyor', contact: 'survey@seatechmarine.vg · +1 284 494 2120', location: 'Road Town, Tortola, BVI', notes: 'Primary surveyor. 48h report turnaround. Buyer-billed direct.', lastContact: '2026-05-09' },
-  { category: 'Delivery', name: 'Captain Eddie Mendez', role: 'Delivery captain (primary)', contact: 'eddiem@bluewatercaptains.com · (305) 555-0144', location: 'Miami, FL', notes: 'USCG Master 100T. 28+ Caribbean → FL deliveries. Crew of 2-3 standard.', lastContact: '2026-05-13' },
-  { category: 'Delivery', name: 'Captain Sarah Kettering', role: 'Delivery captain (backup)', contact: 'skettering@oceancrew.com · (954) 555-0188', location: 'Stuart, FL', notes: 'USCG Master 200T. Pacific + Caribbean experience. Available June-September.', lastContact: '2026-04-18' },
-  { category: 'Insurance', name: 'Pantaenius USA', role: 'Marine hull + transit insurance', contact: 'quotes@pantaenius.us · (410) 268-1111', location: 'Annapolis, MD', notes: 'Transit binders + permanent hull. 48h binder turnaround.', lastContact: '2026-05-08' },
-  { category: 'Insurance', name: 'Markel', role: 'Backup marine insurance', contact: 'marine@markel.com · (804) 285-2700', location: 'Glen Allen, VA', notes: 'Alternative carrier. Used when Pantaenius declines.', lastContact: '2026-04-03' },
-  { category: 'Documentation', name: 'Maritime Documentation Center', role: 'USCG documentation service', contact: 'docs@maritimedoc.com · (800) 555-0234', location: 'Bradenton, FL', notes: 'CG-1258 filings, foreign-built vessel documentation. ~$700/deal.', lastContact: '2026-05-06' },
-  { category: 'Yard', name: 'Lauderdale Marine Center', role: 'FL arrival yard', contact: 'service@lauderdalemarine.com · (954) 713-0700', location: 'Fort Lauderdale, FL', notes: 'Standing yard agreement. Wash, system check, minor cosmetic. ~$1,500/deal.', lastContact: '2026-05-01' },
-  { category: 'Source brokers', name: 'Moorings Brokerage', role: 'Primary BVI source broker', contact: 'rvass@mooringsbrokerage.com · +1 954 925-4150', location: 'Dania Beach, FL · Tortola, BVI', notes: 'Richard Vass (Araume IV), Giles Wood (Kokamo, Game Day, Frost Free). Five active listings in our pipeline.', lastContact: '2026-05-15' },
-  { category: 'Source brokers', name: 'BVI Yacht Sales', role: 'BVI aggregator broker', contact: 'ted@bviyachtsales.com · (941) 900-4510 x1070', location: 'Nanny Cay, Tortola, BVI', notes: 'Ted Reshetiloff (Soul Rebel), Elizabeth Day (Miss Summer). Multi-fleet aggregator — pull title search every time.', lastContact: '2026-05-12' },
-  { category: 'Source brokers', name: 'The Multihull Company', role: 'US-based aggregator', contact: 'phil@multihullcompany.com · (215) 508-2704', location: 'Philadelphia, PA / multiple', notes: 'Aggregates BVI + Caribbean listings. Used for cross-reference comps.', lastContact: '2026-05-10' },
-  { category: 'Source brokers', name: 'Just Catamarans', role: 'Catamaran specialist broker', contact: 'sales@justcatamarans.net · (954) 589-2343', location: 'Dania Beach, FL', notes: 'Source for Four Sevens (Bali 4.5, Grenada). Strong on Lagoon and FP inventory.', lastContact: '2026-05-08' },
-];
-
-// ============================== Email templates ==============================
-
-const EMAIL_TEMPLATES = [
-  {
-    phase: 'Inquiry (Day 0)',
-    title: 'First response to inbound inquiry',
-    subject: 'About the [BOAT_NAME] — let\'s talk',
-    body: `Hi [BUYER_NAME],
-
-Thanks for reaching out about [BOAT_YEAR_MAKE_MODEL] "[BOAT_NAME]." I'd love to walk you through her and answer any questions you have.
-
-She's a [CONDITION_HIGHLIGHT] ex-[ORIGINATING_FLEET] catamaran currently at [LOCATION]. Our delivered price to your marina, duty-paid and USCG documented, is [DELIVERED_PRICE] — about [SAVINGS] below comparable US-listed inventory.
-
-Quick questions to make sure I'm answering the right ones:
-1. What's your timeline — when would you want to be on the boat?
-2. Cash or financing?
-3. Where would you want her delivered?
-4. Any specific concerns from the listing you'd want me to address?
-
-Happy to jump on a call this week. My direct line is [PHONE]. Or reply with a window that works.
-
-Best,
-[YOUR_NAME]
-Trade Wind & Co.`,
-  },
-  {
-    phase: 'Pre-inspection (Day 7-10)',
-    title: 'Inspection packet send',
-    subject: '[BOAT_NAME] — inspection coordination',
-    body: `[BUYER_NAME],
-
-Glad we connected. Attached is everything you need to evaluate [BOAT_NAME]:
-
-· Boat detail page: [BOAT_URL]
-· Sample purchase agreement (we sign this only after your inspection clears)
-· Surveyor scope sheet — Sea-Tech Marine, Tortola (they bill you direct, around $1,800)
-· Three inspection windows: [DATE_OPTIONS]
-· Sample escrow disbursement schedule (Yachtworld Escrow)
-
-Two paths from here:
-1. In-person sea trial — fly to Tortola, surveyor meets you at the boat, full sea trial day, written report by next morning. About 2-3 days total. We coordinate hotel + slip access.
-2. Remote video walkthrough — surveyor walks the boat live with you over Zoom, 90 minutes, recorded for your records, written report next business day.
-
-Most buyers above $400K choose in-person. Either works.
-
-Which window do you want to lock?
-
-[YOUR_NAME]`,
-  },
-  {
-    phase: 'Post-survey (Day 14-17)',
-    title: 'Post-inspection walkthrough call',
-    subject: 'Survey report on [BOAT_NAME] — next steps',
-    body: `[BUYER_NAME],
-
-Survey report attached. A few highlights worth a 20-minute call to walk through:
-
-· [SURVEYOR_FINDING_1]
-· [SURVEYOR_FINDING_2]
-· Recommended remediation: [REMEDIATION_OR_NONE]
-
-My read: this is a clean survey for a 6-year-old ex-fleet boat. The minor items are normal-aging stuff, none of it material. We're ready to proceed if you are.
-
-Standard next steps: you sign the purchase agreement (subject to satisfactory inspection — already satisfied), wire full delivered price to Yachtworld Escrow, escrow holds and disburses to vendors at each milestone over 8-12 weeks. We never touch your principal.
-
-Let's get a call on the calendar. When works for you this week?
-
-[YOUR_NAME]`,
-  },
-  {
-    phase: 'Contract signing (Day 17-21)',
-    title: 'Purchase agreement + escrow wire instructions',
-    subject: '[BOAT_NAME] purchase agreement + wire instructions',
-    body: `[BUYER_NAME],
-
-DocuSign link attached for the Trade Wind & Co. purchase agreement on [BOAT_NAME] at the delivered price of [DELIVERED_PRICE].
-
-Once you sign, you'll receive wire instructions for Yachtworld Escrow. The wire amount is [DELIVERED_PRICE], routing to the third-party escrow account (Yachtworld Escrow is a YBAA-affiliated marine escrow agent — Trade Wind does not touch the funds).
-
-From there, escrow holds your money and disburses at each milestone:
-· BVI seller on title transfer (~Day 21-28)
-· Captain on departure (~Day 32-37)
-· CBP duty wire on US arrival (~Day 47-52)
-· Customs broker on entry filing
-· USCG documentation service
-· Final delivery captain leg
-· Trade Wind margin releases on your handover acknowledgment (~Day 56-60)
-
-Any questions on the disbursement schedule, call me. Otherwise, sign the agreement and we'll send wire instructions within an hour of receipt.
-
-[YOUR_NAME]`,
-  },
-  {
-    phase: 'Mid-deal update (Day 30 / 45)',
-    title: 'Weekly buyer update',
-    subject: 'Update on [BOAT_NAME] — [DATE]',
-    body: `[BUYER_NAME],
-
-Quick update on [BOAT_NAME]:
-
-· BVI close: [STATUS]
-· Export clearance: [STATUS]
-· Ocean delivery: Captain [CAPTAIN_NAME] reports [POSITION] as of [TIMESTAMP]. Fair winds, on schedule for [ETA].
-· Photos attached from [LOCATION].
-· US Customs entry: scheduled at Fort Lauderdale around [DATE]. Our broker has the file queued.
-· USCG documentation: application filed [DATE]. Permanent docs expected by [DATE].
-
-Anything you want me to confirm or dig into, just call.
-
-[YOUR_NAME]`,
-  },
-  {
-    phase: 'Final delivery (Day 56-60)',
-    title: 'Handover scheduling',
-    subject: '[BOAT_NAME] arriving — let\'s schedule your handover',
-    body: `[BUYER_NAME],
-
-[BOAT_NAME] is ready. She'll arrive at [BUYER_MARINA] on [DATE] under Captain [CAPTAIN_NAME].
-
-I'll meet you at your slip for the walkthrough. We'll hand over:
-· Keys (helm + cabins + engine compartments)
-· Surveyor report (printed + digital)
-· CBP entry packet — proof of duty paid (you'll need this for state registration)
-· Temporary USCG documentation
-· Transit insurance certificate (expires today; your permanent insurance kicks in)
-· All manuals + equipment inventory
-· Captain's notes from the passage
-
-You sign a one-page delivery acknowledgment and you're done. Permanent USCG Certificate of Documentation arrives by mail in 60-90 days.
-
-What time works for you on [DATE]?
-
-[YOUR_NAME]`,
-  },
-  {
-    phase: 'Post-close (Day 60+)',
-    title: 'Thank-you + referral ask',
-    subject: 'Welcome to [BOAT_NAME] — and a small ask',
-    body: `[BUYER_NAME],
-
-Hope the first weekend on [BOAT_NAME] was everything you wanted.
-
-Two things:
-1. If anything comes up — first hiccup, first question — call me. My cell is [PHONE]. I'm yours for as long as you own the boat.
-2. If you know anyone who's been thinking about buying a Caribbean catamaran but hasn't pulled the trigger because of the import hassle — please send them my way. We close every introduction with a referral fee back to you on close.
-
-Permanent USCG documentation should arrive within 60-90 days. I'll follow up when I see NVDC has issued it.
-
-Welcome to ownership.
-
-[YOUR_NAME]
-Trade Wind & Co.`,
-  },
-];
 
 // ============================== Helpers ==============================
 

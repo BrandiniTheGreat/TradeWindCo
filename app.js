@@ -123,21 +123,19 @@ function bindWatchlistButtons() {
 function mountHeader(active) {
   const el = document.querySelector('[data-header]');
   if (!el) return;
-  const nav = ['inventory', 'how-it-works', 'watchlist', 'contact', 'admin'];
+  const nav = ['inventory', 'how-it-works', 'watchlist', 'contact'];
   const labels = {
     inventory: 'Inventory',
     'how-it-works': 'How it Works',
     watchlist: 'Watchlist',
     contact: 'Contact',
-    admin: 'Internal',
   };
   const links = nav
     .map((n) => {
       const href = `${n}.html`;
-      const isActive = (n === active || (n === 'admin' && (active || '').startsWith('admin'))) ? ' active' : '';
-      const adminCls = n === 'admin' ? ' admin' : '';
+      const isActive = n === active ? ' active' : '';
       const badge = n === 'watchlist' ? ' <span data-watchlist-count></span>' : '';
-      return `<a href="${href}" class="${isActive}${adminCls}">${labels[n]}${badge}</a>`;
+      return `<a href="${href}" class="${isActive}">${labels[n]}${badge}</a>`;
     })
     .join('');
   el.innerHTML = `
@@ -154,46 +152,6 @@ function mountHeader(active) {
   `;
   // Show watchlist count if user has saved boats
   updateWatchlistBadge();
-}
-
-// Admin sidebar — mounted on every admin-* page
-function mountAdminSidebar(active) {
-  const el = document.querySelector('[data-admin-sidebar]');
-  if (!el) return;
-  const sections = [
-    {
-      label: 'Overview',
-      links: [
-        { key: 'admin', href: 'admin.html', label: 'Dashboard' },
-        { key: 'admin-cashflow', href: 'admin-cashflow.html', label: 'Cash Flow' },
-      ],
-    },
-    {
-      label: 'Pipeline',
-      links: [
-        { key: 'admin-leads', href: 'admin-leads.html', label: 'Leads' },
-        { key: 'admin-deals', href: 'admin-deals.html', label: 'Active Deals' },
-        { key: 'admin-sources', href: 'admin-sources.html', label: 'Sources' },
-      ],
-    },
-    {
-      label: 'Operations',
-      links: [
-        { key: 'admin-vendors', href: 'admin-vendors.html', label: 'Vendors' },
-        { key: 'admin-emails', href: 'admin-emails.html', label: 'Email Templates' },
-      ],
-    },
-  ];
-  el.innerHTML = sections.map((s) => `
-    <div class="nav-section">
-      <div class="nav-label">${s.label}</div>
-      ${s.links.map((l) => `
-        <a href="${l.href}" class="${l.key === active ? 'active' : ''}">
-          <span class="dot"></span>${l.label}
-        </a>
-      `).join('')}
-    </div>
-  `).join('');
 }
 
 function mountFooter() {

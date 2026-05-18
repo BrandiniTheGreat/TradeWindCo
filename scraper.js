@@ -4,7 +4,7 @@
  *
  * Scans Moorings Brokerage, BVI Yacht Sales, The Multihull Company, and
  * Just Catamarans for newly-listed or price-changed catamarans matching our
- * acquisition profile. Outputs to data/scraped.js for the admin-sources page.
+ * acquisition profile. Outputs to data/scraped.js for back-office review.
  *
  * Run nightly via cron or manually:
  *     node scraper.js
@@ -70,7 +70,10 @@ const FILTER = {
   models: ['Leopard', 'Lagoon', 'Fountaine Pajot', 'FP', 'Helia', 'Bali', 'Nautitech'],
   minLengthFt: 38,
   maxLengthFt: 50,
-  maxYears: 10, // boat must be 10 years old or newer
+  // 13 years lets us pick up refit-grade older hulls (e.g. lithium-converted Lagoon 450).
+  // Originally 10; raised after observing that boats like Miss Summer (2014) and
+  // Four Sevens (2015) were being filtered out despite being excellent candidates.
+  maxYears: 13,
 };
 
 const USER_AGENT = 'Trade Wind & Co. Inventory Scout (contact: desk@tradewindandco.com)';
@@ -187,6 +190,39 @@ function parsePrice(text) {
 // Strip common badge/promotional text that source brokers append to titles.
 const BADGE_RE = /\b(Virtual\s+Tour|Video\s+Tour|Sale\s+Pending|New\s+Arrival|Reduced|Just\s+Listed|Price\s+Reduced|Owner\s+Motivated|Featured)\b/gi;
 
+// Model-name → actual hull length (in feet). Catamaran model numbers are
+// inconsistent: Leopard 40 = 40ft, Lagoon 450 = ~45ft, Bali 4.5 = ~45ft,
+// Helia 44 = ~44ft. We can't just parseFloat the model number.
+function lengthFromModel(make, modelStr) {
+  if (!modelStr) return null;
+  const m = make ? make.toLowerCase() : '';
+  const x = modelStr.toLowerCase().trim();
+  // Lagoon 450 / 450F / 380 / 410 / etc. — strip trailing letter, divide by 10.
+  if (m.includes('lagoon')) {
+    const num = parseInt(x.replace(/[a-z]/g, ''), 10);
+    if (!isNaN(num) && num >= 100 && num <= 999) return Math.round(num / 10);
+  }
+  // Bali 4.5 / 4.6 / 5.4 — decimal × 10.
+  if (m.includes('bali')) {
+    const num = parseFloat(x);
+    if (!isNaN(num) && num >= 3.5 && num <= 6.0) return Math.round(num * 10);
+  }
+  // FP Helia 44, Saona 47, Astrea 42, etc. — last number is the length.
+  if (m.includes('fountaine') || m.includes('helia') || m.includes('saona') || m.includes('astrea')) {
+    const num = parseInt(x.match(/(\d{2})/)?.[1] || '', 10);
+    if (!isNaN(num) && num >= 30 && num <= 60) return num;
+  }
+  // Leopard 40, 45, 50 — model number IS the length.
+  if (m.includes('leopard')) {
+    const num = parseInt(x, 10);
+    if (!isNaN(num) && num >= 30 && num <= 60) return num;
+  }
+  // Fallback: only trust parseFloat if it's in a sensible boat-length range.
+  const num = parseFloat(x);
+  if (!isNaN(num) && num >= 30 && num <= 60) return num;
+  return null;
+}
+
 // Title parser: "2019 Leopard 45 'Coral Wind'" → { year, make, model, name }
 function parseTitle(title) {
   if (!title) return null;
@@ -199,24 +235,26 @@ function parseTitle(title) {
     let name = (m[4] || '').trim();
     // Strip trailing words like "Catamaran", "Sail", etc.
     name = name.replace(/^(catamaran|sail|sailing|yacht)\s*/i, '').trim();
+    const make = m[2].trim();
+    const model = m[3].trim().replace(/\s+/g, ' ');
     return {
       year: parseInt(m[1], 10),
-      make: m[2].trim(),
-      model: m[3].trim().replace(/\s+/g, ' '),
+      make,
+      model,
       name,
-      length: parseFloat(m[3]),
+      length: lengthFromModel(make, model),
     };
   }
-  // Fallback — extract year + length only
+  // Fallback — extract year + plausible length from title text.
   const yearM = clean.match(/\b(20\d{2}|19\d{2})\b/);
-  const lenM = clean.match(/\b(\d{2,3}(?:\.\d)?)\s*(?:ft|')?/);
+  const lenM = clean.match(/\b(\d{2})\s*(?:ft|')/i);
   if (yearM && lenM) {
     return {
       year: parseInt(yearM[1], 10),
       make: 'Unknown',
       model: lenM[1],
       name: clean.replace(yearM[0], '').replace(lenM[0], '').trim(),
-      length: parseFloat(lenM[1]),
+      length: parseInt(lenM[1], 10),
     };
   }
   return null;
