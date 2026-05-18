@@ -124,7 +124,7 @@ const BOATS = [
       { date: '2026-04-02', price: 318000 },
       { date: '2026-05-08', price: 309000 },
     ],
-    badge: 'Anchor Listing',
+    badge: 'Hand-Picked',
     status: 'available',
     daysActive: 103,
     leads: 14,
@@ -325,7 +325,7 @@ const BOATS = [
     make: 'Leopard',
     model: '40',
     name: 'Game Day',
-    headline: 'Ex-Moorings 3-cabin owner Leopard 40 in BVI — no storm damage, lighter ash interior.',
+    headline: 'Ex-Moorings 3-cabin owner Leopard 40 in BVI — lighter ash interior, walk-through forward door.',
     loa: '39\' 4"',
     beam: '21\' 1"',
     draft: '4\' 1"',
@@ -434,7 +434,7 @@ const BOATS = [
     ],
     photoCount: 65,
     description:
-      'Newer ex-Moorings 3-cabin owner-version Leopard 40 with the lighter ash interior. Modern Simonis & Voogd design with forward-facing galley and panoramic saloon. No storm damage history. Equipped with air conditioning, generator, Yanmar engines, electric davits, and walk-through forward door. Available with phase-out OR as-is/where-is.',
+      'Newer ex-Moorings 3-cabin owner-version Leopard 40 with the lighter ash interior. Modern Simonis & Voogd design with forward-facing galley and panoramic saloon. Equipped with air conditioning, generator, Yanmar engines, electric davits, and walk-through forward door. Available with phase-out OR as-is/where-is.',
     internalNotes:
       'Recent $20K price cut. Seller open to as-is/where-is which removes phase-out lead time. Strong candidate for fast-close buyer.',
     whyWeSelected:
@@ -620,7 +620,7 @@ const BOATS = [
       { date: '2025-11-04', price: 365000 },
       { date: '2026-03-15', price: 355000 },
     ],
-    badge: 'Widest Spread',
+    badge: 'Best Value',
     status: 'available',
     daysActive: 615,
     leads: 19,
