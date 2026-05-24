@@ -16,6 +16,7 @@
     "jimp": "^1.6.1"
   },
   "devDependencies": {
-    "@resvg/resvg-js": "^2.6.2"
+    "@resvg/resvg-js": "^2.6.2",
+    "marked": "^18.0.4"
   }
 }
