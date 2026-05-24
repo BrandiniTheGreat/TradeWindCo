@@ -13,6 +13,7 @@ site_audit_*.md
 public_launch_audit_*.md
 *_audit_*.md
 legacy/
+handouts/
 
 # OS cruft
 .DS_Store
